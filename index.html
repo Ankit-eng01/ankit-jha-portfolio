@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#121212">
   <title>Ankit Jha | AI and Full Stack Engineer</title>
-  <meta name="description" content="Ankit Jha is an AI and full stack engineer based in New Delhi, building agents, automations, vector search pipelines, and full-stack software.">
+  <meta name="description" content="Ankit Jha is an AI and full stack engineer based in Delhi, building agents, automations, vector search pipelines, and full-stack software.">
 
   <!-- Geist & Geist Mono Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,28 +14,229 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Inlined resilient CSS guarantee: identical to styles.css */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --orange-400: #ff5a3d;
+      --orange-500: #e8341c;
+      --orange-600: #c53727;
+      --radius-ticket: 4px;
+      --radius-pill: 6px;
+      --radius-inner: 8px;
+      --radius-media: 12px;
+      --radius-tile: 16px;
+      --radius-full: 999px;
+      --dur-link: 150ms;
+      --dur-hover: 240ms;
+      --dur-toggle: 320ms;
+      --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);
+      --col-reading: 580px;
+      --col-wide: 740px;
+      color-scheme: dark;
+      --ground: #121212;
+      --ground-tile: #171717;
+      --ground-tile-hover: #1e1e1e;
+      --ink: #f1eee9;
+      --ink-strong: #ffffff;
+      --ink-soft: #aaa297;
+      --ink-muted: #8e8e8e;
+      --bio: #9ca3af;
+      --line: #292929;
+      --line-strong: #383838;
+      --marker: var(--orange-400);
+      --hl-blue: rgba(0, 191, 255, 0.28);
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --ground: #ffffff;
+      --ground-tile: #f5f5f5;
+      --ground-tile-hover: #ececec;
+      --ink: #171717;
+      --ink-strong: #0a0a0a;
+      --ink-soft: #645d53;
+      --ink-muted: #737373;
+      --bio: #6b7280;
+      --line: #e5e5e5;
+      --line-strong: #d4d4d4;
+      --marker: var(--orange-500);
+      --hl-blue: rgba(0, 191, 255, 0.2);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--ground); background-color: var(--ground); }
+    body {
+      margin: 0; min-height: 100vh; background-color: var(--ground); color: var(--ink);
+      font-family: var(--font-sans); font-size: 15px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--dur-link) ease; }
+    button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+    .font-mono { font-family: var(--font-mono); }
+    .text-muted { color: var(--ink-muted); }
+    .text-xs { font-size: 12px; }
+    .b-marked { background: var(--hl-blue); color: #55d6ff; padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+    .home { max-width: var(--col-reading); margin: 0 auto; padding: 56px 20px 80px; }
+    .view-container { max-width: var(--col-wide); margin: 0 auto; padding: 40px 20px 80px; }
+    .home-top { display: flex; align-items: center; justify-content: space-between; min-height: 60px; margin-bottom: 24px; }
+    .avatar-box {
+      width: 60px; height: 60px; border-radius: 15px; background: #181818;
+      border: 1px solid var(--line); overflow: hidden; display: flex; align-items: center;
+      justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+    #avatarCanvas { display: block; width: 60px; height: 60px; }
+    .theme-toggle {
+      display: flex; align-items: center; background: var(--ground-tile);
+      border: 1px solid var(--line); border-radius: var(--radius-full); padding: 3px; gap: 2px;
+    }
+    .theme-btn {
+      display: flex; align-items: center; justify-content: center; padding: 5px 9px;
+      border-radius: var(--radius-full); color: var(--ink-muted); transition: all var(--dur-link) ease;
+    }
+    .theme-btn:hover { color: var(--ink-strong); }
+    .theme-btn.active {
+      background: var(--ground); color: var(--ink-strong); border: 1px solid var(--line);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+    .home-h1 {
+      font-size: 22px; font-weight: 600; line-height: 1.35; letter-spacing: -0.02em;
+      color: var(--ink-strong); margin: 0 0 20px 0;
+    }
+    .home-h1 .muted { display: block; font-size: 18px; font-weight: 400; color: var(--ink-muted); margin-top: 3px; }
+    .bio { color: var(--bio); font-size: 15px; line-height: 1.65; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .bio p { margin: 0; }
+    .cut-box { margin: 24px 0 30px; }
+    .cut-line { position: relative; display: flex; align-items: center; width: 100%; padding: 12px 0; cursor: pointer; background: none; }
+    .cut-line-rule { flex: 1; height: 1px; border-top: 1px dashed var(--line-strong); }
+    .cut-handle {
+      width: 10px; height: 10px; background: var(--marker); border-radius: 1px;
+      margin-left: 8px; box-shadow: 0 0 6px rgba(255, 90, 61, 0.45);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .cut-line:hover .cut-handle { transform: scale(1.25); }
+    .cut-hint { font-size: 11px; font-family: var(--font-mono); color: var(--ink-muted); margin-right: 8px; }
+    .bio-more { display: none; border-left: 2px solid var(--line-strong); padding-left: 18px; margin: 16px 0 28px; color: var(--bio); font-size: 14.5px; line-height: 1.65; }
+    .bio-more.open { display: flex; flex-direction: column; gap: 14px; animation: fadeIn 0.3s ease; }
+    .fold-btn { align-self: flex-start; font-family: var(--font-mono); font-size: 11.5px; color: var(--marker); padding: 2px 0; cursor: pointer; }
+    .fold-btn:hover { text-decoration: underline; }
+    .tiles { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 32px; }
+    @media (min-width: 560px) { .tiles { grid-template-columns: 1fr 1fr; } }
+    .b-tile {
+      position: relative; display: flex; flex-direction: column; justify-content: space-between;
+      padding: 18px; background: var(--ground-tile); border: 1px solid var(--line);
+      border-radius: var(--radius-tile); text-align: left; transition: all var(--dur-hover) var(--ease-glide);
+      cursor: pointer; min-height: 160px; overflow: hidden;
+    }
+    .b-tile:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28); }
+    .b-tile-key {
+      position: absolute; bottom: 12px; right: 12px; font-family: var(--font-mono);
+      font-size: 11px; color: var(--ink-muted); background: rgba(0, 0, 0, 0.4);
+      padding: 2px 7px; border-radius: 4px; border: 1px solid var(--line); pointer-events: none;
+    }
+    .b-tile-coral { background: #ff5a3d !important; color: #ffffff !important; border: 1px solid #ff7258 !important; padding: 16px; }
+    .b-tile-coral:hover { background: #ff654a !important; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 90, 61, 0.35); }
+    .coral-top { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: rgba(255, 255, 255, 0.9); }
+    .coral-matrix { position: absolute; right: 18px; top: 48px; display: grid; grid-template-columns: repeat(4, 5px); gap: 3px; opacity: 0.9; }
+    .coral-matrix span { width: 5px; height: 5px; background: #ffffff; border-radius: 1px; }
+    .coral-title { font-size: 21px; font-weight: 700; line-height: 1.2; color: #ffffff; margin-top: 36px; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .coral-pill { align-self: flex-start; background: #111111; color: #ffffff; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 999px; display: inline-block; }
+    .b-tile-coral .b-tile-key { color: rgba(255, 255, 255, 0.8); background: rgba(0, 0, 0, 0.3); border-color: rgba(255, 255, 255, 0.2); }
+    .garden-card-head { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; font-weight: 500; }
+    .ticket-stack { position: relative; height: 104px; }
+    .b-ticket {
+      position: absolute; inset: 0; border-radius: 8px; background: #1b1b1b;
+      border: 1px solid var(--line); padding: 10px 12px; display: flex; flex-direction: column;
+      justify-content: space-between; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); transition: transform 0.25s ease;
+    }
+    .b-ticket[data-pos="2"] { transform: translateY(-8px) scale(0.92); opacity: 0.35; z-index: 1; }
+    .b-ticket[data-pos="1"] { transform: translateY(-4px) scale(0.96); opacity: 0.65; z-index: 2; }
+    .b-ticket[data-pos="0"] { transform: translateY(0) scale(1); opacity: 1; z-index: 3; }
+    .thought-head { display: flex; align-items: center; gap: 6px; font-size: 11px; }
+    .thought-avatar { width: 18px; height: 18px; border-radius: 50%; background: #ff5a3d; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold; }
+    .thought-name { font-weight: 600; color: var(--ink-strong); }
+    .thought-handle { color: var(--ink-muted); }
+    .thought-num { margin-left: auto; font-family: var(--font-mono); color: #ff5a3d; font-weight: bold; }
+    .thought-text { font-size: 12.5px; line-height: 1.35; color: var(--ink); margin: 6px 0; }
+    .thought-foot { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-muted); font-family: var(--font-mono); }
+    .b-tile-wide { grid-column: 1 / -1; min-height: 110px; }
+    .wide-label { font-size: 12px; color: var(--ink-soft); margin-bottom: 4px; }
+    .wide-title { font-size: 16px; font-weight: 600; color: var(--ink-strong); margin-bottom: 2px; }
+    .wide-desc { font-size: 13px; color: var(--ink-muted); }
+    .svc-head { font-size: 12px; color: var(--ink-soft); margin-bottom: 12px; }
+    .svc-list { display: flex; flex-direction: column; gap: 6px; }
+    .svc-item { font-size: 14px; font-weight: 500; color: var(--ink-muted); transition: all 0.3s ease; display: flex; align-items: center; gap: 6px; }
+    .svc-item.active { color: var(--ink-strong); font-weight: 600; }
+    .svc-item.active::before { content: "•"; color: var(--marker); }
+    .shelf-label { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+    .b-jackets { display: flex; align-items: flex-end; gap: 5px; height: 80px; padding: 0 4px 6px; border-bottom: 2px solid var(--line-strong); overflow: hidden; }
+    .b-jacket { display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 4px 2px; border-radius: 3px 3px 0 0; box-shadow: -1px 0 4px rgba(0, 0, 0, 0.3); cursor: pointer; transition: transform 0.2s ease; }
+    .b-jacket:hover { transform: translateY(-4px); }
+    .b-jacket-title { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 8.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-height: 55px; letter-spacing: -0.01em; }
+    .b-jacket-glyph { font-size: 7.5px; font-weight: bold; font-family: var(--font-mono); }
+    .contact-nav { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+    @media (min-width: 560px) { .contact-nav { flex-direction: row; align-items: center; justify-content: space-between; } }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13.5px; color: var(--ink-muted); }
+    .contact-links a:hover { color: var(--ink-strong); }
+    .contact-telemetry { display: flex; align-items: center; gap: 8px; font-size: 12px; font-family: var(--font-mono); color: var(--ink-muted); }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.4); }
+    .view-panel { display: none; animation: fadeIn 0.25s var(--ease-glide); }
+    .view-panel.active { display: block; }
+    .view-back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--ground-tile); transition: all var(--dur-link) ease; }
+    .back-btn:hover { color: var(--ink-strong); border-color: var(--line-strong); background: var(--ground-tile-hover); }
+    .view-heading { font-size: 24px; font-weight: 600; color: var(--ink-strong); margin: 0 0 8px 0; letter-spacing: -0.02em; }
+    .view-subtitle { font-size: 15px; color: var(--ink-muted); margin: 0 0 32px 0; line-height: 1.6; }
+    .project-list { display: flex; flex-direction: column; gap: 16px; }
+    .project-card { padding: 24px; background: var(--ground-tile); border: 1px solid var(--line); border-radius: var(--radius-tile); cursor: pointer; transition: all var(--dur-hover) var(--ease-glide); }
+    .project-card:hover { border-color: var(--line-strong); transform: translateY(-2px); background: var(--ground-tile-hover); }
+    .project-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .project-title { font-size: 18px; font-weight: 600; color: var(--ink-strong); margin: 0; }
+    .project-tag { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--radius-pill); background: var(--ground); color: var(--marker); border: 1px solid var(--line); }
+    .project-summary { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 16px 0; line-height: 1.6; }
+    .project-stack { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+    .book-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+    .book-tab-btn { font-family: var(--font-mono); font-size: 12px; padding: 6px 12px; border-radius: var(--radius-pill); color: var(--ink-muted); border: 1px solid transparent; transition: all var(--dur-link) ease; }
+    .book-tab-btn.active { color: var(--ink-strong); background: var(--ground-tile); border-color: var(--line); }
+    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .book-card { padding: 16px; background: var(--ground-tile); border: 1px solid var(--line); border-radius: var(--radius-inner); display: flex; flex-direction: column; justify-content: space-between; min-height: 130px; }
+    .book-card-title { font-size: 13.5px; font-weight: 600; color: var(--ink-strong); margin-bottom: 4px; }
+    .book-card-author { font-size: 12px; color: var(--ink-muted); }
+    .book-card-tag { font-family: var(--font-mono); font-size: 10px; color: var(--marker); }
+    .case-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 9999; justify-content: flex-end; }
+    .case-modal-overlay.open { display: flex; }
+    .case-drawer { width: 100%; max-width: 680px; height: 100vh; background: var(--ground); border-left: 1px solid var(--line-strong); padding: 36px 30px; overflow-y: auto; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6); animation: slideLeft 0.3s var(--ease-glide); }
+    .case-meta-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 16px; background: var(--ground-tile); border: 1px solid var(--line); border-radius: var(--radius-inner); margin-bottom: 28px; }
+    .case-meta-item .label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); text-transform: uppercase; }
+    .case-meta-item .val { font-size: 13px; font-weight: 600; color: var(--ink-strong); margin-top: 2px; }
+    .case-article h2 { font-size: 18px; font-weight: 600; color: var(--ink-strong); margin: 28px 0 10px 0; }
+    .case-article p { font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 16px 0; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  </style>
 </head>
 <body>
 
   <!-- ======================================================== -->
-  <!-- MAIN HOME VIEW (Reading Column Layout ~560px-620px)      -->
+  <!-- MAIN HOME VIEW                                           -->
   <!-- ======================================================== -->
   <main id="homeView" class="home view-panel active">
     
-    <!-- Top Bar: Avatar & Theme Switcher -->
+    <!-- Top Bar: 3D Wireframe Canvas Avatar & Segmented Theme Switcher -->
     <header class="home-top">
-      <div class="b-avatar" aria-label="Ankit Jha">
-        <span>AJ</span>
+      <div class="avatar-box" title="Ankit Jha">
+        <canvas id="avatarCanvas" width="60" height="60"></canvas>
       </div>
 
-      <div class="theme-toggle-seg" role="radiogroup" aria-label="Theme">
-        <button type="button" class="theme-toggle-btn" id="themeLightBtn" onclick="setTheme('light')" aria-label="Light mode">
+      <div class="theme-toggle" role="radiogroup" aria-label="Theme">
+        <button type="button" class="theme-btn" id="themeLightBtn" onclick="setTheme('light')" aria-label="Light mode">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="4"></circle>
             <path d="M12 2v2M12 20v2m-7.07-17.07 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
           </svg>
         </button>
-        <button type="button" class="theme-toggle-btn active" id="themeDarkBtn" onclick="setTheme('dark')" aria-label="Dark mode">
+        <button type="button" class="theme-btn active" id="themeDarkBtn" onclick="setTheme('dark')" aria-label="Dark mode">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
           </svg>
@@ -45,10 +246,10 @@
 
     <!-- Main Introduction -->
     <h1 class="home-h1">
-      Hey there, I'm Ankit Jha <span class="muted">an AI and full stack engineer based in New Delhi</span>
+      Hey there, I'm Ankit Jha <span class="muted">an AI and full stack engineer based in Delhi</span>
     </h1>
 
-    <!-- Exact User Bio Content -->
+    <!-- Exact User Bio Content with Cyan Pill -->
     <div class="bio">
       <p>
         First things first, greetings to whoever is reading this, I am thankful for you coming here. I hope you are having a great day.
@@ -58,16 +259,13 @@
       </p>
     </div>
 
-    <!-- Dashed Cut Line to Open Long Bio -->
+    <!-- Dashed Cut Line with Orange Square Handle -->
     <div class="cut-box">
-      <button type="button" class="cut-line" onclick="toggleBio()" aria-expanded="false" id="cutLineBtn">
-        <span class="cut-line-rule"></span>
-        <span class="cut-line-btn">
-          <span>✂</span>
-          <span id="cutBtnLabel">Drag along the line to cut the bio open</span>
-        </span>
-        <span class="cut-line-rule"></span>
-      </button>
+      <div class="cut-line" onclick="toggleBio()" role="button" aria-expanded="false" id="cutLineBtn">
+        <span class="cut-hint" id="cutHint">Drag along the line to cut the bio open</span>
+        <div class="cut-line-rule"></div>
+        <div class="cut-handle" title="Click or drag to cut open"></div>
+      </div>
 
       <!-- Expandable Long Bio -->
       <div id="bioMore" class="bio-more">
@@ -90,72 +288,126 @@
     <!-- Bento Navigation Tiles (vanshtripathi.dev style) -->
     <div class="tiles">
       
-      <!-- Tile 1: Selected Work -->
-      <button type="button" class="b-tile" onclick="navigateToView('work')" data-section="work">
-        <div class="b-tile-head">
-          <span class="b-tile-title">Selected work</span>
-          <span class="b-tile-key">W</span>
+      <!-- Tile 1: Vibrant Coral Selected Work (01 AUTOMATION) -->
+      <button type="button" class="b-tile b-tile-coral" onclick="navigateToView('work')" data-section="work">
+        <div class="coral-top">
+          <span>01</span>
+          <span>AUTOMATION</span>
         </div>
-        <div class="b-tile-desc">
-          Systems built end to end: agents, automations, and the backends behind them.
+
+        <div class="coral-matrix" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
         </div>
+
+        <div class="coral-title">
+          Zero Touch<br>Procurement
+        </div>
+
+        <div class="coral-pill">
+          Zero Touch Procurement
+        </div>
+
+        <span class="b-tile-key">W</span>
       </button>
 
-      <!-- Tile 2: Garden -->
+      <!-- Tile 2: Digital Garden 3D Stack -->
       <button type="button" class="b-tile" onclick="navigateToView('garden')" data-section="garden">
-        <div class="b-tile-head">
-          <span class="b-tile-title">Garden</span>
-          <span class="b-tile-key">G</span>
-        </div>
-        <div class="b-tile-desc">
-          Short thoughts, synced from X. Original posts only, no noise.
-        </div>
-      </button>
+        <div class="garden-card-head">Digital garden</div>
 
-      <!-- Tile 3: Writing -->
-      <button type="button" class="b-tile" onclick="navigateToView('blog')" data-section="blog">
-        <div class="b-tile-head">
-          <span class="b-tile-title">Writing</span>
-          <span class="b-tile-key">B</span>
-        </div>
-        <div class="b-tile-desc">
-          How I Actually Got Here &amp; notes on what I build and think.
-        </div>
-      </button>
-
-      <!-- Tile 4: Work with me -->
-      <button type="button" class="b-tile" onclick="navigateToView('services')" data-section="services">
-        <div class="b-tile-head">
-          <span class="b-tile-title">Work with me</span>
-          <span class="b-tile-key">S</span>
-        </div>
-        <div class="b-tile-desc">
-          AI systems architecture, agentic automation, and high-impact engineering.
-        </div>
-      </button>
-
-      <!-- Tile 5: Reading (Wide Tile) -->
-      <button type="button" class="b-tile b-tile-wide" onclick="navigateToView('reading')" data-section="reading">
-        <div class="b-tile-head">
-          <div>
-            <span class="b-tile-title">Reading</span>
-            <div class="b-tile-desc" style="margin-top:2px;">
-              Currently reading 8 &bull; Finished 25 &bull; Want to read 22
+        <div class="ticket-stack">
+          <div class="b-ticket" data-pos="2"></div>
+          <div class="b-ticket" data-pos="1"></div>
+          <div class="b-ticket" data-pos="0">
+            <div class="thought-head">
+              <div class="thought-avatar">AJ</div>
+              <span class="thought-name">Ankit Jha</span>
+              <span class="thought-handle">@ankiteng01</span>
+              <span class="thought-num">0004</span>
+            </div>
+            <div class="thought-text">
+              it's fun seeing luddites praying for $NVDA 's downfall
+            </div>
+            <div class="thought-foot">
+              <span>11.11.26</span>
+              <span>𝕏</span>
             </div>
           </div>
-          <span class="b-tile-key">R</span>
         </div>
-        
-        <div class="mini-book-spines">
-          <div class="mini-spine" style="background:#5c2424;" title="Nausea"></div>
-          <div class="mini-spine" style="background:#2e4450;" title="Crime and Punishment"></div>
-          <div class="mini-spine" style="background:#4b3f2f;" title="Twelve Angry Men"></div>
-          <div class="mini-spine" style="background:#3b5249;" title="Three Men in a Boat"></div>
-          <div class="mini-spine" style="background:#40354a;" title="The Trial"></div>
-          <div class="mini-spine" style="background:#6b2d2d;" title="1984"></div>
-          <div class="mini-spine" style="background:#284b63;" title="The Old Man and the Sea"></div>
-          <div class="mini-spine" style="background:#3d405b;" title="The Castle"></div>
+
+        <span class="b-tile-key">G</span>
+      </button>
+
+      <!-- Tile 3: Writing (Wide Tile) -->
+      <button type="button" class="b-tile b-tile-wide" onclick="navigateToView('blog')" data-section="blog">
+        <div>
+          <div class="wide-label">Writing</div>
+          <div class="wide-title">How I Actually Got Here</div>
+          <div class="wide-desc">Notes on building AI agents, systems, and engineering journey.</div>
         </div>
+        <span class="b-tile-key">B</span>
+      </button>
+
+      <!-- Tile 4: Work with me (Animated Services List) -->
+      <button type="button" class="b-tile" onclick="navigateToView('services')" data-section="services">
+        <div>
+          <div class="svc-head">Work with me</div>
+          <div class="svc-list">
+            <div class="svc-item active">Zero-to-One Builds</div>
+            <div class="svc-item">Workflow Engineering</div>
+            <div class="svc-item">Product Consulting</div>
+            <div class="svc-item">Team Opportunities</div>
+          </div>
+        </div>
+        <span class="b-tile-key">S</span>
+      </button>
+
+      <!-- Tile 5: Reading (Realistic Virtual Bookshelf) -->
+      <button type="button" class="b-tile" onclick="navigateToView('reading')" data-section="reading">
+        <div>
+          <div class="shelf-label">Reading</div>
+          <div class="b-jackets">
+            <div class="b-jacket" style="background:#8fc7c9; color:#182b2b; width:18px; height:68px;" title="Before the Coffee Gets Cold">
+              <span class="b-jacket-title">Before the Coffee Gets Cold</span>
+              <span class="b-jacket-glyph">TK</span>
+            </div>
+            <div class="b-jacket" style="background:#6b4423; color:#f0e2c4; width:22px; height:74px;" title="The Picture of Dorian Gray">
+              <span class="b-jacket-title">The Picture of Dorian Gray</span>
+              <span class="b-jacket-glyph">OW</span>
+            </div>
+            <div class="b-jacket" style="background:#f2efe8; color:#111111; width:16px; height:64px;" title="The Stranger">
+              <span class="b-jacket-title">The Stranger</span>
+              <span class="b-jacket-glyph">AC</span>
+            </div>
+            <div class="b-jacket" style="background:#0f1a2a; color:#f2ead8; width:20px; height:76px;" title="Of Mice and Men">
+              <span class="b-jacket-title">Of Mice and Men</span>
+              <span class="b-jacket-glyph">JS</span>
+            </div>
+            <div class="b-jacket" style="background:#4b3b2a; color:#efe6d6; width:21px; height:70px;" title="White Nights">
+              <span class="b-jacket-title">White Nights</span>
+              <span class="b-jacket-glyph">FD</span>
+            </div>
+            <div class="b-jacket" style="background:#d42d2d; color:#ffffff; width:22px; height:75px;" title="Animal Farm">
+              <span class="b-jacket-title">Animal Farm</span>
+              <span class="b-jacket-glyph">GO</span>
+            </div>
+            <div class="b-jacket" style="background:#c93a72; color:#ffffff; width:19px; height:76px;" title="No Longer Human">
+              <span class="b-jacket-title">No Longer Human</span>
+              <span class="b-jacket-glyph">OD</span>
+            </div>
+            <div class="b-jacket" style="background:#3a3d5c; color:#f2e3c4; width:17px; height:68px;" title="The Metamorphosis">
+              <span class="b-jacket-title">The Metamorphosis</span>
+              <span class="b-jacket-glyph">FK</span>
+            </div>
+            <div class="b-jacket" style="background:#6b1c1c; color:#efe3d0; width:19px; height:72px;" title="The Death of Ivan Ilyich">
+              <span class="b-jacket-title">The Death of Ivan Ilyich</span>
+              <span class="b-jacket-glyph">LT</span>
+            </div>
+          </div>
+        </div>
+        <span class="b-tile-key">R</span>
       </button>
 
     </div>
@@ -248,7 +500,7 @@
           A Codex plugin that routes each task to the right tool without bloating context. Scans tools, maintains a compact local index, and ranks capabilities dynamically.
         </p>
         <div class="project-stack">
-          Stack: Codex SDK &bull; Local Registry &bull; Semantic Tool Ranking
+          Stack: TypeScript &bull; AST Parsing &bull; Vector Matching &bull; OpenAI Tools
         </div>
       </article>
 
@@ -269,51 +521,61 @@
 
     <h2 class="view-heading">[G] Garden</h2>
     <p class="view-subtitle">
-      Short thoughts, synced from my X. Original posts only, no replies or reposts.
+      Short thoughts, synced from my X. Original posts only, no noise.
     </p>
 
-    <div class="garden-list">
-      
-      <div class="garden-item">
-        <div class="garden-meta">
-          <span>Ankit Jha &bull; 0004</span>
-          <span>11.11.26</span>
+    <div class="project-list">
+      <article class="project-card">
+        <div class="thought-head" style="margin-bottom:8px;">
+          <div class="thought-avatar">AJ</div>
+          <span class="thought-name">Ankit Jha</span>
+          <span class="thought-handle">@ankiteng01</span>
+          <span class="thought-num">0004</span>
         </div>
-        <div class="garden-body">
+        <p class="project-summary" style="margin-bottom:8px; font-size:15px; color:var(--ink-strong);">
           it’s fun seeing luddites praying for $NVDA ‘s downfall
-        </div>
-      </div>
+        </p>
+        <div class="font-mono text-xs text-muted">11.11.26 &bull; View on X &nearr;</div>
+      </article>
 
-      <div class="garden-item">
-        <div class="garden-meta">
-          <span>Ankit Jha &bull; 0003</span>
-          <span>06.11.26</span>
+      <article class="project-card">
+        <div class="thought-head" style="margin-bottom:8px;">
+          <div class="thought-avatar">AJ</div>
+          <span class="thought-name">Ankit Jha</span>
+          <span class="thought-handle">@ankiteng01</span>
+          <span class="thought-num">0003</span>
         </div>
-        <div class="garden-body">
+        <p class="project-summary" style="margin-bottom:8px; font-size:15px; color:var(--ink-strong);">
           if you fear ai, then you have no skill rather than slaving
-        </div>
-      </div>
+        </p>
+        <div class="font-mono text-xs text-muted">06.11.26 &bull; View on X &nearr;</div>
+      </article>
 
-      <div class="garden-item">
-        <div class="garden-meta">
-          <span>Ankit Jha &bull; 0002</span>
-          <span>22.10.26</span>
+      <article class="project-card">
+        <div class="thought-head" style="margin-bottom:8px;">
+          <div class="thought-avatar">AJ</div>
+          <span class="thought-name">Ankit Jha</span>
+          <span class="thought-handle">@ankiteng01</span>
+          <span class="thought-num">0002</span>
         </div>
-        <div class="garden-body">
-          i was told that AI writes insecure code — prompt better, verify rigorously
-        </div>
-      </div>
+        <p class="project-summary" style="margin-bottom:8px; font-size:15px; color:var(--ink-strong);">
+          i was told that AI writes insecure code
+        </p>
+        <div class="font-mono text-xs text-muted">22.10.26 &bull; View on X &nearr;</div>
+      </article>
 
-      <div class="garden-item">
-        <div class="garden-meta">
-          <span>Ankit Jha &bull; 0001</span>
-          <span>11.10.26</span>
+      <article class="project-card">
+        <div class="thought-head" style="margin-bottom:8px;">
+          <div class="thought-avatar">AJ</div>
+          <span class="thought-name">Ankit Jha</span>
+          <span class="thought-handle">@ankiteng01</span>
+          <span class="thought-num">0001</span>
         </div>
-        <div class="garden-body">
+        <p class="project-summary" style="margin-bottom:8px; font-size:15px; color:var(--ink-strong);">
           dear vibe coders, perhaps it’s time to start updating your dependencies
-        </div>
-      </div>
-
+        </p>
+        <div class="font-mono text-xs text-muted">11.10.26 &bull; View on X &nearr;</div>
+      </article>
     </div>
   </section>
 
@@ -331,31 +593,26 @@
 
     <h2 class="view-heading">[B] Writing</h2>
     <p class="view-subtitle">
-      Longer notes on what I build and how I think about systems.
+      Longer notes on what I build and how I think about it.
     </p>
 
     <article class="project-card" style="cursor:default;">
-      <h3 class="project-title" style="margin-bottom:6px;">How I Actually Got Here</h3>
-      <p class="project-summary" style="margin-bottom:18px;">
-        An informal timeline on breaking things, learning to code, relational databases, and diving into agentic software.
+      <div class="project-head">
+        <h3 class="project-title">How I Actually Got Here</h3>
+        <span class="project-tag">Essay</span>
+      </div>
+      <p class="project-summary">
+        An engineering journey from curiosity-driven tinkering to building autonomous agent swarms and enterprise backends.
       </p>
-
-      <div class="bio" style="font-size:14px; margin-bottom:0;">
+      <div style="color:var(--ink-soft); line-height:1.7; display:flex; flex-direction:column; gap:14px; margin-top:16px;">
         <p>
-          <strong>Phase 01: The Curiosity Spark</strong><br>
-          I didn't start with formal textbooks; I started by inspecting web source code, tinkering with C++ and Python on Termux, building toy tools, and breaking open-source code until I understood how things ticked. That visceral thrill of watching code execute on a screen became an obsession.
+          I started off fascinated by how computers turn instructions into reality. That curiosity took me through foundational languages, data structures, and database systems before the AI revolution changed everything.
         </p>
         <p>
-          <strong>Phase 02: Full-Stack Foundations &amp; Distributed Systems</strong><br>
-          Moved into modern full-stack web engineering: React, Next.js, TypeScript, and relational databases. Spent long nights understanding query execution plans, connection pooling on PostgreSQL, serverless architecture on Neon, and state synchronization.
+          Once LLMs and transformers arrived, it became obvious that the future wasn't just writing code line-by-line, but orchestrating intelligent agents that write, test, evaluate, and deploy software autonomously.
         </p>
         <p>
-          <strong>Phase 03: The AI &amp; Vector Shift</strong><br>
-          When foundation models took off, I avoided shallow prompt wrappers and dove directly into retrieval mechanics, embeddings, vector indexing with Supabase <code style="color:var(--marker);">pgvector</code>, and building agentic workflows with LangGraph and vLLM.
-        </p>
-        <p>
-          <strong>Phase 04: Present</strong><br>
-          Today in New Delhi, I design autonomous operational pipelines, multi-agent reasoning graphs, and AI-native applications that ship to real users.
+          More essays on distributed agent evaluation and semantic retrieval are coming soon.
         </p>
       </div>
     </article>
@@ -375,40 +632,40 @@
 
     <h2 class="view-heading">[S] Work with me</h2>
     <p class="view-subtitle">
-      Available for select AI systems architecture, agentic automation, and full-stack engineering roles.
+      I help teams build AI products, autonomous agent pipelines, and high-performance full-stack architectures.
     </p>
 
     <div class="project-list">
-      <div class="project-card" style="cursor:default;">
-        <h3 class="project-title" style="margin-bottom:8px;">AI Systems &amp; Autonomous Agents</h3>
+      <div class="project-card">
+        <h3 class="project-title" style="margin-bottom:8px;">Zero-to-One AI Product Engineering</h3>
         <p class="project-summary">
-          Architecting multi-agent reasoning loops, LangGraph state machines, custom tool calling, and RAG pipelines backed by vector databases (Supabase pgvector).
+          Architecting complete products from idea to production deployment: frontend UX, scalable API gateways, Postgres/Supabase schemas, and vector retrieval pipelines.
         </p>
       </div>
 
-      <div class="project-card" style="cursor:default;">
-        <h3 class="project-title" style="margin-bottom:8px;">Zero-Touch Operational Pipelines</h3>
+      <div class="project-card">
+        <h3 class="project-title" style="margin-bottom:8px;">Autonomous Agent Workflows &amp; Tool Routing</h3>
         <p class="project-summary">
-          Automating complex business workflows: procurement, signal intelligence, lead enrichment, and anomaly scoring with zero human friction.
+          Building resilient agent swarms that interact with real tools, APIs, and databases without bloating context or getting caught in infinite loops.
         </p>
       </div>
 
-      <div class="project-card" style="cursor:default;">
-        <h3 class="project-title" style="margin-bottom:8px;">Modern Full-Stack Engineering</h3>
+      <div class="project-card">
+        <h3 class="project-title" style="margin-bottom:8px;">Zero-Touch Enterprise Automations</h3>
         <p class="project-summary">
-          Production web apps built with Next.js, React, TypeScript, Neon Serverless Postgres, and global edge hosting on Vercel.
+          Replacing complex human coordination pipelines (procurement, lead prospecting, data ingestion) with reliable webhook-driven event graphs.
         </p>
       </div>
-    </div>
 
-    <div style="margin-top:32px; padding:20px; border-radius:var(--radius-tile); background:var(--ground-tile); border:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
-      <div>
-        <div style="font-weight:600; color:var(--ink-strong);">Have an interesting problem to solve?</div>
-        <div style="font-size:13px; color:var(--ink-muted); margin-top:2px;">Let's build something that ships to real users.</div>
+      <div class="project-card" style="background:var(--ground); border-color:var(--line-strong); text-align:center; padding:32px;">
+        <h3 class="project-title" style="margin-bottom:8px;">Have a project in mind?</h3>
+        <p class="project-summary" style="margin-bottom:16px;">
+          Let's talk about what you're building.
+        </p>
+        <a href="mailto:jhaankit06969@gmail.com" class="back-btn" style="background:var(--marker); color:#fff; border:none; padding:10px 20px; font-weight:600;">
+          Say Hello &rarr; jhaankit06969@gmail.com
+        </a>
       </div>
-      <a href="mailto:jhaankit06969@gmail.com" class="b-tile-key" style="background:var(--marker); color:#fff; border:none; padding:8px 16px; font-size:12px; border-radius:var(--radius-pill); cursor:pointer;">
-        Say Hello &rarr;
-      </a>
     </div>
   </section>
 
@@ -426,7 +683,7 @@
 
     <h2 class="view-heading">[R] Reading</h2>
     <p class="view-subtitle">
-      What I am reading now, what I have finished, and what is lined up next.
+      Books, philosophy, research papers, and fiction that have shaped how I think.
     </p>
 
     <div class="book-tabs">
@@ -435,38 +692,145 @@
       <button type="button" class="book-tab-btn" onclick="switchBookTab('want', this)">Want to read (22)</button>
     </div>
 
+    <!-- Currently Reading Grid -->
     <div id="bookGridCurrent" class="book-grid">
-      <div class="book-card"><span class="book-title">Nausea</span><span class="book-author">Jean-Paul Sartre</span></div>
-      <div class="book-card"><span class="book-title">Crime and Punishment</span><span class="book-author">Fyodor Dostoevsky</span></div>
-      <div class="book-card"><span class="book-title">Twelve Angry Men</span><span class="book-author">Reginald Rose</span></div>
-      <div class="book-card"><span class="book-title">Three Men in a Boat</span><span class="book-author">Jerome K. Jerome</span></div>
-      <div class="book-card"><span class="book-title">The Trial</span><span class="book-author">Franz Kafka</span></div>
-      <div class="book-card"><span class="book-title">1984</span><span class="book-author">George Orwell</span></div>
-      <div class="book-card"><span class="book-title">The Old Man and the Sea</span><span class="book-author">Ernest Hemingway</span></div>
-      <div class="book-card"><span class="book-title">The Castle</span><span class="book-author">Franz Kafka</span></div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Nausea</div>
+          <div class="book-card-author">Jean-Paul Sartre</div>
+        </div>
+        <div class="book-card-tag">Philosophy</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Crime and Punishment</div>
+          <div class="book-card-author">Fyodor Dostoevsky</div>
+        </div>
+        <div class="book-card-tag">Classic</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Twelve Angry Men</div>
+          <div class="book-card-author">Reginald Rose</div>
+        </div>
+        <div class="book-card-tag">Drama</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Three Men in a Boat</div>
+          <div class="book-card-author">Jerome K. Jerome</div>
+        </div>
+        <div class="book-card-tag">Humor</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Trial</div>
+          <div class="book-card-author">Franz Kafka</div>
+        </div>
+        <div class="book-card-tag">Fiction</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">1984</div>
+          <div class="book-card-author">George Orwell</div>
+        </div>
+        <div class="book-card-tag">Dystopian</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Old Man and the Sea</div>
+          <div class="book-card-author">Ernest Hemingway</div>
+        </div>
+        <div class="book-card-tag">Literature</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Castle</div>
+          <div class="book-card-author">Franz Kafka</div>
+        </div>
+        <div class="book-card-tag">Fiction</div>
+      </div>
     </div>
 
+    <!-- Finished Grid -->
     <div id="bookGridFinished" class="book-grid" style="display:none;">
-      <div class="book-card"><span class="book-title">Designing Data-Intensive Applications</span><span class="book-author">Martin Kleppmann</span></div>
-      <div class="book-card"><span class="book-title">The Pragmatic Programmer</span><span class="book-author">David Thomas, Andrew Hunt</span></div>
-      <div class="book-card"><span class="book-title">Clean Architecture</span><span class="book-author">Robert C. Martin</span></div>
-      <div class="book-card"><span class="book-title">Structure and Interpretation of Computer Programs</span><span class="book-author">Harold Abelson</span></div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Stranger</div>
+          <div class="book-card-author">Albert Camus</div>
+        </div>
+        <div class="book-card-tag">Read / Sep 2026</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Picture of Dorian Gray</div>
+          <div class="book-card-author">Oscar Wilde</div>
+        </div>
+        <div class="book-card-tag">Read / Aug 2026</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Animal Farm</div>
+          <div class="book-card-author">George Orwell</div>
+        </div>
+        <div class="book-card-tag">Read / Jul 2026</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">No Longer Human</div>
+          <div class="book-card-author">Osamu Dazai</div>
+        </div>
+        <div class="book-card-tag">Read / Feb 2026</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Metamorphosis</div>
+          <div class="book-card-author">Franz Kafka</div>
+        </div>
+        <div class="book-card-tag">Read / Jul 2025</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Death of Ivan Ilyich</div>
+          <div class="book-card-author">Leo Tolstoy</div>
+        </div>
+        <div class="book-card-tag">Read / May 2025</div>
+      </div>
     </div>
 
+    <!-- Want To Read Grid -->
     <div id="bookGridWant" class="book-grid" style="display:none;">
-      <div class="book-card"><span class="book-title">Deep Learning</span><span class="book-author">Ian Goodfellow</span></div>
-      <div class="book-card"><span class="book-title">Superintelligence</span><span class="book-author">Nick Bostrom</span></div>
-      <div class="book-card"><span class="book-title">Gödel, Escher, Bach</span><span class="book-author">Douglas Hofstadter</span></div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Beyond Good and Evil</div>
+          <div class="book-card-author">Friedrich Nietzsche</div>
+        </div>
+        <div class="book-card-tag">Philosophy</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">The Brothers Karamazov</div>
+          <div class="book-card-author">Fyodor Dostoevsky</div>
+        </div>
+        <div class="book-card-tag">Classic</div>
+      </div>
+      <div class="book-card">
+        <div>
+          <div class="book-card-title">Gödel, Escher, Bach</div>
+          <div class="book-card-author">Douglas Hofstadter</div>
+        </div>
+        <div class="book-card-tag">Cognitive Science</div>
+      </div>
     </div>
   </section>
 
   <!-- ======================================================== -->
-  <!-- MODAL CASE STUDY DRAWER (Exact Breakdown of Projects)    -->
+  <!-- MODAL CASE STUDY DRAWER                                  -->
   <!-- ======================================================== -->
-  <div id="caseStudyOverlay" class="case-study-overlay" onclick="closeCaseStudy(event)">
-    <div class="case-study-modal" onclick="event.stopPropagation()">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-        <span id="caseNumTag" class="b-tile-key">01</span>
+  <div id="caseStudyOverlay" class="case-modal-overlay" onclick="closeCaseStudy(event)">
+    <div class="case-drawer" onclick="event.stopPropagation()">
+      <div class="view-back-bar">
+        <span id="caseNumTag" class="font-mono text-muted text-xs">01 AUTOMATION</span>
         <button type="button" class="back-btn" onclick="closeCaseStudy()">Close &times;</button>
       </div>
 
