@@ -1,6 +1,7 @@
 /**
- * VanshTripathi.dev Authentic Interaction & Routing Logic
- * Perspective: Ankit Jha — AI & Full Stack Engineer (Delhi)
+ * Ankit Jha — Engineering Portal Interactive Logic
+ * Features: 3D Neural Torus Canvas, Segmented Theme Switcher,
+ * SPA Navigation, Signal Rail Expander, IST Live Clock
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,15 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initRouting();
   initKeyboardShortcuts();
   initLiveClock();
-  initAvatarCanvas();
-  initCycleEffects();
+  initNeuralCanvas();
 });
 
 /* ========================================================
-   1. THEME TOGGLE (Dark #121212 default / Light #ffffff)
+   1. THEME TOGGLE (Obsidian #0a0b0e / Light #f8fafc)
    ======================================================== */
 function initTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('ankit-theme') || 'dark';
   setTheme(savedTheme, false);
 }
 
@@ -24,7 +24,7 @@ function setTheme(theme, save = true) {
   document.documentElement.setAttribute('data-theme', theme);
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   if (themeMeta) {
-    themeMeta.content = theme === 'dark' ? '#121212' : '#ffffff';
+    themeMeta.content = theme === 'dark' ? '#0a0b0e' : '#f8fafc';
   }
 
   const lightBtn = document.getElementById('themeLightBtn');
@@ -42,7 +42,7 @@ function setTheme(theme, save = true) {
 
   if (save) {
     try {
-      localStorage.setItem('theme', theme);
+      localStorage.setItem('ankit-theme', theme);
     } catch (e) {}
   }
 }
@@ -74,13 +74,11 @@ function handleHashChange() {
 }
 
 function navigateToView(viewName, updateHash = true) {
-  // Hide all view panels
   Object.values(VIEWS).forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.remove('active');
   });
 
-  // Show target view
   const targetId = VIEWS[viewName] || 'homeView';
   const targetEl = document.getElementById(targetId);
   if (targetEl) {
@@ -88,7 +86,6 @@ function navigateToView(viewName, updateHash = true) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
-  // Update hash
   if (updateHash) {
     if (viewName === 'home') {
       history.pushState(null, '', window.location.pathname);
@@ -109,20 +106,10 @@ function initKeyboardShortcuts() {
 
     const key = e.key.toUpperCase();
 
-    // Close modal or return home on Escape
     if (e.key === 'Escape') {
-      const modal = document.getElementById('caseStudyOverlay');
-      if (modal && modal.classList.contains('open')) {
-        closeCaseStudy();
-        return;
-      }
       navigateToView('home');
       return;
     }
-
-    // Don't trigger views if modal drawer is open
-    const modal = document.getElementById('caseStudyOverlay');
-    if (modal && modal.classList.contains('open')) return;
 
     switch (key) {
       case 'W':
@@ -145,7 +132,7 @@ function initKeyboardShortcuts() {
 }
 
 /* ========================================================
-   4. INTERACTIVE CUT LINE BIO
+   4. SIGNAL RAIL BIO EXPANDER
    ======================================================== */
 let isBioOpen = false;
 
@@ -159,19 +146,19 @@ function toggleBio() {
 
   if (isBioOpen) {
     bioMore.classList.add('open');
-    if (cutHint) cutHint.textContent = 'Cut open • Click to fold back';
+    if (cutHint) cutHint.textContent = '[-] Fold engineering background';
     if (cutLineBtn) cutLineBtn.setAttribute('aria-expanded', 'true');
   } else {
     bioMore.classList.remove('open');
-    if (cutHint) cutHint.textContent = 'Drag along the line to cut the bio open';
+    if (cutHint) cutHint.textContent = '[+] Read full background & engineering philosophies';
     if (cutLineBtn) cutLineBtn.setAttribute('aria-expanded', 'false');
   }
 }
 
 /* ========================================================
-   5. 3D ROTATING WIREFRAME AVATAR
+   5. 3D INTERACTIVE NEURAL CONSTELLATION / TORUS AVATAR
    ======================================================== */
-function initAvatarCanvas() {
+function initNeuralCanvas() {
   const canvas = document.getElementById('avatarCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -179,31 +166,50 @@ function initAvatarCanvas() {
   const height = canvas.height;
   const cx = width / 2;
   const cy = height / 2;
-  const radius = 21;
 
-  // Generate 30 spherical points
+  // Generate 3D Torus points
   const points = [];
-  const numPoints = 28;
-  for (let i = 0; i < numPoints; i++) {
-    const phi = Math.acos(-1 + (2 * i) / numPoints);
-    const theta = Math.sqrt(numPoints * Math.PI) * phi;
-    points.push({
-      x: radius * Math.cos(theta) * Math.sin(phi),
-      y: radius * Math.sin(theta) * Math.sin(phi),
-      z: radius * Math.cos(phi)
-    });
+  const R = 15; // Major radius
+  const r = 7;  // Minor tube radius
+  const numU = 14;
+  const numV = 8;
+
+  for (let i = 0; i < numU; i++) {
+    const u = (i / numU) * Math.PI * 2;
+    for (let j = 0; j < numV; j++) {
+      const v = (j / numV) * Math.PI * 2;
+      points.push({
+        x: (R + r * Math.cos(v)) * Math.cos(u),
+        y: (R + r * Math.cos(v)) * Math.sin(u),
+        z: r * Math.sin(v)
+      });
+    }
   }
 
-  const rotSpeedX = 0.007;
-  const rotSpeedY = 0.009;
+  let rotX = 0.006;
+  let rotY = 0.012;
+  let rotZ = 0.004;
+
+  // Mouse tilt tracking
+  let mouseTiltX = 0;
+  let mouseTiltY = 0;
+  canvas.parentElement.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouseTiltX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.03;
+    mouseTiltY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.03;
+  });
+  canvas.parentElement.addEventListener('mouseleave', () => {
+    mouseTiltX = 0;
+    mouseTiltY = 0;
+  });
 
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    const cosY = Math.cos(rotSpeedY);
-    const sinY = Math.sin(rotSpeedY);
-    const cosX = Math.cos(rotSpeedX);
-    const sinX = Math.sin(rotSpeedX);
+    const cosY = Math.cos(rotY + mouseTiltX);
+    const sinY = Math.sin(rotY + mouseTiltX);
+    const cosX = Math.cos(rotX + mouseTiltY);
+    const sinX = Math.sin(rotX + mouseTiltY);
 
     points.forEach(p => {
       let x = p.x * cosY - p.z * sinY;
@@ -213,17 +219,17 @@ function initAvatarCanvas() {
       p.x = x; p.y = y; p.z = z;
     });
 
-    // Draw connecting wireframe lines
-    ctx.lineWidth = 0.55;
+    // Draw connecting neural lines
+    ctx.lineWidth = 0.5;
     for (let i = 0; i < points.length; i++) {
       for (let j = i + 1; j < points.length; j++) {
         const dx = points[i].x - points[j].x;
         const dy = points[i].y - points[j].y;
         const dz = points[i].z - points[j].z;
         const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-        if (dist < 18) {
-          const alpha = Math.max(0, (1 - dist / 18) * 0.45);
-          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+        if (dist < 10) {
+          const alpha = (1 - dist / 10) * 0.38;
+          ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
           ctx.beginPath();
           ctx.moveTo(cx + points[i].x, cy + points[i].y);
           ctx.lineTo(cx + points[j].x, cy + points[j].y);
@@ -232,13 +238,14 @@ function initAvatarCanvas() {
       }
     }
 
-    // Draw glowing node vertices
+    // Draw nodes
     points.forEach(p => {
-      const scale = (p.z + radius * 1.5) / (radius * 2.5);
-      const alpha = Math.min(1, Math.max(0.2, (p.z + radius) / (radius * 2)));
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      const depth = (p.z + R + r) / ((R + r) * 2);
+      const alpha = Math.min(1, Math.max(0.2, depth));
+      const radius = Math.max(0.6, depth * 1.4);
+      ctx.fillStyle = depth > 0.6 ? `rgba(0, 240, 255, ${alpha})` : `rgba(129, 140, 248, ${alpha})`;
       ctx.beginPath();
-      ctx.arc(cx + p.x, cy + p.y, Math.max(0.6, scale * 1.25), 0, Math.PI * 2);
+      ctx.arc(cx + p.x, cy + p.y, radius, 0, Math.PI * 2);
       ctx.fill();
     });
 
@@ -249,97 +256,7 @@ function initAvatarCanvas() {
 }
 
 /* ========================================================
-   6. CYCLING EFFECTS FOR SERVICES & GARDEN STACK
-   ======================================================== */
-function initCycleEffects() {
-  // Cycle Services list items
-  const svcItems = document.querySelectorAll('.svc-item');
-  if (svcItems.length > 0) {
-    let currentSvc = 0;
-    setInterval(() => {
-      svcItems[currentSvc].classList.remove('active');
-      currentSvc = (currentSvc + 1) % svcItems.length;
-      svcItems[currentSvc].classList.add('active');
-    }, 2800);
-  }
-
-  // Cycle Garden tickets on hover / click
-  const gardenTile = document.querySelector('[data-section="garden"]');
-  if (gardenTile) {
-    gardenTile.addEventListener('mouseenter', () => {
-      const tickets = document.querySelectorAll('.b-ticket');
-      tickets.forEach(ticket => {
-        let pos = parseInt(ticket.getAttribute('data-pos') || '0', 10);
-        pos = (pos + 1) % 3;
-        ticket.setAttribute('data-pos', pos);
-      });
-    });
-  }
-}
-
-/* ========================================================
-   7. CASE STUDY MODAL DRAWER
-   ======================================================== */
-function openCaseStudy(projectId) {
-  if (!window.caseStudiesData || !window.caseStudiesData[projectId]) return;
-  const data = window.caseStudiesData[projectId];
-
-  document.getElementById('caseNumTag').textContent = `${data.num} ${data.tag}`;
-  document.getElementById('caseTitle').textContent = data.title;
-  document.getElementById('caseSubtitle').textContent = data.subtitle;
-  document.getElementById('caseType').textContent = data.type;
-  document.getElementById('caseFocus').textContent = data.focus;
-  document.getElementById('caseStack').textContent = data.stack;
-
-  document.getElementById('caseProblem').innerHTML = data.problem;
-  document.getElementById('caseSolution').innerHTML = data.solution;
-  document.getElementById('caseFlow').innerHTML = data.flow;
-  document.getElementById('caseResult').innerHTML = data.result;
-
-  const overlay = document.getElementById('caseStudyOverlay');
-  if (overlay) {
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function closeCaseStudy(e) {
-  if (e && e.target !== document.getElementById('caseStudyOverlay') && !e.target.closest('.back-btn')) {
-    return;
-  }
-  const overlay = document.getElementById('caseStudyOverlay');
-  if (overlay) {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-}
-
-/* ========================================================
-   8. BOOKSHELF TABS SWITCHER
-   ======================================================== */
-function switchBookTab(tabName, btn) {
-  document.querySelectorAll('.book-tab-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-
-  const grids = {
-    current: 'bookGridCurrent',
-    finished: 'bookGridFinished',
-    want: 'bookGridWant'
-  };
-
-  Object.values(grids).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-
-  const activeGrid = document.getElementById(grids[tabName]);
-  if (activeGrid) {
-    activeGrid.style.display = 'grid';
-  }
-}
-
-/* ========================================================
-   9. LIVE INDIAN STANDARD TIME CLOCK (NEW DELHI / IST)
+   6. LIVE INDIAN STANDARD TIME CLOCK (NEW DELHI / IST)
    ======================================================== */
 function initLiveClock() {
   const clockEl = document.getElementById('liveTime');
