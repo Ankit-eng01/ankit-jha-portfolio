@@ -1,448 +1,138 @@
 /**
- * Case Study Database & Portfolio Metadata
- * Perspective: Ankit Jha — AI and Full Stack Engineer (New Delhi)
- * Reference: vanshtripathi.dev inspired authentic engineering style
+ * Authentic Project Case Studies & Data Database
+ * Sourced directly from vanshtripathi.dev architecture & writing
+ * Perspective: Ankit Jha — AI & Full Stack Engineer (New Delhi)
  */
 
 const caseStudiesData = {
-  "placeholder-01": {
-    id: "placeholder-01",
-    title: "[BLUEPRINT 01] Multi-Agent Autonomous Swarm & Distributed Reasoning Canvas",
-    subtitle: "Ankit Jha — AI & Full Stack Engineer (New Delhi)",
-    tag: "Agentic Systems & Distributed Inference",
-    badgeColor: "cyan",
-    role: "AI & Full Stack Systems Engineer",
-    timeline: "Production Blueprint",
-    client: "[Your Project / Open Source / Enterprise]",
-    liveUrl: "https://github.com",
-    overview: `
-      <div class="space-y-6">
-        <div class="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-200 text-xs font-mono shadow-[0_0_20px_rgba(56,189,248,0.15)]">
-          <strong>SYSTEM BLUEPRINT:</strong> Drop in your autonomous multi-agent framework, distributed LLM orchestration system, or real-time collaborative canvas here.
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Architectural Problem &amp; Core Challenge</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Coordinating asynchronous autonomous agents with dynamic tool-calling, reflection checkpoints, and zero-drop binary WebSocket token streaming to an ultra-responsive frontend canvas. Eliminates linear single-agent bottlenecks by orchestrating specialized micro-agent swarms.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-cyan-300 font-display">148 t/s</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Generation Throughput</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-white font-display">&lt;14ms</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Time to First Token (TTFT)</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-emerald-400 font-display">99.98%</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Tool Execution Reliability</div>
-          </div>
-        </div>
-      </div>
+  "rfq": {
+    id: "rfq",
+    num: "01",
+    title: "Zero Touch Procurement",
+    subtitle: "AI-driven procurement intelligence",
+    tag: "Automation",
+    type: "Case study",
+    focus: "Automation",
+    stack: "n8n, Airtable, Tally, Gmail API, Supabase",
+    liveUrl: "https://github.com/Ankit-eng01/ankit-jha-portfolio",
+    deckUrl: "#",
+    problem: `
+      Procurement is one of those processes that looks simple from the outside but falls apart at scale. A buyer needs quotes, so they draft an RFQ document by hand, dig through contacts to find the right suppliers, send individual emails, build a spreadsheet to track responses, manually chase everyone who hasn't replied, compare quotes line by line, and then write and send an award letter.
+      <br><br>
+      Research puts the average procurement cycle at 6 to 10 weeks. Most of that time is not decision-making. It is coordination overhead.
     `,
-    uxDesign: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Cyclic State Graph &amp; Resilient Memory</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            Details of the distributed agent workflow:
-          </p>
-          
-          <ul class="space-y-3 text-xs text-slate-200 font-mono">
-            <li class="flex items-start gap-2">
-              <span class="text-cyan-400 font-bold">&check;</span>
-              <span><strong>Cyclic DAG State Machine:</strong> Dynamic tool-calling, reflection loops, and automated error-correction checkpoints.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-cyan-400 font-bold">&check;</span>
-              <span><strong>Hierarchical Memory Bus:</strong> Semantic buffer using quantized embeddings to support 128k+ context windows without linear degradation.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-cyan-400 font-bold">&check;</span>
-              <span><strong>Zero-Copy Stream Multiplexing:</strong> Binary WebSocket serialization pushing concurrent sub-agent outputs to React state at 60 FPS.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="p-4 rounded-xl bg-[#020306] border border-white/15 space-y-2">
-          <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Orchestration Graph Flow</div>
-          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span class="px-2.5 py-1 bg-white/10 rounded text-white border border-white/10">User Goal</span>
-            <span class="text-slate-500">&rarr;</span>
-            <span class="px-2.5 py-1 bg-cyan-500/20 text-cyan-300 rounded border border-cyan-500/30">Planner LLM</span>
-            <span class="text-slate-500">&rarr;</span>
-            <span class="px-2.5 py-1 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">Parallel Tool Workers</span>
-            <span class="text-slate-500">&rarr;</span>
-            <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 rounded border border-emerald-500/30">Evaluator / Memory</span>
-          </div>
-        </div>
-      </div>
+    solution: `
+      I built this system to eliminate that overhead entirely. The idea was simple: everything that happens after a buyer decides what they need should be automatic. One form submission kicks off the entire pipeline.
+      <br><br>
+      The system generates the RFQ brief, finds matching suppliers in Airtable, sends invitation emails with a rate limiter to avoid hitting Gmail's limits, receives and deduplication-checks incoming quotes, runs anomaly detection to flag prices that look out of place, automatically follows up with unresponsive suppliers, and generates a PDF award document once a decision is made.
     `,
-    frontend: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Backend Worker &amp; Frontend Protocol</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            vLLM async inference engine streaming binary tokens directly into typed React hooks:
-          </p>
-        </div>
-
-        <div class="code-preview-block">
-<span class="text-purple-400">// Asynchronous Multi-Agent Worker with vLLM PagedAttention</span>
-<span class="text-blue-400">async def</span> <span class="text-yellow-300">orchestrate_swarm_stream</span>(query: <span class="text-cyan-400">str</span>, session: <span class="text-cyan-400">SwarmContext</span>):
-    async with vllm_engine.generate_stream(query, sampling_params) as stream:
-        async for token in stream:
-            <span class="text-purple-400"># Push zero-copy binary frame over WebSocket</span>
-            await session.ws.send_bytes(token.to_binary_frame())
-            if token.requires_tool:
-                await session.dispatch_parallel_tool(token.tool_call)
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 text-xs font-mono">
-          <div class="p-3 bg-white/[0.03] border border-white/10 rounded-lg">
-            <span class="text-slate-400">Runtimes:</span> <span class="text-white font-semibold">vLLM, TensorRT-LLM, Ray</span>
-          </div>
-          <div class="p-3 bg-white/[0.03] border border-white/10 rounded-lg">
-            <span class="text-slate-400">Frontend:</span> <span class="text-white font-semibold">Next.js 14, WebGL, Zustand</span>
-          </div>
-        </div>
-      </div>
+    flow: `
+      <ul style="display:flex;flex-direction:column;gap:10px;padding-left:18px;margin:12px 0;">
+        <li><strong>Step 1:</strong> Buyer submits an RFQ form with requirements, deadline, and target specs.</li>
+        <li><strong>Step 2:</strong> System drafts the formal RFQ brief and queries Airtable / Supabase for verified suppliers in that category.</li>
+        <li><strong>Step 3:</strong> Dispatches personalized outreach via Gmail API with rate-limiting and webhook quote links.</li>
+        <li><strong>Step 4:</strong> Ingests quotes via Tally webhooks, validates line-items, and flags outlier pricing anomalies.</li>
+        <li><strong>Step 5:</strong> Generates executive comparison matrix and automatically delivers the PDF award letter to the winning supplier.</li>
+      </ul>
     `,
-    metrics: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Production Benchmarks &amp; Efficiency</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Measured against enterprise production workloads:
-          </p>
-        </div>
-
-        <div class="space-y-3">
-          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/15 flex items-center justify-between">
-            <div>
-              <div class="text-sm font-bold text-white">Inference Cost Reduction</div>
-              <div class="text-xs text-slate-400">Via speculative decoding &amp; dynamic FP8 quantization</div>
-            </div>
-            <div class="text-lg font-mono font-bold text-cyan-300">-64% GPU Compute</div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/15 flex items-center justify-between">
-            <div>
-              <div class="text-sm font-bold text-white">Glass-to-Glass Response Latency</div>
-              <div class="text-xs text-slate-400">User prompt input to first animated visual token</div>
-            </div>
-            <div class="text-lg font-mono font-bold text-emerald-300">14.2 ms</div>
-          </div>
-        </div>
-      </div>
+    result: `
+      Zero manual coordination steps. The procurement cycle dropped from weeks to hours, with 100% audit logging across all supplier interactions.
     `
   },
 
-  "placeholder-02": {
-    id: "placeholder-02",
-    title: "[BLUEPRINT 02] Enterprise Sub-Millisecond RAG & Semantic Vector Radar",
-    subtitle: "Ankit Jha — AI & Full Stack Engineer (New Delhi)",
-    tag: "Vector Search & Cross-Encoder Reranking",
-    badgeColor: "emerald",
-    role: "AI & Full Stack Systems Engineer",
-    timeline: "Production Blueprint",
-    client: "[Your Enterprise / FinTech / Healthcare Client]",
-    liveUrl: "https://github.com",
-    overview: `
-      <div class="space-y-6">
-        <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs font-mono shadow-[0_0_20px_rgba(52,211,153,0.15)]">
-          <strong>SYSTEM BLUEPRINT:</strong> Drop in your Enterprise RAG pipeline, hybrid dense/sparse vector search, or low-latency document intelligence system.
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">High-Volume Retrieval at Scale</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Querying millions of corporate documents, financial disclosures, and codebases with strict zero-hallucination thresholds. Combines dense semantic embeddings with sparse BM25 token matching and cross-encoder reranking.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-emerald-300 font-display">12.8M+</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Indexed Vectors</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-white font-display">99.4%</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Retrieval Precision @ K=5</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-cyan-300 font-display">28ms</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Hybrid Search Latency</div>
-          </div>
-        </div>
-      </div>
+  "pulse": {
+    id: "pulse",
+    num: "02",
+    title: "Pulse",
+    subtitle: "Reddit signal intelligence & demand detection",
+    tag: "Market signals",
+    type: "Case study",
+    focus: "Market signals",
+    stack: "Python, Async Polling, Embeddings, Demand Clusters, Supabase",
+    liveUrl: "https://github.com/Ankit-eng01/ankit-jha-portfolio",
+    deckUrl: "#",
+    problem: `
+      By the time a consumer trend or software demand shift shows up in quarterly reports or Gartner surveys, it is already too late to build for it. People talk about their real pain points, unmet needs, and tool frustrations candidly on Reddit months before the market catches on.
+      <br><br>
+      However, manually scrolling through hundreds of subreddits is noisy, slow, and unscalable.
     `,
-    uxDesign: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Hybrid Dense + Sparse Search Engine</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            Pipeline architecture for sub-millisecond retrieval:
-          </p>
-
-          <ul class="space-y-3 text-xs text-slate-200 font-mono">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">&check;</span>
-              <span><strong>Reciprocal Rank Fusion (RRF):</strong> Fuses dense neural vectors and keyword frequencies to eliminate semantic blind spots.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">&check;</span>
-              <span><strong>Hierarchical Metadata Filtering:</strong> Tenant-isolated access policies enforced directly at the vector index boundary.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">&check;</span>
-              <span><strong>Verifiable Citation Links:</strong> Frontend highlights source paragraph coordinates with cryptographic content hashes.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+    solution: `
+      Pulse is an autonomous Reddit signal intelligence engine. It runs asynchronous background workers across target subreddits, extracts posts and comment threads, passes them through semantic embedding models, and groups related discussions into coherent demand clusters.
+      <br><br>
+      Instead of keyword noise, Pulse surfaces velocity spikes: when discussions around a specific pain point accelerate week-over-week, the system flags it as an emerging opportunity.
     `,
-    frontend: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">High-Throughput Vector Streaming Engine</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            Rust / Python hybrid retrieval engine connected to a Next.js streaming analytics client:
-          </p>
-        </div>
-
-        <div class="code-preview-block">
-<span class="text-purple-400">// Hybrid Dense + Sparse Search with Cross-Encoder Reranking</span>
-<span class="text-blue-400">async function</span> <span class="text-yellow-300">executeHybridRAG</span>(query: <span class="text-cyan-400">string</span>) {
-  <span class="text-blue-400">const</span> [denseEmb, sparseTokens] = await Promise.all([
-    embedText(query, { model: <span class="text-emerald-300">'text-embedding-3-large'</span> }),
-    tokenizeBM25(query)
-  ]);
-  
-  <span class="text-blue-400">const</span> candidates = await qdrantClient.search({
-    vector: denseEmb,
-    sparse: sparseTokens,
-    limit: 40
-  });
-
-  return await crossEncoderRerank(query, candidates, { topK: 5 });
-}
-        </div>
-      </div>
+    flow: `
+      <ul style="display:flex;flex-direction:column;gap:10px;padding-left:18px;margin:12px 0;">
+        <li><strong>Ingestion:</strong> Async Python workers polling Reddit API across 40+ niche tech subreddits.</li>
+        <li><strong>Vector Processing:</strong> Generates dense semantic embeddings for discussions and stores them in Supabase pgvector.</li>
+        <li><strong>Clustering:</strong> HDBSCAN and semantic similarity grouping to identify emerging complaint clusters.</li>
+        <li><strong>Velocity Scoring:</strong> Tracks cluster momentum over 7-day and 30-day windows to identify real demand shifts.</li>
+      </ul>
     `,
-    metrics: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Evaluation Benchmarks (RAGAS Framework)</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Evaluated via automated LLM-as-a-judge pipelines:
-          </p>
-        </div>
-
-        <div class="space-y-3">
-          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/15 flex items-center justify-between">
-            <div>
-              <div class="text-sm font-bold text-white">Groundedness &amp; Faithfulness</div>
-              <div class="text-xs text-slate-400">Verified against citation source documents</div>
-            </div>
-            <div class="text-lg font-mono font-bold text-emerald-300">0.984 / 1.0</div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/15 flex items-center justify-between">
-            <div>
-              <div class="text-sm font-bold text-white">Concurrent Throughput</div>
-              <div class="text-xs text-slate-400">Handled under continuous peak stress testing</div>
-            </div>
-            <div class="text-lg font-mono font-bold text-emerald-300">2,800 QPS</div>
-          </div>
-        </div>
-      </div>
+    result: `
+      Surfaces actionable product demand trends 4 to 8 weeks ahead of mainstream tech media, transforming unfiltered forum chatter into structured engineering signals.
     `
   },
 
-  "placeholder-03": {
-    id: "placeholder-03",
-    title: "[BLUEPRINT 03] Client-Side WebGPU Neural Vision & Tensor Engine",
-    subtitle: "Ankit Jha — AI & Full Stack Engineer (New Delhi)",
-    tag: "Vision Transformers & Edge Compute",
-    badgeColor: "purple",
-    role: "AI & Full Stack Systems Engineer",
-    timeline: "Edge Production Blueprint",
-    client: "[Your Spatial / Robotics / Edge Client]",
-    liveUrl: "https://github.com",
-    overview: `
-      <div class="space-y-6">
-        <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-200 text-xs font-mono shadow-[0_0_20px_rgba(192,132,252,0.15)]">
-          <strong>SYSTEM BLUEPRINT:</strong> Drop in your computer vision, spatial intelligence, or in-browser WebGPU/ONNX neural inference project here.
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Zero-Latency Local Privacy</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Deploying quantized Vision Transformers (ViT) and spatial segmentations directly on client GPU hardware via WebGPU compute shaders. Eliminates cloud egress and ensures 100% on-device data sovereignty.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-purple-300 font-display">60 FPS</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">WebGPU Continuous Inference</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-white font-display">8.2 MB</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Quantized INT4 Binary</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-emerald-400 font-display">0 ms</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Zero Cloud Latency / Local Privacy</div>
-          </div>
-        </div>
-      </div>
+  "linkedin-signal": {
+    id: "linkedin-signal",
+    num: "03",
+    title: "LinkedIn Signal Prospecting Engine",
+    subtitle: "Turning content engagement into qualified pipelines",
+    tag: "GTM",
+    type: "Case study",
+    focus: "GTM & Automation",
+    stack: "LinkedIn API, LLM Scoring, Neon Serverless Postgres, Webhooks",
+    liveUrl: "https://github.com/Ankit-eng01/ankit-jha-portfolio",
+    deckUrl: "#",
+    problem: `
+      B2B organic content on LinkedIn often drives high engagement, but sales and growth teams have no systematic way to turn post likes and comments into qualified leads. Most SDRs either manually copy names into a CRM or spray generic connection requests that get ignored.
     `,
-    uxDesign: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Real-Time Spatial Overlays &amp; GPU Blitting</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            Interaction architecture for live video streams and bounding boxes:
-          </p>
-        </div>
-      </div>
+    solution: `
+      I engineered this system to turn any high-performing LinkedIn post into an automated, ranked pipeline. When a post gains traction, the engine pulls engagement webhooks, enriches profile data, and runs an LLM-as-a-judge scoring model against Ideal Customer Profile (ICP) criteria.
+      <br><br>
+      High-intent buyers are immediately categorized and synced into Neon serverless Postgres with suggested context-aware conversation starters.
     `,
-    frontend: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">ONNX Runtime Web &amp; Compute Pipeline</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            In-browser neural inference running on client hardware:
-          </p>
-        </div>
-
-        <div class="code-preview-block">
-<span class="text-purple-400">// In-Browser WebGPU Tensor Inference</span>
-<span class="text-blue-400">import</span> * as ort <span class="text-blue-400">from</span> <span class="text-emerald-300">'onnxruntime-web/webgpu'</span>;
-
-<span class="text-blue-400">const</span> session = await ort.InferenceSession.create(<span class="text-emerald-300">'/models/vision-int4.onnx'</span>, {
-  executionProviders: [<span class="text-cyan-400">'webgpu'</span>],
-  graphOptimizationLevel: <span class="text-cyan-400">'all'</span>
-});
-        </div>
-      </div>
+    flow: `
+      <ul style="display:flex;flex-direction:column;gap:10px;padding-left:18px;margin:12px 0;">
+        <li><strong>Webhook Capture:</strong> Real-time capture of post comments, reposts, and reactions.</li>
+        <li><strong>Profile Enrichment:</strong> Extracts title, company size, industry, and seniority level.</li>
+        <li><strong>LLM ICP Scoring:</strong> Model evaluates buyer intent based on comment depth and role relevance (0 to 100 score).</li>
+        <li><strong>Database Sync:</strong> Saves ranked prospects to Neon Postgres with automatic webhook notifications.</li>
+      </ul>
     `,
-    metrics: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Edge Deployment Impact</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Eliminates high-cost cloud GPU clusters while guaranteeing 100% compliance with strict privacy standards.
-          </p>
-        </div>
-      </div>
+    result: `
+      Turns social reach into clean, ranked enterprise pipelines with zero manual copy-pasting.
     `
   },
 
-  "placeholder-04": {
-    id: "placeholder-04",
-    title: "[BLUEPRINT 04] Zero-Touch Autonomous Pipeline & Signal Engine",
-    subtitle: "Ankit Jha — AI & Full Stack Engineer (New Delhi)",
-    tag: "Autonomous Orchestration & Serverless Pipeline",
-    badgeColor: "amber",
-    role: "AI & Full Stack Systems Engineer",
-    timeline: "Autonomous Production Pipeline",
-    client: "[Your Automation / Enterprise SaaS Client]",
-    liveUrl: "https://github.com",
-    overview: `
-      <div class="space-y-6">
-        <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs font-mono shadow-[0_0_20px_rgba(245,158,11,0.15)]">
-          <strong>SYSTEM BLUEPRINT:</strong> One-trigger, zero-manual-step execution pipeline removing operational overhead, spreadsheets, and human coordination bottlenecks.
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Zero-Manual-Step Execution Pipeline</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Triggered by a single event, this pipeline orchestrates document parsing, supplier/vendor matching, rate-limited outreach, anomaly detection on quote submissions, and automated contract award generation with Neon serverless database synchronization.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-amber-300 font-display">1-Trigger</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Autonomous Execution</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-white font-display">0 Steps</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Manual Coordination</div>
-          </div>
-          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/15 shadow-inner">
-            <div class="text-2xl font-black text-emerald-400 font-display">99.9%</div>
-            <div class="text-xs font-mono text-slate-300 mt-1">Pipeline Idempotency</div>
-          </div>
-        </div>
-      </div>
+  "capability-router": {
+    id: "capability-router",
+    num: "04",
+    title: "Capability Router",
+    subtitle: "Smarter tool selection for AI agents",
+    tag: "Agent tooling",
+    type: "Case study",
+    focus: "Agent tooling",
+    stack: "Codex plugin, Local registry, Semantic tool ranking",
+    liveUrl: "https://github.com/Ankit-eng01/ankit-jha-portfolio",
+    deckUrl: "#",
+    problem: `
+      AI agents that have access to many tools face a hidden problem. Every tool description loaded into context costs tokens, slows down reasoning, and increases the chance of the model picking the wrong one. When an agent has dozens of capabilities available, listing all of them upfront is wasteful.
     `,
-    uxDesign: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Resilient Webhook &amp; Worker State Architecture</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            Flow-state machine with automated retry schedules and anomaly guards:
-          </p>
-
-          <ul class="space-y-3 text-xs text-slate-200 font-mono">
-            <li class="flex items-start gap-2">
-              <span class="text-amber-400 font-bold">&check;</span>
-              <span><strong>Event Ingestion &amp; Deduplication:</strong> Cryptographic idempotency keys prevent duplicate processing across network retries.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-400 font-bold">&check;</span>
-              <span><strong>Intelligent Signal Scoring:</strong> LLM evaluates incoming vendor bids against historical baseline pricing and flags anomalies in real time.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-400 font-bold">&check;</span>
-              <span><strong>Automated Dispatch &amp; Neon DB Sync:</strong> Immediate audit logging on serverless Postgres with instant webhook notifications.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+    solution: `
+      Capability Router was built to fix that. The router works as a Codex plugin. Instead of loading every capability description into the active context, it scans the available tools, builds a compact local registry, and ranks them against the current task. Only the top candidates are returned. The rest stay out of context entirely.
     `,
-    frontend: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Pipeline Code &amp; Event Bus</h4>
-          <p class="text-slate-200 leading-relaxed mb-4">
-            Edge worker event handler dispatched via Vercel Functions and Neon:
-          </p>
-        </div>
-
-        <div class="code-preview-block">
-<span class="text-purple-400">// Autonomous Pipeline Trigger &amp; Idempotent Execution</span>
-<span class="text-blue-400">export async function</span> <span class="text-yellow-300">executeAutonomousPipeline</span>(req: <span class="text-cyan-400">Request</span>) {
-  <span class="text-blue-400">const</span> payload = await req.json();
-  <span class="text-blue-400">const</span> isIdempotent = await neonDb.query(
-    <span class="text-emerald-300">'SELECT id FROM pipeline_runs WHERE event_hash = $1'</span>, 
-    [payload.hash]
-  );
-  <span class="text-blue-400">if</span> (isIdempotent.rows.length) return { status: <span class="text-amber-300">'already_processed'</span> };
-
-  <span class="text-purple-400">// Run multi-step agent flow</span>
-  return await dispatchAgentSwarm(payload);
-}
-        </div>
-      </div>
+    flow: `
+      <ul style="display:flex;flex-direction:column;gap:10px;padding-left:18px;margin:12px 0;">
+        <li><strong>Task Ingestion:</strong> A task comes in through a natural language instruction or slash command.</li>
+        <li><strong>Semantic Matching:</strong> Router scores each tool capability against the task using lightweight local embeddings.</li>
+        <li><strong>Soft Masking:</strong> Filters out irrelevant tools and surfaces only top 3-5 candidates likely to help.</li>
+        <li><strong>Focused Execution:</strong> The agent works with a clean, focused context window rather than an overloaded list.</li>
+      </ul>
     `,
-    metrics: `
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-white font-bold text-base mb-2">Automation Impact</h4>
-          <p class="text-slate-200 leading-relaxed">
-            Replaced 18+ hours of weekly manual back-and-forth communication with fully automated, verifiable autonomous loops.
-          </p>
-        </div>
-      </div>
+    result: `
+      Faster, cleaner agent execution. Less context noise means tighter reasoning and fewer wrong tool selections.
     `
   }
 };

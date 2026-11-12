@@ -1,853 +1,498 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ankit Jha — AI and Full Stack Engineer | New Delhi</title>
-  <meta name="description" content="Hey there, I'm Ankit Jha — an AI and full stack engineer based in New Delhi. Exploring frontier tech, autonomous agents, RAG pipelines, and full-stack software.">
-  
-  <!-- Professional Typography (Geist + Inter + Geist Mono) -->
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#121212">
+  <title>Ankit Jha | AI and Full Stack Engineer</title>
+  <meta name="description" content="Ankit Jha is an AI and full stack engineer based in New Delhi, building agents, automations, vector search pipelines, and full-stack software.">
+
+  <!-- Geist & Geist Mono Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Geist"', '"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            display: ['"Geist"', '"Inter"', '-apple-system', 'sans-serif'],
-            mono: ['"Geist Mono"', '"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              void: '#07090e',
-              card: '#0d1017',
-              surface: '#131722',
-              border: 'rgba(255, 255, 255, 0.1)',
-              borderHover: 'rgba(255, 255, 255, 0.25)',
-              accent: '#38bdf8'
-            }
-          }
-        }
-      }
-    }
-  </script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Custom Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#07090e] text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 relative min-h-screen">
-
-  <!-- Interactive Neural Constellation Canvas (Subtle ambient) -->
-  <canvas id="neuralCanvas"></canvas>
-
-  <!-- Scroll Progress Bar -->
-  <div id="scrollProgressBar" class="fixed top-0 left-0 h-[2.5px] bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-400 z-50 transition-all duration-75 w-0 shadow-[0_0_12px_rgba(56,189,248,0.9)]"></div>
-
-  <!-- Deep Perspective Grid & Atmospheric Glow Halos -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute inset-0 bg-deep-grid opacity-50"></div>
-    <div class="absolute inset-0 vignette-overlay pointer-events-none"></div>
-
-    <!-- Soft Glow Atmospheric Halos -->
-    <div class="absolute -top-40 left-1/3 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px] transform -translate-x-1/2"></div>
-    <div class="absolute top-[35%] -right-40 w-[550px] h-[550px] bg-purple-600/10 rounded-full blur-[170px]"></div>
-    <div class="absolute -bottom-40 left-1/4 w-[700px] h-[700px] bg-blue-600/10 rounded-full blur-[180px]"></div>
-  </div>
-
-  <!-- Cursor Spotlight -->
-  <div id="cursorSpotlight" class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 opacity-0 md:opacity-100" style="background: radial-gradient(650px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(56, 189, 248, 0.06), transparent 75%);"></div>
+<body>
 
   <!-- ======================================================== -->
-  <!-- TOP NAVIGATION (vanshtripathi.dev style clean header)     -->
+  <!-- MAIN HOME VIEW (Reading Column Layout ~560px-620px)      -->
   <!-- ======================================================== -->
-  <header class="sticky top-0 z-40 w-full backdrop-blur-2xl bg-[#07090e]/85 border-b border-white/[0.08] transition-all duration-300">
-    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-      
-      <!-- Logo Identity -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400/20 to-purple-500/20 border border-cyan-400/40 flex items-center justify-center font-display font-bold text-sm text-white group-hover:scale-105 transition-all shadow-inner">
-          <span class="text-cyan-300">⚡</span>
-        </div>
-        <span class="font-display font-bold text-base tracking-tight text-white group-hover:text-cyan-300 transition-colors">
-          Ankit Jha
+  <main id="homeView" class="home view-panel active">
+    
+    <!-- Top Bar: Avatar & Theme Switcher -->
+    <header class="home-top">
+      <div class="b-avatar" aria-label="Ankit Jha">
+        <span>AJ</span>
+      </div>
+
+      <div class="theme-toggle-seg" role="radiogroup" aria-label="Theme">
+        <button type="button" class="theme-toggle-btn" id="themeLightBtn" onclick="setTheme('light')" aria-label="Light mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2m-7.07-17.07 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+        </button>
+        <button type="button" class="theme-toggle-btn active" id="themeDarkBtn" onclick="setTheme('dark')" aria-label="Dark mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Introduction -->
+    <h1 class="home-h1">
+      Hey there, I'm Ankit Jha <span class="muted">an AI and full stack engineer based in New Delhi</span>
+    </h1>
+
+    <!-- Exact User Bio Content -->
+    <div class="bio">
+      <p>
+        First things first, greetings to whoever is reading this, I am thankful for you coming here. I hope you are having a great day.
+      </p>
+      <p>
+        Now coming back to this website, this is just another of your typical portfolio website(kinda?). Myself Ankit, primarily a <mark class="b-marked">curious guy</mark> who just loves almost everything tech related, secondarily a deemed to be engineer.
+      </p>
+    </div>
+
+    <!-- Dashed Cut Line to Open Long Bio -->
+    <div class="cut-box">
+      <button type="button" class="cut-line" onclick="toggleBio()" aria-expanded="false" id="cutLineBtn">
+        <span class="cut-line-rule"></span>
+        <span class="cut-line-btn">
+          <span>✂</span>
+          <span id="cutBtnLabel">Drag along the line to cut the bio open</span>
         </span>
-      </a>
+        <span class="cut-line-rule"></span>
+      </button>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden sm:flex items-center gap-6 text-sm font-medium text-slate-300">
-        <a href="#about" class="hover:text-white transition-colors">About</a>
-        <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-        <a href="#journey" class="hover:text-white transition-colors">Journey</a>
-        <a href="#sandbox" class="hover:text-white transition-colors">AI Sandbox</a>
-        <a href="#stack" class="hover:text-white transition-colors">Stack</a>
-        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-      </nav>
-
-      <!-- Right Action CTA -->
-      <div class="flex items-center gap-3">
-        <a href="#contact" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-white font-medium text-xs transition-all active:scale-95">
-          <span>Say Hello</span>
-          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-        </a>
+      <!-- Expandable Long Bio -->
+      <div id="bioMore" class="bio-more">
+        <p>
+          I have been into tech exploring everything from C++ and Python to modern full-stack development, distributed databases, and DevOps concepts. When the AI boom took off, I dove headfirst into it—building autonomous agent swarms, vector retrieval pipelines, and zero-touch workflows.
+        </p>
+        <p>
+          I will forever be grateful to <em>"Attention Is All You Need"</em> and the researchers behind the transformer architecture that changed the industry forever.
+        </p>
+        <p>
+          Apart from tech, I read basically anything that is readable: books, philosophy, research papers, and essays. I also play video games, listen to music, and love building software that ships to real users.
+        </p>
+        <p>
+          So yeah, that's about it for the authentic intro about me!
+        </p>
+        <button type="button" class="fold-btn" onclick="toggleBio()">Fold it back &uarr;</button>
       </div>
     </div>
-  </header>
 
-  <!-- ======================================================== -->
-  <!-- MAIN CONTENT CONTAINER (vanshtripathi.dev centered flow) -->
-  <!-- ======================================================== -->
-  <main class="relative z-10 max-w-4xl mx-auto px-6 pt-16 pb-24 space-y-20">
-
-    <!-- ======================================================== -->
-    <!-- 1. HERO / BIO SECTION (vanshtripathi.dev exact layout)   -->
-    <!-- ======================================================== -->
-    <section id="about" class="space-y-6 pt-4">
+    <!-- Bento Navigation Tiles (vanshtripathi.dev style) -->
+    <div class="tiles">
       
-      <!-- Top Status Pill -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>Based in New Delhi, India &bull; Open for AI &amp; Full Stack roles</span>
-      </div>
-
-      <!-- Main Introduction -->
-      <div class="space-y-3">
-        <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight">
-          Hey there, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-purple-300">Ankit Jha</span>.
-        </h1>
-        <p class="text-lg sm:text-xl text-cyan-300 font-medium font-mono">
-          AI and Full Stack Engineer based in New Delhi.
-        </p>
-      </div>
-
-      <!-- Exact User Bio Content Block -->
-      <div class="p-6 sm:p-7 rounded-2xl bg-[#0d1017] border border-white/10 space-y-4 shadow-xl">
-        <p class="text-slate-200 text-base sm:text-lg leading-relaxed font-normal">
-          Welcoming you to my website whoever is reading, I will be very thankful to you for visiting my portfolio website.
-        </p>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          Now this website is another type of regular portfolio website. Myself Ankit, primarily I am just an ambitious and curious guy who loves to explore new things in tech and secondary deemed to be an engineer.
-        </p>
-      </div>
-
-      <!-- Quick Social & Contact Badges -->
-      <div class="flex flex-wrap items-center gap-3 pt-2">
-        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-slate-950 font-semibold text-xs hover:bg-slate-200 transition-all shadow-md active:scale-95">
-          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-          <span>Get in touch</span>
-        </a>
-        <a href="https://github.com" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/15 border border-white/15 text-slate-200 text-xs font-mono transition-all">
-          <i data-lucide="github" class="w-3.5 h-3.5"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/15 border border-white/15 text-slate-200 text-xs font-mono transition-all">
-          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
-          <span>LinkedIn</span>
-        </a>
-        <button onclick="copyCliCommand()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 text-xs font-mono transition-all">
-          <span>npx connect-ankit</span>
-          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-        </button>
-      </div>
-
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- 2. BENTO BOX GRID / FEATURED PROJECTS & BLUEPRINTS       -->
-    <!-- ======================================================== -->
-    <section id="projects" class="space-y-6">
-      
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-4 gap-3">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Featured Projects &amp; Blueprints</h2>
-          <p class="text-xs font-mono text-slate-400 mt-1">Autonomous systems, vector search pipelines, and full-stack software.</p>
+      <!-- Tile 1: Selected Work -->
+      <button type="button" class="b-tile" onclick="navigateToView('work')" data-section="work">
+        <div class="b-tile-head">
+          <span class="b-tile-title">Selected work</span>
+          <span class="b-tile-key">W</span>
         </div>
-        <span id="projectCountBadge" class="self-start sm:self-auto text-xs font-mono text-cyan-300 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-400/20">
-          4 Systems
-        </span>
-      </div>
-
-      <!-- KillerPortfolio-Inspired Category Filter Pills -->
-      <div class="flex flex-wrap items-center gap-2 pt-1 pb-2">
-        <button class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white text-slate-950 border border-white shadow-sm" data-filter="all">
-          All
-        </button>
-        <button class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white/[0.06] text-slate-300 border border-white/10 hover:border-white/20 hover:text-white" data-filter="agents">
-          Autonomous Agents
-        </button>
-        <button class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white/[0.06] text-slate-300 border border-white/10 hover:border-white/20 hover:text-white" data-filter="rag">
-          RAG &amp; Vectors
-        </button>
-        <button class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white/[0.06] text-slate-300 border border-white/10 hover:border-white/20 hover:text-white" data-filter="edge">
-          Edge AI &amp; WebGPU
-        </button>
-        <button class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white/[0.06] text-slate-300 border border-white/10 hover:border-white/20 hover:text-white" data-filter="fullstack">
-          Full Stack
-        </button>
-      </div>
-
-      <!-- Bento Box Layout (vanshtripathi.dev + Bento structure) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="bentoShowcase">
-        
-        <!-- BENTO CARD 1: MULTI-AGENT SWARM (Large Feature Bento) -->
-        <article class="md:col-span-2 bento-card p-6 sm:p-7 cursor-pointer group" data-project-id="placeholder-01" data-category="agents fullstack">
-          <div class="space-y-5">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                <span class="text-xs font-mono font-semibold text-cyan-300 uppercase tracking-wider">[BLUEPRINT 01] Multi-Agent Swarm</span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-cyan-400/15 text-cyan-200 border border-cyan-400/30">
-                148 Tokens/sec
-              </span>
-            </div>
-
-            <!-- Visual Graph Viewport -->
-            <div class="relative w-full h-44 rounded-xl bg-[#040507] border border-white/10 p-4 flex flex-col justify-between overflow-hidden shadow-inner">
-              <div class="flex items-center justify-between text-[11px] font-mono text-slate-300 z-10">
-                <span class="text-cyan-300 font-semibold flex items-center gap-1.5">
-                  <i data-lucide="cpu" class="w-3.5 h-3.5 text-cyan-400"></i> LangGraph Cyclic Engine
-                </span>
-                <span class="text-emerald-400 font-semibold">Zero-Copy WebSocket Active</span>
-              </div>
-
-              <!-- Animated Graph Simulation -->
-              <div class="relative my-auto flex items-center justify-around py-3 z-10">
-                <div class="p-2.5 rounded-lg bg-white/[0.08] border border-cyan-400/50 text-center">
-                  <div class="text-[10px] font-mono text-cyan-300 font-bold">PLANNER</div>
-                  <div class="text-[9px] font-mono text-slate-400">Task Splitter</div>
-                </div>
-                <div class="text-slate-500 font-mono text-xs">&harr;</div>
-                <div class="p-2.5 rounded-lg bg-white/[0.08] border border-purple-400/50 text-center">
-                  <div class="text-[10px] font-mono text-purple-300 font-bold">TOOL RUNNER</div>
-                  <div class="text-[9px] font-mono text-slate-400">Parallel Workers</div>
-                </div>
-                <div class="text-slate-500 font-mono text-xs">&harr;</div>
-                <div class="p-2.5 rounded-lg bg-white/[0.08] border border-emerald-400/50 text-center">
-                  <div class="text-[10px] font-mono text-emerald-300 font-bold">EVALUATOR</div>
-                  <div class="text-[9px] font-mono text-slate-400">Reflection Loop</div>
-                </div>
-              </div>
-
-              <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 z-10 border-t border-white/5 pt-1.5">
-                <span>TTFT: &lt;14ms</span>
-                <span class="text-cyan-300 font-semibold">// DROP_YOUR_PROJECT_IMAGE_OR_GRAPH</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-display font-bold text-xl text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
-                <span>Multi-Agent Autonomous Swarm &amp; Distributed Reasoning Canvas</span>
-                <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-400 group-hover:text-cyan-300 transition-transform"></i>
-              </h3>
-              <p class="text-slate-300 text-sm mt-2 leading-relaxed">
-                An asynchronous multi-agent coordination system managing recursive planning loops, dynamic tool calling, and binary token streaming to an interactive canvas frontend.
-              </p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-white/10 mt-5 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2.5 py-0.5 rounded text-xs font-mono bg-white/10 text-cyan-200 border border-white/15">LangGraph</span>
-              <span class="px-2.5 py-0.5 rounded text-xs font-mono bg-white/10 text-cyan-200 border border-white/15">vLLM</span>
-              <span class="px-2.5 py-0.5 rounded text-xs font-mono bg-white/10 text-cyan-200 border border-white/15">WebSocket</span>
-            </div>
-            <button class="text-cyan-300 hover:text-white font-semibold text-xs font-mono flex items-center gap-1 group/btn transition-colors">
-              Read Case Study <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- BENTO CARD 2: ENTERPRISE RAG RADAR -->
-        <article class="bento-card p-6 sm:p-7 cursor-pointer group" data-project-id="placeholder-02" data-category="rag fullstack">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span class="text-xs font-mono font-semibold text-emerald-300 uppercase tracking-wider">[BLUEPRINT 02] RAG</span>
-              </div>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-400/15 text-emerald-200 border border-emerald-400/30">
-                12.8M Vectors
-              </span>
-            </div>
-
-            <!-- Vector Radar Viewport -->
-            <div class="relative w-full h-36 rounded-xl bg-[#040507] border border-white/10 p-3 flex flex-col justify-between overflow-hidden shadow-inner items-center">
-              <div class="relative w-28 h-28 rounded-full border border-emerald-500/30 flex items-center justify-center my-auto">
-                <div class="w-16 h-16 rounded-full border border-emerald-500/20 flex items-center justify-center">
-                  <div class="w-8 h-8 rounded-full border border-emerald-500/40 bg-emerald-500/10"></div>
-                </div>
-                <div class="absolute inset-0 radar-sweep pointer-events-none">
-                  <div class="w-1/2 h-0.5 bg-gradient-to-r from-transparent to-emerald-400"></div>
-                </div>
-                <span class="absolute top-4 right-6 w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
-                <span class="absolute bottom-5 left-5 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8]"></span>
-              </div>
-
-              <div class="w-full flex justify-between items-center text-[10px] font-mono text-slate-400 border-t border-white/5 pt-1">
-                <span>RRF Distance: 0.984</span>
-                <span class="text-emerald-300 font-semibold">// DROP_RAG_IMAGE</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-display font-bold text-lg text-white group-hover:text-emerald-300 transition-colors flex items-center justify-between">
-                <span>Enterprise Sub-Millisecond RAG Radar</span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-emerald-300 transition-transform"></i>
-              </h3>
-              <p class="text-slate-300 text-xs mt-1.5 leading-relaxed">
-                Hybrid dense + sparse semantic search engine with cross-encoder reranking and Supabase pgvector telemetry.
-              </p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
-            <span class="px-2 py-0.5 rounded text-xs font-mono bg-white/10 text-emerald-200 border border-white/15">Supabase + pgvector</span>
-            <button class="text-emerald-300 hover:text-white font-semibold text-xs font-mono flex items-center gap-1 group/btn transition-colors">
-              Read Blueprint <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- BENTO CARD 3: WEBGPU VISION & EDGE AI -->
-        <article class="bento-card p-6 sm:p-7 cursor-pointer group" data-project-id="placeholder-03" data-category="edge agents">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse"></span>
-                <span class="text-xs font-mono font-semibold text-purple-300 uppercase tracking-wider">[BLUEPRINT 03] Edge Vision</span>
-              </div>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-purple-400/15 text-purple-200 border border-purple-400/30">
-                WebGPU 60 FPS
-              </span>
-            </div>
-
-            <!-- 3D Tensor Wireframe Viewport -->
-            <div class="relative w-full h-36 rounded-xl bg-[#040507] border border-white/10 p-3 flex flex-col justify-between overflow-hidden shadow-inner items-center">
-              <div class="relative w-28 h-28 flex items-center justify-center my-auto">
-                <div class="w-20 h-20 rounded-full border border-purple-400/40 border-dashed animate-spin shadow-[0_0_20px_rgba(192,132,252,0.2)]" style="animation-duration: 12s;"></div>
-                <div class="absolute w-12 h-12 rounded-lg bg-gradient-to-tr from-purple-500/40 to-cyan-500/40 border border-white/30 flex items-center justify-center font-mono font-bold text-xs text-white">
-                  ViT-INT4
-                </div>
-              </div>
-
-              <div class="w-full flex justify-between items-center text-[10px] font-mono text-slate-400 border-t border-white/5 pt-1">
-                <span>Egress: 0 MB (On-Device)</span>
-                <span class="text-purple-300 font-semibold">// DROP_VISION_IMAGE</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-display font-bold text-lg text-white group-hover:text-purple-300 transition-colors flex items-center justify-between">
-                <span>Client-Side WebGPU Neural Vision</span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-purple-300 transition-transform"></i>
-              </h3>
-              <p class="text-slate-300 text-xs mt-1.5 leading-relaxed">
-                In-browser quantized ViT-INT4 neural inference running directly on client GPUs with zero cloud egress.
-              </p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
-            <span class="px-2 py-0.5 rounded text-xs font-mono bg-white/10 text-purple-200 border border-white/15">WebGPU + ONNX</span>
-            <button class="text-purple-300 hover:text-white font-semibold text-xs font-mono flex items-center gap-1 group/btn transition-colors">
-              Read Blueprint <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- BENTO CARD 4: ZERO-TOUCH AUTONOMOUS PIPELINE & SIGNAL ENGINE -->
-        <article class="md:col-span-2 bento-card p-6 sm:p-7 cursor-pointer group" data-project-id="placeholder-04" data-category="agents fullstack">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
-                <span class="text-xs font-mono font-semibold text-amber-300 uppercase tracking-wider">[BLUEPRINT 04] Autonomous Pipeline</span>
-              </div>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-amber-400/15 text-amber-200 border border-amber-400/30">
-                1-Trigger Execution
-              </span>
-            </div>
-
-            <!-- Pipeline State Viewport -->
-            <div class="relative w-full h-36 rounded-xl bg-[#040507] border border-white/10 p-4 flex flex-col justify-between overflow-hidden shadow-inner">
-              <div class="flex items-center justify-between text-[11px] font-mono text-slate-300">
-                <span class="text-amber-300 font-semibold flex items-center gap-1.5">
-                  <i data-lucide="git-merge" class="w-3.5 h-3.5 text-amber-400"></i> Autonomous Procurement Loop
-                </span>
-                <span class="text-emerald-400 font-semibold">Neon DB Sync &bull; Idempotent</span>
-              </div>
-
-              <!-- Pipeline Steps Visualizer -->
-              <div class="flex items-center justify-between text-xs font-mono py-2">
-                <div class="px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-amber-400/30 text-center">
-                  <div class="text-[10px] text-amber-300 font-bold">EVENT INGEST</div>
-                  <div class="text-[9px] text-slate-400">1-Trigger Form</div>
-                </div>
-                <div class="text-slate-500 font-mono">&rarr;</div>
-                <div class="px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-cyan-400/30 text-center">
-                  <div class="text-[10px] text-cyan-300 font-bold">RFQ MATCH</div>
-                  <div class="text-[9px] text-slate-400">Supplier DB</div>
-                </div>
-                <div class="text-slate-500 font-mono">&rarr;</div>
-                <div class="px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-purple-400/30 text-center">
-                  <div class="text-[10px] text-purple-300 font-bold">AI SCORING</div>
-                  <div class="text-[9px] text-slate-400">Anomaly Check</div>
-                </div>
-                <div class="text-slate-500 font-mono">&rarr;</div>
-                <div class="px-2.5 py-1.5 rounded-lg bg-white/[0.06] border border-emerald-400/30 text-center">
-                  <div class="text-[10px] text-emerald-300 font-bold">AUTO DISPATCH</div>
-                  <div class="text-[9px] text-slate-400">Neon Audit Log</div>
-                </div>
-              </div>
-
-              <div class="w-full flex justify-between items-center text-[10px] font-mono text-slate-400 border-t border-white/5 pt-1">
-                <span>Manual Overhead: 0 hours</span>
-                <span class="text-amber-300 font-semibold">// DROP_PIPELINE_IMAGE</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-display font-bold text-lg text-white group-hover:text-amber-300 transition-colors flex items-center justify-between">
-                <span>Zero-Touch Autonomous Procurement Pipeline &amp; Signal Engine</span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-amber-300 transition-transform"></i>
-              </h3>
-              <p class="text-slate-300 text-xs mt-1.5 leading-relaxed">
-                Single-trigger autonomous execution engine removing coordination overhead: automated RFQs, vendor matching, rate-limited email outreach, anomaly scoring, and Neon serverless database synchronization.
-              </p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-white/10 text-amber-200 border border-white/15">Neon DB</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-white/10 text-amber-200 border border-white/15">TypeScript</span>
-              <span class="px-2 py-0.5 rounded text-xs font-mono bg-white/10 text-amber-200 border border-white/15">Vercel Edge</span>
-            </div>
-            <button class="text-amber-300 hover:text-white font-semibold text-xs font-mono flex items-center gap-1 group/btn transition-colors">
-              Read Blueprint <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-            </button>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- 3. HOW I ACTUALLY GOT HERE (vanshtripathi.dev signature)  -->
-    <!-- ======================================================== -->
-    <section id="journey" class="space-y-6 pt-2">
-      
-      <div class="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">How I Actually Got Here</h2>
-          <p class="text-xs font-mono text-slate-400 mt-1">An informal engineering timeline of curious tinkering, full-stack battles, and frontier AI systems.</p>
+        <div class="b-tile-desc">
+          Systems built end to end: agents, automations, and the backends behind them.
         </div>
-        <span class="text-xs font-mono text-cyan-300 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-400/20">
-          My Journey
-        </span>
-      </div>
+      </button>
 
-      <div class="bento-card p-6 sm:p-8 space-y-8">
-        
-        <!-- Timeline Item 1 -->
-        <div class="relative pl-6 sm:pl-8 border-l border-cyan-400/30 space-y-2 group">
-          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8]"></div>
-          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span class="text-cyan-300 font-bold uppercase tracking-wider">Phase 01</span>
-            <span class="text-slate-400">&bull; The Curiosity Spark &amp; Tinkering</span>
-          </div>
-          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
-            Breaking things and inspecting code
-          </h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            I didn't start with dry textbooks or strict curriculum. I started as an ambitious, curious guy inspecting web source code, building tiny toy projects, and breaking open-source scripts until I understood why they worked. That visceral thrill of watching code come alive on screen set everything into motion.
-          </p>
+      <!-- Tile 2: Garden -->
+      <button type="button" class="b-tile" onclick="navigateToView('garden')" data-section="garden">
+        <div class="b-tile-head">
+          <span class="b-tile-title">Garden</span>
+          <span class="b-tile-key">G</span>
         </div>
-
-        <!-- Timeline Item 2 -->
-        <div class="relative pl-6 sm:pl-8 border-l border-purple-400/30 space-y-2 group">
-          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]"></div>
-          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span class="text-purple-300 font-bold uppercase tracking-wider">Phase 02</span>
-            <span class="text-slate-400">&bull; Full-Stack Foundations &amp; Distributed Systems</span>
-          </div>
-          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
-            Mastering modern web &amp; relational data architecture
-          </h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Transitioned deeply into production full-stack engineering. Built reactive frontends with Next.js, React, and TypeScript, backed by robust PostgreSQL engines. Spent late nights understanding query execution plans, serverless connection pooling, WebSocket state synchronization, and rock-solid API design.
-          </p>
+        <div class="b-tile-desc">
+          Short thoughts, synced from X. Original posts only, no noise.
         </div>
+      </button>
 
-        <!-- Timeline Item 3 -->
-        <div class="relative pl-6 sm:pl-8 border-l border-emerald-400/30 space-y-2 group">
-          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
-          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span class="text-emerald-300 font-bold uppercase tracking-wider">Phase 03</span>
-            <span class="text-slate-400">&bull; Falling Down the AI Rabbit Hole</span>
-          </div>
-          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
-            From prompt wrappers to vector embeddings and RAG
-          </h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            When modern AI took off, I avoided shallow wrappers and immediately went into vector retrieval and embeddings. Paired Supabase's <code class="text-emerald-300 font-mono">pgvector</code> with hybrid sparse/dense reranking, and configured Neon serverless database branching for rapid experimentation.
-          </p>
+      <!-- Tile 3: Writing -->
+      <button type="button" class="b-tile" onclick="navigateToView('blog')" data-section="blog">
+        <div class="b-tile-head">
+          <span class="b-tile-title">Writing</span>
+          <span class="b-tile-key">B</span>
         </div>
-
-        <!-- Timeline Item 4 -->
-        <div class="relative pl-6 sm:pl-8 border-l border-amber-400/30 space-y-2 group">
-          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></div>
-          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span class="text-amber-300 font-bold uppercase tracking-wider">Phase 04 (Present)</span>
-            <span class="text-slate-400">&bull; Autonomous Agents &amp; Frontier Software</span>
-          </div>
-          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-            Cyclic agent graphs, WebGPU vision, and zero-touch workflows
-          </h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Today in New Delhi, I architect autonomous multi-agent swarms with LangGraph, stream low-latency tokens via vLLM, compile quantized Vision Transformers directly to browser WebGPU, and deploy zero-touch operational pipelines on Vercel Edge compute.
-          </p>
+        <div class="b-tile-desc">
+          How I Actually Got Here &amp; notes on what I build and think.
         </div>
+      </button>
 
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- 4. LIVE AI INFERENCE ENGINE & STREAMING SANDBOX          -->
-    <!-- ======================================================== -->
-    <section id="sandbox" class="space-y-6">
-      
-      <div class="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Interactive AI Streaming Engine</h2>
-          <p class="text-xs font-mono text-slate-400 mt-1">Live token streaming telemetry and foundation model inference testbench.</p>
+      <!-- Tile 4: Work with me -->
+      <button type="button" class="b-tile" onclick="navigateToView('services')" data-section="services">
+        <div class="b-tile-head">
+          <span class="b-tile-title">Work with me</span>
+          <span class="b-tile-key">S</span>
         </div>
-        <span class="text-xs font-mono text-emerald-300 bg-emerald-500/15 px-3 py-1 rounded-full border border-emerald-400/30 flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Engine Ready
-        </span>
-      </div>
+        <div class="b-tile-desc">
+          AI systems architecture, agentic automation, and high-impact engineering.
+        </div>
+      </button>
 
-      <div class="bento-card p-6 sm:p-7 space-y-5">
-        <!-- Controls Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <!-- Model Selection -->
+      <!-- Tile 5: Reading (Wide Tile) -->
+      <button type="button" class="b-tile b-tile-wide" onclick="navigateToView('reading')" data-section="reading">
+        <div class="b-tile-head">
           <div>
-            <label class="block text-xs font-mono font-semibold text-slate-200 mb-2">Target Foundation Model</label>
-            <select id="aiModelSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.06] border border-white/20 text-white font-mono text-xs focus:outline-none focus:border-cyan-400 transition-colors">
-              <option value="gemini">Gemini 1.5 Pro (Multimodal 2M Context)</option>
-              <option value="claude">Claude 3.5 Sonnet (200k Context)</option>
-              <option value="llama">Llama 3.3 70B (FP8 Quantized)</option>
-              <option value="deepseek">DeepSeek V3 (MoE Architecture)</option>
-            </select>
-          </div>
-
-          <!-- Temperature Slider -->
-          <div>
-            <div class="flex justify-between text-xs font-mono text-slate-200 mb-2">
-              <span>Temperature (Sampling)</span>
-              <span id="tempLabel" class="text-cyan-300 font-bold">0.70</span>
+            <span class="b-tile-title">Reading</span>
+            <div class="b-tile-desc" style="margin-top:2px;">
+              Currently reading 8 &bull; Finished 25 &bull; Want to read 22
             </div>
-            <input type="range" id="tempSlider" min="0" max="100" value="70" class="w-full h-2 bg-white/15 rounded-lg appearance-none cursor-pointer accent-cyan-400 mt-2">
           </div>
-
-          <!-- Trigger Button -->
-          <div class="flex flex-col justify-end">
-            <button onclick="runInferenceStream()" id="streamRunBtn" class="w-full py-2.5 rounded-xl bg-cyan-400 text-slate-950 font-semibold text-xs hover:bg-cyan-300 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(56,189,248,0.4)] active:scale-95">
-              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
-              Run Streaming Inference
-            </button>
-          </div>
+          <span class="b-tile-key">R</span>
         </div>
-
-        <!-- Terminal Stream Viewport -->
-        <div class="p-5 bg-[#020306] border border-white/15 rounded-2xl space-y-3 shadow-inner">
-          <div class="flex items-center justify-between text-xs font-mono text-slate-300 pb-2 border-b border-white/10">
-            <span class="flex items-center gap-2">
-              <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
-              <span id="streamStatus" class="text-cyan-300 font-semibold">Idle &bull; Ready for prompt dispatch</span>
-            </span>
-            <span class="text-[11px] text-slate-400" id="tokenCounter">0 tokens generated</span>
-          </div>
-
-          <div id="aiStreamOutput" class="font-mono text-xs text-slate-200 min-h-[90px] leading-relaxed whitespace-pre-line">
-            Click "Run Streaming Inference" above to trigger the asynchronous agentic streaming pipeline...
-          </div>
-
-          <div class="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-slate-300">
-            <div class="flex items-center gap-4">
-              <span>TTFT: <strong id="ttftMetric" class="text-cyan-300 font-semibold">14.2 ms</strong></span>
-              <span>Throughput: <strong id="tpsMetric" class="text-emerald-300 font-semibold">148 t/s</strong></span>
-            </div>
-            <span class="text-slate-400">Protocol: WebSocket Binary Frames &bull; vLLM Engine</span>
-          </div>
+        
+        <div class="mini-book-spines">
+          <div class="mini-spine" style="background:#5c2424;" title="Nausea"></div>
+          <div class="mini-spine" style="background:#2e4450;" title="Crime and Punishment"></div>
+          <div class="mini-spine" style="background:#4b3f2f;" title="Twelve Angry Men"></div>
+          <div class="mini-spine" style="background:#3b5249;" title="Three Men in a Boat"></div>
+          <div class="mini-spine" style="background:#40354a;" title="The Trial"></div>
+          <div class="mini-spine" style="background:#6b2d2d;" title="1984"></div>
+          <div class="mini-spine" style="background:#284b63;" title="The Old Man and the Sea"></div>
+          <div class="mini-spine" style="background:#3d405b;" title="The Castle"></div>
         </div>
+      </button>
+
+    </div>
+
+    <!-- Contact Navigation & Real-Time IST Clock -->
+    <footer class="contact-nav">
+      <div class="contact-links">
+        <a href="mailto:jhaankit06969@gmail.com" target="_blank" rel="noopener noreferrer">jhaankit06969@gmail.com</a>
+        <a href="https://github.com/Ankit-eng01" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
 
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- 5. TECH STACK & CLOUD DATA ARCHITECTURE (Supabase, Neon, Vercel) -->
-    <!-- ======================================================== -->
-    <section id="stack" class="space-y-6">
-      
-      <div class="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Tech Stack &amp; Cloud Architecture</h2>
-          <p class="text-xs font-mono text-slate-400 mt-1">Tools and frameworks I use to build scalable AI systems.</p>
-        </div>
-        <span class="text-xs font-mono text-purple-300 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-400/20">
-          Core Tools
-        </span>
+      <div class="contact-telemetry">
+        <span class="status-dot"></span>
+        <span>New Delhi: <strong id="liveTime" style="color:var(--ink-strong);">--:--:--</strong></span>
       </div>
-
-      <!-- Cloud Stack Triad Bento Card -->
-      <div class="bento-card p-6 sm:p-7 space-y-4">
-        <div class="flex items-center justify-between border-b border-white/10 pb-3">
-          <span class="text-xs font-mono text-cyan-300 uppercase tracking-wider font-semibold">Cloud Infrastructure Triad</span>
-          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full border border-emerald-400/30">Integrated &amp; Configured</span>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-          <!-- Supabase -->
-          <div class="p-4 rounded-xl bg-[#040507] border border-emerald-500/25 space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="text-emerald-400 font-bold text-sm">⚡ Supabase</span>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed font-mono">
-              Vector embeddings storage with <code class="text-emerald-300">pgvector</code> similarity search and real-time auth.
-            </p>
-          </div>
-
-          <!-- Neon -->
-          <div class="p-4 rounded-xl bg-[#040507] border border-cyan-500/25 space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="text-cyan-400 font-bold text-sm">❄️ Neon Database</span>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed font-mono">
-              Serverless instant-branching PostgreSQL with sub-millisecond connection pooling over HTTP/WebSockets.
-            </p>
-          </div>
-
-          <!-- Vercel -->
-          <div class="p-4 rounded-xl bg-[#040507] border border-white/20 space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="text-white font-bold text-sm">▲ Vercel</span>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed font-mono">
-              Global edge functions, fluid compute, and zero-configuration CI/CD streaming pipelines.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Capabilities Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bento-card p-5 space-y-2">
-          <div class="flex items-center gap-2 text-cyan-300 font-semibold text-sm">
-            <i data-lucide="cpu" class="w-4 h-4"></i>
-            <span>AI &amp; Agent Frameworks</span>
-          </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            LangGraph, Autogen, DSPy, vLLM, TensorRT-LLM, PyTorch, OpenAI, Anthropic, Gemini API.
-          </p>
-        </div>
-
-        <div class="bento-card p-5 space-y-2">
-          <div class="flex items-center gap-2 text-purple-300 font-semibold text-sm">
-            <i data-lucide="layers" class="w-4 h-4"></i>
-            <span>Full-Stack &amp; WebGL</span>
-          </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Next.js 14/15, React 19, TypeScript, Tailwind CSS, WebSockets, Three.js, WebGPU shaders.
-          </p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- 6. CONTACT & DISPATCH HUB (vanshtripathi.dev + killerportfolio) -->
-    <!-- ======================================================== -->
-    <section id="contact" class="space-y-6 pt-4">
-      
-      <div class="p-8 sm:p-10 rounded-2xl bg-[#0d1017] border border-white/10 space-y-6 shadow-xl relative overflow-hidden">
-        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="relative z-10 max-w-xl mx-auto text-center space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-xs font-mono text-cyan-300">
-            <span>GET IN TOUCH</span>
-          </div>
-          
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
-            Have a project, idea, or just want to chat tech?
-          </h2>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            I'm always excited to explore new tech, build impactful software, and collaborate on interesting AI or full-stack problems. Hit me up anytime!
-          </p>
-
-          <form onsubmit="handleInquirySubmit(event)" class="pt-2 flex flex-col sm:flex-row items-center gap-2.5 max-w-md mx-auto">
-            <input 
-              type="email" 
-              id="inquiryEmail"
-              required 
-              placeholder="Enter your email or message..." 
-              class="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all font-mono"
-            >
-            <button 
-              type="submit" 
-              class="w-full sm:w-auto px-5 py-3 rounded-xl bg-white text-slate-950 font-semibold text-sm hover:bg-slate-200 transition-all shrink-0 active:scale-95"
-            >
-              Send Message
-            </button>
-          </form>
-
-          <div class="pt-3 flex items-center justify-center gap-3 text-xs font-mono text-slate-400">
-            <span>Terminal CLI:</span>
-            <button onclick="copyCliCommand()" class="px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 text-cyan-300 border border-white/15 transition-all flex items-center gap-1.5" title="Copy CLI Command">
-              <span>npx connect-ankit</span>
-              <i data-lucide="copy" class="w-3 h-3"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- KillerPortfolio-Style Newsletter Banner (Screenshot 1) -->
-      <div class="p-6 sm:p-8 rounded-2xl bg-[#06080d] border border-white/10 text-center space-y-3">
-        <h3 class="text-sm font-semibold text-slate-200">
-          Get the freshest content, straight to your inbox...
-        </h3>
-        <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row items-center justify-center gap-2 max-w-md mx-auto">
-          <input 
-            type="email" 
-            id="newsletterEmail"
-            required
-            placeholder="Enter your email..." 
-            class="w-full sm:w-72 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-white placeholder-slate-400 text-xs font-mono focus:outline-none focus:border-cyan-400 transition-all"
-          >
-          <button 
-            type="submit"
-            class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white text-slate-950 font-semibold text-xs hover:bg-slate-200 transition-all shrink-0 active:scale-95"
-          >
-            Sign Up
-          </button>
-        </form>
-        <p class="text-[11px] font-mono text-slate-400">
-          ...only once a month or so &mdash; you can unsubscribe any time
-        </p>
-      </div>
-
-    </section>
+    </footer>
 
   </main>
 
   <!-- ======================================================== -->
-  <!-- FOOTER (vanshtripathi.dev style)                         -->
+  <!-- SECTION VIEW: [W] SELECTED WORK                          -->
   <!-- ======================================================== -->
-  <footer class="border-t border-white/10 bg-[#05070a] text-slate-400 text-xs font-mono py-10 relative z-10">
-    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <section id="workView" class="view-panel view-container">
+    <div class="view-back-bar">
+      <button type="button" class="back-btn" onclick="navigateToView('home')">
+        <span>&larr; Back</span>
+        <span class="b-tile-key">Esc</span>
+      </button>
+      <span class="font-mono text-muted text-xs">[W] Selected work</span>
+    </div>
+
+    <h2 class="view-heading">[W] Selected work</h2>
+    <p class="view-subtitle">
+      Systems built end to end: agents, automations, and the backends behind them. Click any case study to read the full architectural breakdown.
+    </p>
+
+    <div class="project-list">
       
-      <div class="flex items-center gap-5 flex-wrap">
-        <a href="#about" class="hover:text-cyan-300 transition-colors">About</a>
-        <a href="#projects" class="hover:text-cyan-300 transition-colors">Projects</a>
-        <a href="#journey" class="hover:text-cyan-300 transition-colors">Journey</a>
-        <a href="#sandbox" class="hover:text-cyan-300 transition-colors">AI Sandbox</a>
-        <a href="#stack" class="hover:text-cyan-300 transition-colors">Stack</a>
-        <a href="https://github.com" target="_blank" rel="noreferrer" class="hover:text-cyan-300 transition-colors flex items-center gap-1">
-          GitHub <i data-lucide="external-link" class="w-3 h-3"></i>
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="hover:text-cyan-300 transition-colors flex items-center gap-1">
-          LinkedIn <i data-lucide="external-link" class="w-3 h-3"></i>
-        </a>
+      <!-- Project 1: Zero Touch Procurement -->
+      <article class="project-card" onclick="openCaseStudy('rfq')">
+        <div class="project-head">
+          <h3 class="project-title">Zero Touch Procurement</h3>
+          <span class="project-tag">Automation</span>
+        </div>
+        <p class="project-summary">
+          Autonomous procurement pipeline. One trigger, zero manual steps. Removes coordination overhead, spreadsheet tracking, and vendor outreach bottlenecks.
+        </p>
+        <div class="project-stack">
+          Stack: n8n &bull; Airtable &bull; Tally &bull; Gmail API &bull; Supabase pgvector
+        </div>
+      </article>
+
+      <!-- Project 2: Pulse -->
+      <article class="project-card" onclick="openCaseStudy('pulse')">
+        <div class="project-head">
+          <h3 class="project-title">Pulse</h3>
+          <span class="project-tag">Market signals</span>
+        </div>
+        <p class="project-summary">
+          Tracks Reddit keywords and surfaces demand shifts before the market reacts. Ingests discussion streams, computes dense embeddings, and clusters buyer intent.
+        </p>
+        <div class="project-stack">
+          Stack: Python &bull; Async Polling &bull; Semantic Embeddings &bull; Demand Clusters
+        </div>
+      </article>
+
+      <!-- Project 3: LinkedIn Signal Prospecting Engine -->
+      <article class="project-card" onclick="openCaseStudy('linkedin-signal')">
+        <div class="project-head">
+          <h3 class="project-title">LinkedIn Signal Prospecting Engine</h3>
+          <span class="project-tag">GTM</span>
+        </div>
+        <p class="project-summary">
+          Turns high-performing LinkedIn posts into ranked pipelines of qualified enterprise prospects with automated LLM scoring and webhook sync.
+        </p>
+        <div class="project-stack">
+          Stack: LinkedIn API &bull; LLM Scoring &bull; Neon Serverless Postgres &bull; Webhooks
+        </div>
+      </article>
+
+      <!-- Project 4: Capability Router -->
+      <article class="project-card" onclick="openCaseStudy('capability-router')">
+        <div class="project-head">
+          <h3 class="project-title">Capability Router</h3>
+          <span class="project-tag">Agent tooling</span>
+        </div>
+        <p class="project-summary">
+          A Codex plugin that routes each task to the right tool without bloating context. Scans tools, maintains a compact local index, and ranks capabilities dynamically.
+        </p>
+        <div class="project-stack">
+          Stack: Codex SDK &bull; Local Registry &bull; Semantic Tool Ranking
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SECTION VIEW: [G] GARDEN                                 -->
+  <!-- ======================================================== -->
+  <section id="gardenView" class="view-panel view-container">
+    <div class="view-back-bar">
+      <button type="button" class="back-btn" onclick="navigateToView('home')">
+        <span>&larr; Back</span>
+        <span class="b-tile-key">Esc</span>
+      </button>
+      <span class="font-mono text-muted text-xs">[G] Garden</span>
+    </div>
+
+    <h2 class="view-heading">[G] Garden</h2>
+    <p class="view-subtitle">
+      Short thoughts, synced from my X. Original posts only, no replies or reposts.
+    </p>
+
+    <div class="garden-list">
+      
+      <div class="garden-item">
+        <div class="garden-meta">
+          <span>Ankit Jha &bull; 0004</span>
+          <span>11.11.26</span>
+        </div>
+        <div class="garden-body">
+          it’s fun seeing luddites praying for $NVDA ‘s downfall
+        </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-        <span>Ankit Jha &bull; New Delhi: <strong id="liveTime" class="text-white font-medium">--:--:--</strong></span>
+      <div class="garden-item">
+        <div class="garden-meta">
+          <span>Ankit Jha &bull; 0003</span>
+          <span>06.11.26</span>
+        </div>
+        <div class="garden-body">
+          if you fear ai, then you have no skill rather than slaving
+        </div>
       </div>
 
+      <div class="garden-item">
+        <div class="garden-meta">
+          <span>Ankit Jha &bull; 0002</span>
+          <span>22.10.26</span>
+        </div>
+        <div class="garden-body">
+          i was told that AI writes insecure code — prompt better, verify rigorously
+        </div>
+      </div>
+
+      <div class="garden-item">
+        <div class="garden-meta">
+          <span>Ankit Jha &bull; 0001</span>
+          <span>11.10.26</span>
+        </div>
+        <div class="garden-body">
+          dear vibe coders, perhaps it’s time to start updating your dependencies
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SECTION VIEW: [B] WRITING                                -->
+  <!-- ======================================================== -->
+  <section id="blogView" class="view-panel view-container">
+    <div class="view-back-bar">
+      <button type="button" class="back-btn" onclick="navigateToView('home')">
+        <span>&larr; Back</span>
+        <span class="b-tile-key">Esc</span>
+      </button>
+      <span class="font-mono text-muted text-xs">[B] Writing</span>
+    </div>
+
+    <h2 class="view-heading">[B] Writing</h2>
+    <p class="view-subtitle">
+      Longer notes on what I build and how I think about systems.
+    </p>
+
+    <article class="project-card" style="cursor:default;">
+      <h3 class="project-title" style="margin-bottom:6px;">How I Actually Got Here</h3>
+      <p class="project-summary" style="margin-bottom:18px;">
+        An informal timeline on breaking things, learning to code, relational databases, and diving into agentic software.
+      </p>
+
+      <div class="bio" style="font-size:14px; margin-bottom:0;">
+        <p>
+          <strong>Phase 01: The Curiosity Spark</strong><br>
+          I didn't start with formal textbooks; I started by inspecting web source code, tinkering with C++ and Python on Termux, building toy tools, and breaking open-source code until I understood how things ticked. That visceral thrill of watching code execute on a screen became an obsession.
+        </p>
+        <p>
+          <strong>Phase 02: Full-Stack Foundations &amp; Distributed Systems</strong><br>
+          Moved into modern full-stack web engineering: React, Next.js, TypeScript, and relational databases. Spent long nights understanding query execution plans, connection pooling on PostgreSQL, serverless architecture on Neon, and state synchronization.
+        </p>
+        <p>
+          <strong>Phase 03: The AI &amp; Vector Shift</strong><br>
+          When foundation models took off, I avoided shallow prompt wrappers and dove directly into retrieval mechanics, embeddings, vector indexing with Supabase <code style="color:var(--marker);">pgvector</code>, and building agentic workflows with LangGraph and vLLM.
+        </p>
+        <p>
+          <strong>Phase 04: Present</strong><br>
+          Today in New Delhi, I design autonomous operational pipelines, multi-agent reasoning graphs, and AI-native applications that ship to real users.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SECTION VIEW: [S] WORK WITH ME                           -->
+  <!-- ======================================================== -->
+  <section id="servicesView" class="view-panel view-container">
+    <div class="view-back-bar">
+      <button type="button" class="back-btn" onclick="navigateToView('home')">
+        <span>&larr; Back</span>
+        <span class="b-tile-key">Esc</span>
+      </button>
+      <span class="font-mono text-muted text-xs">[S] Work with me</span>
+    </div>
+
+    <h2 class="view-heading">[S] Work with me</h2>
+    <p class="view-subtitle">
+      Available for select AI systems architecture, agentic automation, and full-stack engineering roles.
+    </p>
+
+    <div class="project-list">
+      <div class="project-card" style="cursor:default;">
+        <h3 class="project-title" style="margin-bottom:8px;">AI Systems &amp; Autonomous Agents</h3>
+        <p class="project-summary">
+          Architecting multi-agent reasoning loops, LangGraph state machines, custom tool calling, and RAG pipelines backed by vector databases (Supabase pgvector).
+        </p>
+      </div>
+
+      <div class="project-card" style="cursor:default;">
+        <h3 class="project-title" style="margin-bottom:8px;">Zero-Touch Operational Pipelines</h3>
+        <p class="project-summary">
+          Automating complex business workflows: procurement, signal intelligence, lead enrichment, and anomaly scoring with zero human friction.
+        </p>
+      </div>
+
+      <div class="project-card" style="cursor:default;">
+        <h3 class="project-title" style="margin-bottom:8px;">Modern Full-Stack Engineering</h3>
+        <p class="project-summary">
+          Production web apps built with Next.js, React, TypeScript, Neon Serverless Postgres, and global edge hosting on Vercel.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; padding:20px; border-radius:var(--radius-tile); background:var(--ground-tile); border:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
       <div>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-cyan-300 transition-colors flex items-center gap-1">
-          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i> Back to Top
-        </button>
+        <div style="font-weight:600; color:var(--ink-strong);">Have an interesting problem to solve?</div>
+        <div style="font-size:13px; color:var(--ink-muted); margin-top:2px;">Let's build something that ships to real users.</div>
       </div>
-
+      <a href="mailto:jhaankit06969@gmail.com" class="b-tile-key" style="background:var(--marker); color:#fff; border:none; padding:8px 16px; font-size:12px; border-radius:var(--radius-pill); cursor:pointer;">
+        Say Hello &rarr;
+      </a>
     </div>
-  </footer>
+  </section>
 
   <!-- ======================================================== -->
-  <!-- FULL IN-DEPTH CASE STUDY MODAL (Drawer / Pop-up)          -->
+  <!-- SECTION VIEW: [R] READING                                -->
   <!-- ======================================================== -->
-  <div id="caseStudyModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300 bg-black/85 backdrop-blur-2xl">
-    
-    <div class="relative w-full max-w-3xl max-h-[90vh] bg-[#0d1017] border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden transform scale-95 transition-transform duration-300" id="modalContainer">
-      
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#090b10] sticky top-0 z-20">
-        <div class="flex items-center gap-3">
-          <div id="modalIconBox" class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 flex items-center justify-center">
-            <i data-lucide="layers" class="w-4 h-4"></i>
-          </div>
-          <div>
-            <h3 id="modalTitle" class="font-display font-bold text-base text-white">System Architecture Blueprint</h3>
-            <p id="modalSubtitle" class="text-xs font-mono text-slate-300">Ankit Jha — AI &amp; Full Stack Systems</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <a id="modalLiveDemoBtn" href="https://github.com" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-mono text-white transition-all border border-white/20">
-            <span>Repository</span>
-            <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-          <button onclick="closeCaseStudyModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-slate-300 hover:text-white transition-all" aria-label="Close modal">
-            <i data-lucide="x" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Case Study Navigation Tabs -->
-      <div class="flex items-center gap-2 px-6 py-2.5 bg-[#07090e] border-b border-white/10 overflow-x-auto text-xs font-mono">
-        <button onclick="switchCaseStudyTab('overview')" class="case-tab active px-3 py-1.5 rounded-lg bg-white/15 text-white font-medium" data-tab="overview">
-          01. Problem &amp; Architecture
-        </button>
-        <button onclick="switchCaseStudyTab('ux-design')" class="case-tab px-3 py-1.5 rounded-lg text-slate-300 hover:text-white" data-tab="ux-design">
-          02. State Machine &amp; Flow
-        </button>
-        <button onclick="switchCaseStudyTab('frontend')" class="case-tab px-3 py-1.5 rounded-lg text-slate-300 hover:text-white" data-tab="frontend">
-          03. Code &amp; Protocols
-        </button>
-        <button onclick="switchCaseStudyTab('metrics')" class="case-tab px-3 py-1.5 rounded-lg text-slate-300 hover:text-white" data-tab="metrics">
-          04. Production Benchmarks
-        </button>
-      </div>
-
-      <!-- Modal Body Scrollable -->
-      <div class="p-6 overflow-y-auto space-y-5 text-slate-200 text-sm leading-relaxed" id="modalBody">
-        <!-- Injected via JavaScript data.js -->
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="px-6 py-3.5 bg-[#07090e] border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
-        <span>Ankit Jha &mdash; Production AI &amp; Full Stack Architecture</span>
-        <button onclick="closeCaseStudyModal()" class="text-cyan-300 hover:text-white font-medium">Close Drawer &times;</button>
-      </div>
-
+  <section id="readingView" class="view-panel view-container">
+    <div class="view-back-bar">
+      <button type="button" class="back-btn" onclick="navigateToView('home')">
+        <span>&larr; Back</span>
+        <span class="b-tile-key">Esc</span>
+      </button>
+      <span class="font-mono text-muted text-xs">[R] Reading</span>
     </div>
-  </div>
 
-  <!-- Toast Notification System -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-slate-900/95 border border-cyan-400/40 text-white text-xs font-mono shadow-[0_0_30px_rgba(56,189,248,0.3)] flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none backdrop-blur-xl">
-    <i data-lucide="zap" class="w-4 h-4 text-cyan-300"></i>
-    <span id="toastMessage">Notification message</span>
+    <h2 class="view-heading">[R] Reading</h2>
+    <p class="view-subtitle">
+      What I am reading now, what I have finished, and what is lined up next.
+    </p>
+
+    <div class="book-tabs">
+      <button type="button" class="book-tab-btn active" onclick="switchBookTab('current', this)">Currently reading (8)</button>
+      <button type="button" class="book-tab-btn" onclick="switchBookTab('finished', this)">Finished (25)</button>
+      <button type="button" class="book-tab-btn" onclick="switchBookTab('want', this)">Want to read (22)</button>
+    </div>
+
+    <div id="bookGridCurrent" class="book-grid">
+      <div class="book-card"><span class="book-title">Nausea</span><span class="book-author">Jean-Paul Sartre</span></div>
+      <div class="book-card"><span class="book-title">Crime and Punishment</span><span class="book-author">Fyodor Dostoevsky</span></div>
+      <div class="book-card"><span class="book-title">Twelve Angry Men</span><span class="book-author">Reginald Rose</span></div>
+      <div class="book-card"><span class="book-title">Three Men in a Boat</span><span class="book-author">Jerome K. Jerome</span></div>
+      <div class="book-card"><span class="book-title">The Trial</span><span class="book-author">Franz Kafka</span></div>
+      <div class="book-card"><span class="book-title">1984</span><span class="book-author">George Orwell</span></div>
+      <div class="book-card"><span class="book-title">The Old Man and the Sea</span><span class="book-author">Ernest Hemingway</span></div>
+      <div class="book-card"><span class="book-title">The Castle</span><span class="book-author">Franz Kafka</span></div>
+    </div>
+
+    <div id="bookGridFinished" class="book-grid" style="display:none;">
+      <div class="book-card"><span class="book-title">Designing Data-Intensive Applications</span><span class="book-author">Martin Kleppmann</span></div>
+      <div class="book-card"><span class="book-title">The Pragmatic Programmer</span><span class="book-author">David Thomas, Andrew Hunt</span></div>
+      <div class="book-card"><span class="book-title">Clean Architecture</span><span class="book-author">Robert C. Martin</span></div>
+      <div class="book-card"><span class="book-title">Structure and Interpretation of Computer Programs</span><span class="book-author">Harold Abelson</span></div>
+    </div>
+
+    <div id="bookGridWant" class="book-grid" style="display:none;">
+      <div class="book-card"><span class="book-title">Deep Learning</span><span class="book-author">Ian Goodfellow</span></div>
+      <div class="book-card"><span class="book-title">Superintelligence</span><span class="book-author">Nick Bostrom</span></div>
+      <div class="book-card"><span class="book-title">Gödel, Escher, Bach</span><span class="book-author">Douglas Hofstadter</span></div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- MODAL CASE STUDY DRAWER (Exact Breakdown of Projects)    -->
+  <!-- ======================================================== -->
+  <div id="caseStudyOverlay" class="case-study-overlay" onclick="closeCaseStudy(event)">
+    <div class="case-study-modal" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <span id="caseNumTag" class="b-tile-key">01</span>
+        <button type="button" class="back-btn" onclick="closeCaseStudy()">Close &times;</button>
+      </div>
+
+      <h1 id="caseTitle" class="home-h1" style="font-size:24px; margin-bottom:4px;">Project Title</h1>
+      <div id="caseSubtitle" class="text-muted font-mono text-xs" style="margin-bottom:20px;">Subtitle</div>
+
+      <div class="case-meta-bar">
+        <div class="case-meta-item"><div class="label">Type</div><div class="val" id="caseType">Case study</div></div>
+        <div class="case-meta-item"><div class="label">Focus</div><div class="val" id="caseFocus">Automation</div></div>
+        <div class="case-meta-item"><div class="label">Stack</div><div class="val" id="caseStack">n8n, Airtable</div></div>
+      </div>
+
+      <div class="case-article">
+        <h2>The problem</h2>
+        <div id="caseProblem"></div>
+
+        <h2>What I built</h2>
+        <div id="caseSolution"></div>
+
+        <h2>The flow</h2>
+        <div id="caseFlow"></div>
+
+        <h2>The result</h2>
+        <div id="caseResult"></div>
+      </div>
+    </div>
   </div>
 
   <!-- Scripts -->
