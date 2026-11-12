@@ -4,7 +4,7 @@
  * Perspective: Ankit Jha — AI & Full Stack Engineer (New Delhi)
  */
 
-const caseStudiesData = {
+window.caseStudiesData = {
   "rfq": {
     id: "rfq",
     num: "01",
