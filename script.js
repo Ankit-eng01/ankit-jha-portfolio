@@ -351,3 +351,12 @@ function switchReadingTab(tabName) {
     if (wan) wan.style.display = 'block';
   }
 }
+
+// Global window assignments
+window.openBookModal = openBookModal;
+window.closeBookModal = closeBookModal;
+window.switchReadingTab = switchReadingTab;
+window.navigateToView = navigateToView;
+window.setTheme = setTheme;
+window.toggleBio = toggleBio;
+

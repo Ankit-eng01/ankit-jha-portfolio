@@ -206,7 +206,7 @@
     .bookshelf-grid {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
-      gap: 22px 18px;
+      gap: 28px 20px;
     }
     @media (min-width: 480px) {
       .bookshelf-grid { grid-template-columns: repeat(2, 1fr); }
@@ -221,156 +221,234 @@
     }
     .book-card:hover { transform: translateY(-3px); }
     .book-frame {
-      position: relative; height: 250px; background: #11141a;
-      border: 1px solid var(--line); border-radius: 14px;
+      position: relative; height: 260px; background: #141517;
+      border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      perspective: 900px; overflow: hidden;
+      perspective: 900px;
       transition: border-color var(--dur-hover) ease, background var(--dur-hover) ease;
     }
     .book-card:hover .book-frame {
-      border-color: var(--line-strong); background: #141720;
-    }
-    .book-status-badge {
-      position: absolute; top: 10px; right: 10px; z-index: 5;
-      font-family: var(--font-mono); font-size: 10.5px; padding: 2px 7px;
-      border-radius: var(--radius-full); background: rgba(0, 212, 227, 0.12);
-      color: var(--accent); border: 1px solid rgba(0, 212, 227, 0.25);
+      border-color: rgba(255, 255, 255, 0.09); background: #17181c;
     }
     .book-3d {
-      position: relative; width: 108px; height: 160px;
+      position: relative; width: 110px; height: 165px;
       transform-style: preserve-3d;
-      transform: rotateY(-23deg) rotateX(4deg);
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform: rotateY(-24deg) rotateX(2deg);
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .book-card:hover .book-3d {
-      transform: rotateY(-13deg) rotateX(0deg) translateY(-8px) scale(1.04);
+      transform: rotateY(-14deg) rotateX(0deg) translateY(-8px) scale(1.03);
     }
     .book-front {
-      position: absolute; inset: 0; border-radius: 2px 4px 4px 2px;
-      transform: translateZ(10px); overflow: hidden;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+      position: absolute; inset: 0; border-radius: 1px 3px 3px 1px;
+      transform: translateZ(9px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+    }
+    .book-front::before {
+      content: ""; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to right, rgba(0,0,0,0.45), rgba(255,255,255,0.08), transparent);
+      z-index: 6; pointer-events: none;
     }
     .book-front::after {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.22) 0%, 
-        rgba(255, 255, 255, 0.05) 8%, 
-        transparent 16%, 
-        transparent 85%, 
-        rgba(0, 0, 0, 0.3) 100%
+      background: linear-gradient(110deg, 
+        rgba(255, 255, 255, 0.18) 0%, 
+        rgba(255, 255, 255, 0.05) 14%, 
+        transparent 28%, 
+        transparent 80%, 
+        rgba(0, 0, 0, 0.35) 100%
       );
-      pointer-events: none;
+      pointer-events: none; z-index: 7;
+      border-radius: 1px 3px 3px 1px;
     }
     .book-spine {
-      position: absolute; left: 0; top: 0; width: 20px; height: 160px;
-      transform-origin: left center;
-      transform: rotateY(-90deg) translateX(-20px);
+      position: absolute; left: -9px; top: 0; width: 18px; height: 165px;
+      transform: rotateY(-90deg);
       border-radius: 2px 0 0 2px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      padding: 10px 0; box-sizing: border-box;
       overflow: hidden;
-      box-shadow: inset -1px 0 2px rgba(0,0,0,0.5), inset 1px 0 2px rgba(255,255,255,0.08);
+      box-shadow: inset -1px 0 2px rgba(0,0,0,0.6), inset 1px 0 1px rgba(255,255,255,0.12);
     }
     .book-spine-text {
-      writing-mode: vertical-rl; transform: rotate(180deg);
-      font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.04em;
-      white-space: nowrap; opacity: 0.85; text-transform: uppercase;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-family: var(--font-mono); font-size: 7.5px; letter-spacing: 0.06em;
+      white-space: nowrap; opacity: 0.88; text-transform: uppercase;
+    }
+    .book-spine-mark {
+      font-family: var(--font-mono); font-size: 7px; font-weight: 700;
+      letter-spacing: 0.05em; opacity: 0.75;
     }
     .book-pages-right {
-      position: absolute; right: 0; top: 3px; width: 20px; height: 154px;
-      background: repeating-linear-gradient(to bottom, #eae5d9 0px, #c8c2b4 1px, #eae5d9 2px);
-      transform-origin: right center; transform: rotateY(90deg);
-      border-radius: 0 2px 2px 0;
-      box-shadow: inset 1px 0 3px rgba(0,0,0,0.25);
+      position: absolute; right: -9px; top: 2px; width: 18px; height: 161px;
+      background: repeating-linear-gradient(to bottom, #ece8df 0px, #cdc6b7 1px, #ece8df 2px);
+      transform: rotateY(90deg);
+      border-radius: 0 1px 1px 0;
+      box-shadow: inset 1px 0 2px rgba(0,0,0,0.25);
     }
     .book-pages-top {
-      position: absolute; left: 3px; top: 0; width: 102px; height: 20px;
-      background: repeating-linear-gradient(to right, #eae5d9 0px, #c8c2b4 1px, #eae5d9 2px);
-      transform-origin: center top; transform: rotateX(90deg) translateZ(10px);
+      position: absolute; top: -9px; left: 0; width: 110px; height: 18px;
+      background: repeating-linear-gradient(to right, #ece8df 0px, #cdc6b7 1px, #ece8df 2px);
+      transform: rotateX(90deg);
       box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
     }
     .book-shadow {
-      position: absolute; bottom: 18px; left: 50%;
-      width: 100px; height: 16px;
-      transform: translateX(-35%) rotateX(85deg);
-      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 70%);
-      filter: blur(5px);
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+      position: absolute; bottom: 16px; left: 50%;
+      width: 105px; height: 16px; border-radius: 50%;
+      transform: translateX(-42%) rotateX(80deg);
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0) 75%);
+      filter: blur(6px);
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.45s ease, filter 0.45s ease;
       pointer-events: none;
     }
     .book-card:hover .book-shadow {
-      transform: translateX(-35%) translateY(4px) rotateX(85deg) scale(1.18);
-      opacity: 0.9; filter: blur(7px);
+      transform: translateX(-42%) translateY(4px) rotateX(80deg) scale(1.15);
+      opacity: 0.95; filter: blur(8px);
     }
-    .book-meta { margin-top: 10px; }
-    .book-meta-title { font-size: 14.5px; font-weight: 500; color: var(--ink-strong); margin: 0 0 2px 0; line-height: 1.35; }
-    .book-meta-author { font-size: 12.5px; font-family: var(--font-mono); color: var(--ink-muted); margin: 0; line-height: 1.4; }
+    .book-meta { margin-top: 12px; }
+    .book-meta-title { font-size: 15px; font-weight: 500; color: #f1f3f7; margin: 0 0 3px 0; line-height: 1.35; letter-spacing: -0.01em; }
+    .book-meta-author { font-size: 13px; font-family: var(--font-mono); color: #8e95a2; margin: 0; line-height: 1.4; }
 
     /* Individual Book Cover Art */
     /* 1. Learn to Earn */
     .cover-learn {
-      background: linear-gradient(155deg, #09261f 0%, #051410 100%);
-      color: #e5c158; height: 100%; padding: 12px 10px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      border: 1px solid rgba(229, 193, 88, 0.35); box-sizing: border-box;
-      text-align: center;
+      background: linear-gradient(160deg, #09281e 0%, #04140d 100%);
+      height: 100%; padding: 6px; box-sizing: border-box;
     }
-    .spine-learn { background: #061e18; color: #e5c158; }
-    .cover-learn-rule { width: 100%; height: 1px; background: rgba(229, 193, 88, 0.3); margin: 4px 0; }
-    .cover-learn-title { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #ffffff; margin: 4px 0; font-family: var(--font-sans); }
-    .cover-learn-sub { font-size: 7px; font-family: var(--font-mono); color: #e5c158; letter-spacing: 0.06em; }
-    .cover-learn-author { font-size: 7.5px; font-family: var(--font-mono); color: #ffffff; letter-spacing: 0.05em; opacity: 0.9; }
+    .cover-learn-inner {
+      height: 100%; border: 1px solid rgba(229, 193, 88, 0.35);
+      outline: 1px solid rgba(229, 193, 88, 0.15); outline-offset: -3px;
+      padding: 8px 6px; box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: space-between; text-align: center;
+    }
+    .cover-learn-top { font-size: 6px; font-family: var(--font-mono); color: #e5c158; letter-spacing: 0.08em; }
+    .cover-learn-rule { width: 100%; height: 1px; background: rgba(229, 193, 88, 0.35); margin: 4px 0; }
+    .cover-learn-title {
+      font-size: 12px; font-weight: 800; letter-spacing: 0.09em; line-height: 1.25;
+      color: #ffffff; font-family: Georgia, serif;
+    }
+    .cover-learn-sub { font-size: 5.8px; font-family: var(--font-mono); color: #e5c158; letter-spacing: 0.06em; }
+    .cover-learn-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(229, 193, 88, 0.2); padding-top: 4px;
+    }
+    .cover-learn-author { font-size: 6px; font-family: var(--font-mono); color: #cbd5e1; letter-spacing: 0.05em; }
+    .spine-learn { background: #051a14; color: #e5c158; }
 
     /* 2. The Psychology of Money */
     .cover-psychology {
-      background: linear-gradient(155deg, #1e2638 0%, #0e131d 100%);
-      color: #ffffff; height: 100%; padding: 12px 10px;
+      background: linear-gradient(160deg, #101a2e 0%, #090e18 100%);
+      color: #ffffff; height: 100%; padding: 10px 8px; box-sizing: border-box;
       display: flex; flex-direction: column; justify-content: space-between;
-      border: 1px solid rgba(255, 255, 255, 0.12); box-sizing: border-box; text-align: center;
+      text-align: center; position: relative;
     }
-    .spine-psychology { background: #121824; color: #ffffff; }
-    .cover-psychology-title { font-size: 10.5px; font-weight: 800; letter-spacing: 0.07em; line-height: 1.25; color: #ffffff; font-family: var(--font-sans); margin: 6px 0; }
-    .cover-psychology-sub { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; letter-spacing: 0.04em; }
-    .cover-psychology-author { font-size: 7.5px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.06em; }
+    .cover-psychology-top { font-size: 6px; font-family: var(--font-mono); color: #8e9cb0; letter-spacing: 0.08em; }
+    .cover-psychology-seal {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1px solid rgba(229, 193, 88, 0.45);
+      background: radial-gradient(circle at 35% 35%, #e5c158 0%, #997828 70%, #57410d 100%);
+      margin: 0 auto 5px auto; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+    .cover-psychology-glyph { font-size: 11px; font-weight: 700; color: #1a1405; font-family: var(--font-mono); }
+    .cover-psychology-title {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.07em; line-height: 1.25;
+      color: #ffffff; font-family: var(--font-sans); margin: 3px 0;
+    }
+    .cover-psychology-sub { font-size: 6px; font-family: var(--font-mono); color: #94a3b8; letter-spacing: 0.05em; }
+    .cover-psychology-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 4px;
+    }
+    .cover-psychology-author { font-size: 6.5px; font-family: var(--font-mono); color: #cbd5e1; letter-spacing: 0.06em; font-weight: 600; }
+    .spine-psychology { background: #0c1524; color: #ffffff; }
 
     /* 3. Crime and Punishment */
-    .cover-crime {
-      background: linear-gradient(180deg, #18283d 0%, #0d1520 100%);
-      color: #ffffff; height: 100%; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 10px; box-sizing: border-box;
-      position: relative;
+    .cover-crime-wrapper {
+      position: relative; width: 100%; height: 100%;
+      background: #0d1420; display: flex; flex-direction: column;
     }
-    .spine-crime { background: #0c1522; color: #ced4da; }
-    .cover-crime-plaque {
-      background: rgba(0, 0, 0, 0.82); border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 4px; text-align: center; border-radius: 2px;
+    .cover-crime-art {
+      width: 100%; height: 106px; display: block;
     }
-    .cover-crime-title { font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; font-family: var(--font-sans); }
-    .cover-crime-author { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; margin-top: 2px; }
+    .cp-plaque {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 59px;
+      background: #080a0e; border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 8px 4px 8px; box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: space-between;
+      text-align: center;
+    }
+    .cp-title {
+      font-size: 8px; font-weight: 700; letter-spacing: 0.08em;
+      color: #ffffff; font-family: Georgia, serif; line-height: 1.2;
+    }
+    .cp-author {
+      font-size: 6px; font-family: var(--font-mono); letter-spacing: 0.08em;
+      color: #94a3b8; text-transform: uppercase;
+    }
+    .cp-monogram {
+      font-size: 6.5px; font-family: var(--font-mono); font-weight: 700;
+      color: #64748b; text-align: left;
+    }
+    .spine-crime { background: #0c1420; color: #ced4da; }
 
     /* 4. Rich Dad Poor Dad */
     .cover-richdad {
-      background: linear-gradient(155deg, #2e104d 0%, #150624 100%);
-      color: #f59e0b; height: 100%; padding: 12px 10px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      border: 1px solid rgba(245, 158, 11, 0.35); box-sizing: border-box; text-align: center;
+      height: 100%; display: flex; flex-direction: column;
     }
-    .spine-richdad { background: #1c0930; color: #f59e0b; }
-    .cover-richdad-title { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #ffffff; font-family: var(--font-sans); margin: 6px 0; }
-    .cover-richdad-sub { font-size: 6.5px; font-family: var(--font-mono); color: #fbbf24; letter-spacing: 0.04em; }
-    .cover-richdad-author { font-size: 7.5px; font-family: var(--font-mono); color: #e2e8f0; letter-spacing: 0.06em; }
+    .cover-richdad-top {
+      height: 58%; background: linear-gradient(160deg, #3f1465 0%, #200835 100%);
+      padding: 10px 8px; box-sizing: border-box; text-align: center;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cover-richdad-tag { font-size: 5.5px; font-family: var(--font-mono); color: #e9d5ff; letter-spacing: 0.08em; }
+    .cover-richdad-title {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.2;
+      color: #ffffff; font-family: var(--font-sans);
+    }
+    .cover-richdad-bottom {
+      height: 42%; background: linear-gradient(160deg, #b45309 0%, #78350f 100%);
+      padding: 8px 8px 6px 8px; box-sizing: border-box; text-align: center;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .cover-richdad-sub { font-size: 5.5px; font-family: var(--font-mono); color: #fef3c7; letter-spacing: 0.04em; line-height: 1.25; }
+    .cover-richdad-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cover-richdad-author { font-size: 6.5px; font-family: var(--font-mono); color: #ffffff; letter-spacing: 0.06em; font-weight: 600; }
+    .spine-richdad { background: linear-gradient(180deg, #270b40 0%, #270b40 58%, #78350f 58%, #78350f 100%); color: #fef3c7; }
 
     /* 5. The King in Yellow */
     .cover-yellowking {
-      background: linear-gradient(155deg, #18150c 0%, #0d0c07 100%);
-      color: #eab308; height: 100%; padding: 12px 10px;
+      background: linear-gradient(160deg, #18140a 0%, #0c0a06 100%);
+      color: #eab308; height: 100%; padding: 10px 8px; box-sizing: border-box;
       display: flex; flex-direction: column; justify-content: space-between;
-      border: 1px solid rgba(234, 179, 8, 0.35); box-sizing: border-box; text-align: center;
+      text-align: center; border: 1px solid rgba(234, 179, 8, 0.25);
     }
-    .spine-yellowking { background: #121008; color: #eab308; }
-    .cover-yellowking-emblem { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(234, 179, 8, 0.4); margin: 0 auto 4px auto; display: flex; align-items: center; justify-content: center; }
-    .cover-yellowking-title { font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #eab308; font-family: Georgia, serif; margin: 4px 0; font-style: italic; }
-    .cover-yellowking-sub { font-size: 6.5px; font-family: var(--font-mono); color: #a1a1aa; letter-spacing: 0.04em; }
-    .cover-yellowking-author { font-size: 7.5px; font-family: var(--font-mono); color: #d4d4d8; letter-spacing: 0.06em; }
+    .cover-yellowking-top { font-size: 5.8px; font-family: var(--font-mono); color: #a1a1aa; letter-spacing: 0.08em; }
+    .cover-yellowking-emblem {
+      font-size: 16px; color: #eab308; line-height: 1; margin: 2px 0 4px 0;
+      text-shadow: 0 0 8px rgba(234, 179, 8, 0.5);
+    }
+    .cover-yellowking-title {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25;
+      color: #eab308; font-family: Georgia, serif; font-style: italic; margin: 3px 0;
+    }
+    .cover-yellowking-sub { font-size: 5.5px; font-family: var(--font-mono); color: #a1a1aa; letter-spacing: 0.04em; }
+    .cover-yellowking-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(234, 179, 8, 0.2); padding-top: 4px;
+    }
+    .cover-yellowking-author { font-size: 6.5px; font-family: var(--font-mono); color: #e4e4e7; letter-spacing: 0.06em; font-weight: 600; }
+    .spine-yellowking { background: #100d07; color: #eab308; }
+
+    .cover-monogram {
+      font-family: var(--font-mono); font-size: 6.5px; font-weight: 700;
+      letter-spacing: 0.06em; opacity: 0.8;
+    }
 
     /* Book Details Modal */
     .book-modal-backdrop {
@@ -548,7 +626,7 @@
     <!-- Contact Navigation & Live Delhi Time -->
     <footer class="contact-nav">
       <div class="contact-links">
-        <a href="mailto:jhaankit06969@gmail.com" target="_blank" rel="noopener noreferrer">jhaankit06969@gmail.com</a>
+        <a href="mailto:ankitjhawork1@gmail.com" target="_blank" rel="noopener noreferrer">ankitjhawork1@gmail.com</a>
         <a href="https://github.com/Ankit-eng01" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X</a>
         <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -645,8 +723,8 @@
       <div class="empty-desc" style="margin-bottom:20px;">
         If you have a project or an opportunity you'd like to discuss, feel free to reach out.
       </div>
-      <a href="mailto:jhaankit06969@gmail.com" class="back-btn" style="background:var(--accent); color:#0d0f12; border:none; padding:8px 18px; font-weight:600; display:inline-block;">
-        Say Hello &rarr; jhaankit06969@gmail.com
+      <a href="mailto:ankitjhawork1@gmail.com" class="back-btn" style="background:var(--accent); color:#0d0f12; border:none; padding:8px 18px; font-weight:600; display:inline-block;">
+        Say Hello &rarr; ankitjhawork1@gmail.com
       </a>
     </div>
   </section>
@@ -704,22 +782,27 @@
         <!-- Book 1: Learn to Earn -->
         <article class="book-card" onclick="openBookModal('learn-to-earn')">
           <div class="book-frame">
-            <span class="book-status-badge">Reading</span>
             <div class="book-3d">
               <div class="book-front">
                 <div class="cover-learn">
-                  <div style="font-size:7px; font-family:var(--font-mono); letter-spacing:0.1em; color:#e5c158; opacity:0.85;">PETER LYNCH</div>
-                  <div class="cover-learn-rule"></div>
-                  <div>
-                    <div class="cover-learn-title">LEARN<br>TO<br>EARN</div>
-                    <div class="cover-learn-sub">A BEGINNER'S GUIDE TO INVESTING</div>
+                  <div class="cover-learn-inner">
+                    <div class="cover-learn-top">PETER LYNCH &bull; JOHN ROTHCHILD</div>
+                    <div class="cover-learn-body">
+                      <div class="cover-learn-rule"></div>
+                      <div class="cover-learn-title">LEARN<br>TO<br>EARN</div>
+                      <div class="cover-learn-rule"></div>
+                      <div class="cover-learn-sub">A BEGINNER'S GUIDE TO INVESTING</div>
+                    </div>
+                    <div class="cover-learn-footer">
+                      <span class="cover-monogram" style="color:#e5c158;">WS</span>
+                      <span class="cover-learn-author">WALL STREET CLASSIC</span>
+                    </div>
                   </div>
-                  <div class="cover-learn-rule"></div>
-                  <div class="cover-learn-author">JOHN ROTHCHILD</div>
                 </div>
               </div>
               <div class="book-spine spine-learn">
                 <span class="book-spine-text">PETER LYNCH &bull; LEARN TO EARN</span>
+                <span class="book-spine-mark">WS</span>
               </div>
               <div class="book-pages-right"></div>
               <div class="book-pages-top"></div>
@@ -735,23 +818,26 @@
         <!-- Book 2: The Psychology of Money -->
         <article class="book-card" onclick="openBookModal('psychology-of-money')">
           <div class="book-frame">
-            <span class="book-status-badge">Reading</span>
             <div class="book-3d">
               <div class="book-front">
                 <div class="cover-psychology">
-                  <div style="font-size:7px; font-family:var(--font-mono); color:#94a3b8; letter-spacing:0.08em;">TIMELESS LESSONS</div>
-                  <div>
-                    <div style="width:22px; height:22px; border:1px solid rgba(255,255,255,0.25); border-radius:50%; margin:0 auto 4px auto; display:flex; align-items:center; justify-content:center;">
-                      <span style="font-size:10px; color:var(--accent);">$</span>
+                  <div class="cover-psychology-top">TIMELESS LESSONS</div>
+                  <div class="cover-psychology-body">
+                    <div class="cover-psychology-seal">
+                      <span class="cover-psychology-glyph">$</span>
                     </div>
                     <div class="cover-psychology-title">THE<br>PSYCHOLOGY<br>OF MONEY</div>
                     <div class="cover-psychology-sub">WEALTH, GREED &amp; HAPPINESS</div>
                   </div>
-                  <div class="cover-psychology-author">MORGAN HOUSEL</div>
+                  <div class="cover-psychology-footer">
+                    <span class="cover-monogram">HH</span>
+                    <span class="cover-psychology-author">MORGAN HOUSEL</span>
+                  </div>
                 </div>
               </div>
               <div class="book-spine spine-psychology">
                 <span class="book-spine-text">MORGAN HOUSEL &bull; PSYCHOLOGY OF MONEY</span>
+                <span class="book-spine-mark">HH</span>
               </div>
               <div class="book-pages-right"></div>
               <div class="book-pages-top"></div>
@@ -767,19 +853,58 @@
         <!-- Book 3: Crime and Punishment -->
         <article class="book-card" onclick="openBookModal('crime-and-punishment')">
           <div class="book-frame">
-            <span class="book-status-badge">Reading</span>
             <div class="book-3d">
               <div class="book-front">
-                <div class="cover-crime">
-                  <div style="font-size:7px; font-family:var(--font-mono); color:#94a3b8; margin-bottom:auto; opacity:0.8;">RUSSIAN CLASSICS</div>
-                  <div class="cover-crime-plaque">
-                    <div class="cover-crime-title">CRIME AND<br>PUNISHMENT</div>
-                    <div class="cover-crime-author">FYODOR DOSTOEVSKY</div>
+                <div class="cover-crime-wrapper">
+                  <svg class="cover-crime-art" viewBox="0 0 110 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="cpBg" x1="0" y1="0" x2="110" y2="106" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#1b2a3d"/>
+                        <stop offset="50%" stop-color="#121c28"/>
+                        <stop offset="100%" stop-color="#0a0f16"/>
+                      </linearGradient>
+                      <radialGradient id="cpGlow" cx="55" cy="46" r="45" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#4d3f35" stop-opacity="0.85"/>
+                        <stop offset="60%" stop-color="#1f2c3d" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#0e1520" stop-opacity="0"/>
+                      </radialGradient>
+                      <linearGradient id="cpCoat" x1="0" y1="65" x2="110" y2="106" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#090d14"/>
+                        <stop offset="50%" stop-color="#141924"/>
+                        <stop offset="100%" stop-color="#080c12"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="110" height="106" fill="url(#cpBg)"/>
+                    <rect width="110" height="106" fill="url(#cpGlow)"/>
+                    <path d="M8 20 Q35 15 50 25 T100 20" stroke="rgba(255,255,255,0.04)" stroke-width="12" fill="none"/>
+                    <path d="M15 45 Q50 35 85 45" stroke="rgba(0,0,0,0.25)" stroke-width="8" fill="none"/>
+                    <!-- Shoulders & Coat -->
+                    <path d="M18 106 L22 82 Q32 70 45 72 L55 75 L65 72 Q78 70 88 82 L92 106 Z" fill="url(#cpCoat)"/>
+                    <!-- Lapels -->
+                    <path d="M45 72 L49 86 L55 81 L61 86 L65 72 Z" fill="#0d111a"/>
+                    <!-- White cravat/shirt -->
+                    <path d="M51 75 L55 80 L59 75 L57 72 L53 72 Z" fill="#e8e2d5" opacity="0.9"/>
+                    <!-- Neck -->
+                    <rect x="50" y="63" width="10" height="11" rx="2" fill="#9e7b66"/>
+                    <!-- Head / Face -->
+                    <ellipse cx="55" cy="50" rx="14" ry="17" fill="#b08b73"/>
+                    <!-- Hair -->
+                    <path d="M41 46 Q40 32 55 32 Q70 32 69 46 Q65 40 55 40 Q45 40 41 46 Z" fill="#241a15"/>
+                    <path d="M41 46 Q40 56 45 62 Q55 65 65 62 Q70 56 69 46 Q67 50 64 54 Q55 58 46 54 Q43 50 41 46 Z" fill="#2b1f19" opacity="0.6"/>
+                    <!-- Mustache -->
+                    <path d="M48 55 Q55 57 62 55 Q55 59 48 55 Z" fill="#1c1410"/>
+                    <path d="M41 46 Q42 58 49 63 L49 35 Q43 39 41 46 Z" fill="rgba(0,0,0,0.3)"/>
+                  </svg>
+                  <div class="cp-plaque">
+                    <div class="cp-title">CRIME AND<br>PUNISHMENT</div>
+                    <div class="cp-author">FYODOR DOSTOEVSKY</div>
+                    <div class="cp-monogram">FD</div>
                   </div>
                 </div>
               </div>
               <div class="book-spine spine-crime">
                 <span class="book-spine-text">DOSTOEVSKY &bull; CRIME AND PUNISHMENT</span>
+                <span class="book-spine-mark">FD</span>
               </div>
               <div class="book-pages-right"></div>
               <div class="book-pages-top"></div>
@@ -811,20 +936,25 @@
         <!-- Book: Rich Dad Poor Dad -->
         <article class="book-card" onclick="openBookModal('rich-dad-poor-dad')">
           <div class="book-frame">
-            <span class="book-status-badge" style="background:rgba(16, 185, 129, 0.12); color:#10b981; border-color:rgba(16, 185, 129, 0.25);">Finished</span>
             <div class="book-3d">
               <div class="book-front">
                 <div class="cover-richdad">
-                  <div style="font-size:7px; font-family:var(--font-mono); color:#fbbf24; letter-spacing:0.08em;">PERSONAL FINANCE</div>
-                  <div>
+                  <div class="cover-richdad-top">
+                    <div class="cover-richdad-tag">25TH ANNIVERSARY</div>
                     <div class="cover-richdad-title">RICH DAD<br>POOR DAD</div>
-                    <div class="cover-richdad-sub">WHAT THE RICH TEACH THEIR KIDS</div>
                   </div>
-                  <div class="cover-richdad-author">ROBERT T. KIYOSAKI</div>
+                  <div class="cover-richdad-bottom">
+                    <div class="cover-richdad-sub">WHAT THE RICH TEACH THEIR KIDS ABOUT MONEY</div>
+                    <div class="cover-richdad-footer">
+                      <span class="cover-monogram" style="color:#fbbf24;">RP</span>
+                      <span class="cover-richdad-author">ROBERT T. KIYOSAKI</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="book-spine spine-richdad">
                 <span class="book-spine-text">ROBERT KIYOSAKI &bull; RICH DAD POOR DAD</span>
+                <span class="book-spine-mark">RP</span>
               </div>
               <div class="book-pages-right"></div>
               <div class="book-pages-top"></div>
@@ -856,23 +986,24 @@
         <!-- Book: The King in Yellow -->
         <article class="book-card" onclick="openBookModal('the-king-in-yellow')">
           <div class="book-frame">
-            <span class="book-status-badge" style="background:rgba(234, 179, 8, 0.12); color:#eab308; border-color:rgba(234, 179, 8, 0.25);">Wanted</span>
             <div class="book-3d">
               <div class="book-front">
                 <div class="cover-yellowking">
-                  <div style="font-size:7px; font-family:var(--font-mono); color:#a1a1aa; letter-spacing:0.08em;">SUPERNATURAL CLASSIC</div>
-                  <div>
-                    <div class="cover-yellowking-emblem">
-                      <span style="font-size:10px; color:#eab308;">✦</span>
-                    </div>
+                  <div class="cover-yellowking-top">SUPERNATURAL CLASSIC</div>
+                  <div class="cover-yellowking-body">
+                    <div class="cover-yellowking-emblem">✦</div>
                     <div class="cover-yellowking-title">The King<br>in Yellow</div>
                     <div class="cover-yellowking-sub">TALES OF MYSTERY &amp; MADNESS</div>
                   </div>
-                  <div class="cover-yellowking-author">ROBERT W. CHAMBERS</div>
+                  <div class="cover-yellowking-footer">
+                    <span class="cover-monogram" style="color:#eab308;">CS</span>
+                    <span class="cover-yellowking-author">ROBERT W. CHAMBERS</span>
+                  </div>
                 </div>
               </div>
               <div class="book-spine spine-yellowking">
                 <span class="book-spine-text">ROBERT W. CHAMBERS &bull; THE KING IN YELLOW</span>
+                <span class="book-spine-mark">CS</span>
               </div>
               <div class="book-pages-right"></div>
               <div class="book-pages-top"></div>
@@ -1069,16 +1200,6 @@
       setInterval(tick, 1000);
     }
 
-    // Wire up events
-    document.addEventListener('DOMContentLoaded', () => {
-      // Saved theme
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      setTheme(savedTheme, false);
-
-      // Listen for hash changes
-      window.addEventListener('hashchange', handleHashChange);
-      handleHashChange();
-
     // Book Modal Data & Handlers
     const BOOKS_DATA = {
       'learn-to-earn': {
@@ -1173,6 +1294,14 @@
       }
     }
 
+    // Attach to window for direct HTML onclick execution
+    window.openBookModal = openBookModal;
+    window.closeBookModal = closeBookModal;
+    window.switchReadingTab = switchReadingTab;
+    window.navigateToView = navigateToView;
+    window.setTheme = setTheme;
+    window.toggleBio = toggleBio;
+
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.target.closest('input, textarea, select')) return;
@@ -1195,6 +1324,16 @@
       }
     });
 
+    // Wire up events
+    document.addEventListener('DOMContentLoaded', () => {
+      // Saved theme
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme, false);
+
+      // Listen for hash changes
+      window.addEventListener('hashchange', handleHashChange);
+      handleHashChange();
+
       // Explicit click bindings for all tiles
       document.querySelectorAll('[data-section]').forEach(tile => {
         tile.addEventListener('click', (e) => {
@@ -1207,6 +1346,9 @@
       });
 
       // Clock and Avatar
+      initClock();
+      initAvatar();
+    });
       initClock();
       initAvatar();
     });
