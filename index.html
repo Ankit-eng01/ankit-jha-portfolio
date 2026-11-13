@@ -347,6 +347,31 @@
     .cover-crime-title { font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; font-family: var(--font-sans); }
     .cover-crime-author { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; margin-top: 2px; }
 
+    /* 4. Rich Dad Poor Dad */
+    .cover-richdad {
+      background: linear-gradient(155deg, #2e104d 0%, #150624 100%);
+      color: #f59e0b; height: 100%; padding: 12px 10px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border: 1px solid rgba(245, 158, 11, 0.35); box-sizing: border-box; text-align: center;
+    }
+    .spine-richdad { background: #1c0930; color: #f59e0b; }
+    .cover-richdad-title { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #ffffff; font-family: var(--font-sans); margin: 6px 0; }
+    .cover-richdad-sub { font-size: 6.5px; font-family: var(--font-mono); color: #fbbf24; letter-spacing: 0.04em; }
+    .cover-richdad-author { font-size: 7.5px; font-family: var(--font-mono); color: #e2e8f0; letter-spacing: 0.06em; }
+
+    /* 5. The King in Yellow */
+    .cover-yellowking {
+      background: linear-gradient(155deg, #18150c 0%, #0d0c07 100%);
+      color: #eab308; height: 100%; padding: 12px 10px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border: 1px solid rgba(234, 179, 8, 0.35); box-sizing: border-box; text-align: center;
+    }
+    .spine-yellowking { background: #121008; color: #eab308; }
+    .cover-yellowking-emblem { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(234, 179, 8, 0.4); margin: 0 auto 4px auto; display: flex; align-items: center; justify-content: center; }
+    .cover-yellowking-title { font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #eab308; font-family: Georgia, serif; margin: 4px 0; font-style: italic; }
+    .cover-yellowking-sub { font-size: 6.5px; font-family: var(--font-mono); color: #a1a1aa; letter-spacing: 0.04em; }
+    .cover-yellowking-author { font-size: 7.5px; font-family: var(--font-mono); color: #d4d4d8; letter-spacing: 0.06em; }
+
     /* Book Details Modal */
     .book-modal-backdrop {
       position: fixed; inset: 0; background: rgba(5, 7, 10, 0.82);
@@ -507,12 +532,12 @@
           <div class="tile-desc">
             Curated bookshelf &bull; philosophy, systems, economics.
           </div>
-          <div class="reading-now" style="display:flex; align-items:center; gap:5px;">
+          <div class="reading-now" style="display:flex; align-items:center; gap:5px; flex-wrap:wrap;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.8; flex-shrink:0;">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg>
-            <span>Reading: <strong>Learn to Earn</strong></span>
+            <span>Reading <strong>3</strong> &bull; Finished <strong>1</strong> &bull; Wanted <strong>1</strong></span>
           </div>
         </div>
         <span class="b-tile-key">R</span>
@@ -659,8 +684,8 @@
     <div class="shelf-tabs">
       <button type="button" class="shelf-tab active" data-tab="all" onclick="switchReadingTab('all')">All</button>
       <button type="button" class="shelf-tab" data-tab="current" onclick="switchReadingTab('current')">Currently reading (3)</button>
-      <button type="button" class="shelf-tab" data-tab="finished" onclick="switchReadingTab('finished')">Finished (0)</button>
-      <button type="button" class="shelf-tab" data-tab="wanted" onclick="switchReadingTab('wanted')">Wanted to read (0)</button>
+      <button type="button" class="shelf-tab" data-tab="finished" onclick="switchReadingTab('finished')">Finished (1)</button>
+      <button type="button" class="shelf-tab" data-tab="wanted" onclick="switchReadingTab('wanted')">Wanted to read (1)</button>
     </div>
 
     <!-- Section 1: Currently reading -->
@@ -779,11 +804,38 @@
           </svg>
           Finished
         </h3>
-        <span class="reading-sec-count">0 books</span>
+        <span class="reading-sec-count">1 book</span>
       </div>
-      <div class="shelf-empty-box">
-        <div class="shelf-empty-title">Archive in progress</div>
-        <p class="shelf-empty-desc">Books I've completed will be archived here along with core notes and reflections.</p>
+
+      <div class="bookshelf-grid">
+        <!-- Book: Rich Dad Poor Dad -->
+        <article class="book-card" onclick="openBookModal('rich-dad-poor-dad')">
+          <div class="book-frame">
+            <span class="book-status-badge" style="background:rgba(16, 185, 129, 0.12); color:#10b981; border-color:rgba(16, 185, 129, 0.25);">Finished</span>
+            <div class="book-3d">
+              <div class="book-front">
+                <div class="cover-richdad">
+                  <div style="font-size:7px; font-family:var(--font-mono); color:#fbbf24; letter-spacing:0.08em;">PERSONAL FINANCE</div>
+                  <div>
+                    <div class="cover-richdad-title">RICH DAD<br>POOR DAD</div>
+                    <div class="cover-richdad-sub">WHAT THE RICH TEACH THEIR KIDS</div>
+                  </div>
+                  <div class="cover-richdad-author">ROBERT T. KIYOSAKI</div>
+                </div>
+              </div>
+              <div class="book-spine spine-richdad">
+                <span class="book-spine-text">ROBERT KIYOSAKI &bull; RICH DAD POOR DAD</span>
+              </div>
+              <div class="book-pages-right"></div>
+              <div class="book-pages-top"></div>
+            </div>
+            <div class="book-shadow"></div>
+          </div>
+          <div class="book-meta">
+            <h3 class="book-meta-title">Rich Dad Poor Dad</h3>
+            <p class="book-meta-author">Robert T. Kiyosaki</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -797,11 +849,41 @@
           </svg>
           Wanted to read
         </h3>
-        <span class="reading-sec-count">Queue</span>
+        <span class="reading-sec-count">1 book</span>
       </div>
-      <div class="shelf-empty-box">
-        <div class="shelf-empty-title">Reading queue</div>
-        <p class="shelf-empty-desc">Upcoming books on distributed systems, economics, and philosophy on my radar.</p>
+
+      <div class="bookshelf-grid">
+        <!-- Book: The King in Yellow -->
+        <article class="book-card" onclick="openBookModal('the-king-in-yellow')">
+          <div class="book-frame">
+            <span class="book-status-badge" style="background:rgba(234, 179, 8, 0.12); color:#eab308; border-color:rgba(234, 179, 8, 0.25);">Wanted</span>
+            <div class="book-3d">
+              <div class="book-front">
+                <div class="cover-yellowking">
+                  <div style="font-size:7px; font-family:var(--font-mono); color:#a1a1aa; letter-spacing:0.08em;">SUPERNATURAL CLASSIC</div>
+                  <div>
+                    <div class="cover-yellowking-emblem">
+                      <span style="font-size:10px; color:#eab308;">✦</span>
+                    </div>
+                    <div class="cover-yellowking-title">The King<br>in Yellow</div>
+                    <div class="cover-yellowking-sub">TALES OF MYSTERY &amp; MADNESS</div>
+                  </div>
+                  <div class="cover-yellowking-author">ROBERT W. CHAMBERS</div>
+                </div>
+              </div>
+              <div class="book-spine spine-yellowking">
+                <span class="book-spine-text">ROBERT W. CHAMBERS &bull; THE KING IN YELLOW</span>
+              </div>
+              <div class="book-pages-right"></div>
+              <div class="book-pages-top"></div>
+            </div>
+            <div class="book-shadow"></div>
+          </div>
+          <div class="book-meta">
+            <h3 class="book-meta-title">The King in Yellow</h3>
+            <p class="book-meta-author">Robert W. Chambers</p>
+          </div>
+        </article>
       </div>
     </section>
   </section>
@@ -1011,7 +1093,7 @@
         title: 'The Psychology of Money',
         author: 'Morgan Housel',
         category: 'Behavioral Finance',
-        status: 'Finished',
+        status: 'Currently Reading',
         quote: 'Doing well with money has a little to do with how smart you are and a lot to do with how you behave.',
         note: 'Short essays exploring how people actually interact with money. The core insight is that financial outcomes are driven much more by behavior, patience, and emotional discipline than technical knowledge.'
       },
@@ -1019,9 +1101,25 @@
         title: 'Crime and Punishment',
         author: 'Fyodor Dostoevsky',
         category: 'Literature & Philosophy',
-        status: 'Finished',
+        status: 'Currently Reading',
         quote: 'Pain and suffering are always inevitable for a large intelligence and a deep heart.',
         note: 'An intense examination of guilt, conscience, and moral justification. It dissects what happens when someone attempts to place their rationalizations above fundamental human ethics.'
+      },
+      'rich-dad-poor-dad': {
+        title: 'Rich Dad Poor Dad',
+        author: 'Robert T. Kiyosaki',
+        category: 'Personal Finance & Assets',
+        status: 'Finished',
+        quote: 'The single most powerful asset we all have is our mind. If trained well, it can create enormous wealth.',
+        note: 'The foundational primer on the distinction between assets and liabilities. Kiyosaki highlights financial literacy, cash-flow discipline, and creating systems that generate value over time.'
+      },
+      'the-king-in-yellow': {
+        title: 'The King in Yellow',
+        author: 'Robert W. Chambers',
+        category: 'Gothic Fiction & Weird Tales',
+        status: 'Wanted to read',
+        quote: 'Along the shore the cloud waves break, The twin suns sink behind the lake, The shadows lengthen In Carcosa.',
+        note: 'A classic collection of supernatural and psychological fiction published in 1895. Explores the eerie mythos of Carcosa and a play that induces madness in whoever reads it.'
       }
     };
 

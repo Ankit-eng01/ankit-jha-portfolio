@@ -714,6 +714,31 @@ button {
 .cover-crime-title { font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; font-family: var(--font-sans); }
 .cover-crime-author { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; margin-top: 2px; }
 
+/* 4. Rich Dad Poor Dad */
+.cover-richdad {
+  background: linear-gradient(155deg, #2e104d 0%, #150624 100%);
+  color: #f59e0b; height: 100%; padding: 12px 10px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border: 1px solid rgba(245, 158, 11, 0.35); box-sizing: border-box; text-align: center;
+}
+.spine-richdad { background: #1c0930; color: #f59e0b; }
+.cover-richdad-title { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #ffffff; font-family: var(--font-sans); margin: 6px 0; }
+.cover-richdad-sub { font-size: 6.5px; font-family: var(--font-mono); color: #fbbf24; letter-spacing: 0.04em; }
+.cover-richdad-author { font-size: 7.5px; font-family: var(--font-mono); color: #e2e8f0; letter-spacing: 0.06em; }
+
+/* 5. The King in Yellow */
+.cover-yellowking {
+  background: linear-gradient(155deg, #18150c 0%, #0d0c07 100%);
+  color: #eab308; height: 100%; padding: 12px 10px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border: 1px solid rgba(234, 179, 8, 0.35); box-sizing: border-box; text-align: center;
+}
+.spine-yellowking { background: #121008; color: #eab308; }
+.cover-yellowking-emblem { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(234, 179, 8, 0.4); margin: 0 auto 4px auto; display: flex; align-items: center; justify-content: center; }
+.cover-yellowking-title { font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.25; color: #eab308; font-family: Georgia, serif; margin: 4px 0; font-style: italic; }
+.cover-yellowking-sub { font-size: 6.5px; font-family: var(--font-mono); color: #a1a1aa; letter-spacing: 0.04em; }
+.cover-yellowking-author { font-size: 7.5px; font-family: var(--font-mono); color: #d4d4d8; letter-spacing: 0.06em; }
+
 /* Book Details Modal */
 .book-modal-backdrop {
   position: fixed; inset: 0; background: rgba(5, 7, 10, 0.82);

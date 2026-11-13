@@ -272,7 +272,7 @@ const BOOKS_DATA = {
     title: 'The Psychology of Money',
     author: 'Morgan Housel',
     category: 'Behavioral Finance',
-    status: 'Finished',
+    status: 'Currently Reading',
     quote: 'Doing well with money has a little to do with how smart you are and a lot to do with how you behave.',
     note: 'Short essays exploring how people actually interact with money. The core insight is that financial outcomes are driven much more by behavior, patience, and emotional discipline than technical knowledge.'
   },
@@ -280,9 +280,25 @@ const BOOKS_DATA = {
     title: 'Crime and Punishment',
     author: 'Fyodor Dostoevsky',
     category: 'Literature & Philosophy',
-    status: 'Finished',
+    status: 'Currently Reading',
     quote: 'Pain and suffering are always inevitable for a large intelligence and a deep heart.',
     note: 'An intense examination of guilt, conscience, and moral justification. It dissects what happens when someone attempts to place their rationalizations above fundamental human ethics.'
+  },
+  'rich-dad-poor-dad': {
+    title: 'Rich Dad Poor Dad',
+    author: 'Robert T. Kiyosaki',
+    category: 'Personal Finance & Assets',
+    status: 'Finished',
+    quote: 'The single most powerful asset we all have is our mind. If trained well, it can create enormous wealth.',
+    note: 'The foundational primer on the distinction between assets and liabilities. Kiyosaki highlights financial literacy, cash-flow discipline, and creating systems that generate value over time.'
+  },
+  'the-king-in-yellow': {
+    title: 'The King in Yellow',
+    author: 'Robert W. Chambers',
+    category: 'Gothic Fiction & Weird Tales',
+    status: 'Wanted to read',
+    quote: 'Along the shore the cloud waves break, The twin suns sink behind the lake, The shadows lengthen In Carcosa.',
+    note: 'A classic collection of supernatural and psychological fiction published in 1895. Explores the eerie mythos of Carcosa and a play that induces madness in whoever reads it.'
   }
 };
 
