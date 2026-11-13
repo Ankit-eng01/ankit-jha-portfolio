@@ -255,3 +255,97 @@ function initLiveClock() {
   update();
   setInterval(update, 1000);
 }
+
+/* ========================================================
+   7. 3D BOOKSHELF MODAL & DATA
+   ======================================================== */
+const BOOKS_DATA = {
+  'learn-to-earn': {
+    title: 'Learn to Earn',
+    author: 'Peter Lynch & John Rothchild',
+    category: 'Economics & Business Fundamentals',
+    status: 'Currently Reading',
+    quote: 'The key to making money in stocks is not to get scared out of them.',
+    note: 'A fundamental, no-nonsense breakdown of capitalism, how free markets operate, why companies exist, and how real enterprise value is created. Lynch explains how understanding the underlying balance sheet and cash flow separates long-term compounders from market gamblers.'
+  },
+  'psychology-of-money': {
+    title: 'The Psychology of Money',
+    author: 'Morgan Housel',
+    category: 'Behavioral Finance & Decision Making',
+    status: 'Curated Favorite',
+    quote: 'Doing well with money has a little to do with how smart you are and a lot to do with how you behave.',
+    note: 'Morgan Housel presents 19 short stories exploring the strange ways people think about money. The overarching lesson: financial success is not a hard science like physics—it is a soft skill where your behavior, patience, and ego control outweigh analytical horsepower.'
+  },
+  'nausea': {
+    title: 'Nausea',
+    author: 'Jean-Paul Sartre',
+    category: 'Existential Philosophy',
+    status: 'Curated Classic',
+    quote: 'Every existing thing is born without reason, prolongs itself out of weakness, and dies by chance.',
+    note: 'A masterwork of existential alienation. Antoine Roquentin confronts the sheer, unmediated existence of objects and freedom, chronicling how human consciousness must construct meaning in an indifferent universe.'
+  },
+  'crime-and-punishment': {
+    title: 'Crime and Punishment',
+    author: 'Fyodor Dostoevsky',
+    category: 'Psychological Literature',
+    status: 'Curated Classic',
+    quote: 'Pain and suffering are always inevitable for a large intelligence and a deep heart.',
+    note: 'A gripping exploration of moral transgression, ideological hubris, and psychological devastation. Raskolnikov tests whether extraordinary men stand above common morality, only to discover the inescapable weight of human conscience.'
+  },
+  'twelve-angry-men': {
+    title: 'Twelve Angry Men',
+    author: 'Reginald Rose',
+    category: 'Rhetoric & Group Dynamics',
+    status: 'Curated Classic',
+    quote: "It's always difficult to keep personal prejudice out of a thing like this.",
+    note: 'A masterclass in persuasion, cognitive bias, and reasonable doubt. Demonstrates how a single patient, rational voice can systematically dismantle prejudice and consensus blindness.'
+  },
+  'three-men-in-a-boat': {
+    title: 'Three Men in a Boat',
+    author: 'Jerome K. Jerome',
+    category: 'Satire & Vintage Wit',
+    status: 'Curated Classic',
+    quote: 'I like work: it fascinates me. I can sit and look at it for hours.',
+    note: 'A humorous Victorian travelogue down the Thames that captures human idiosyncrasies, petty squabbles, and the timeless art of doing nothing with complete conviction.'
+  },
+  'the-trial': {
+    title: 'The Trial',
+    author: 'Franz Kafka',
+    category: 'Philosophical Fiction',
+    status: 'Curated Classic',
+    quote: 'Someone must have slandered Josef K., for one morning, without having done anything wrong, he was arrested.',
+    note: 'An eerie indictment of bureaucratic inertia, irrational systems, and unaccountable authority. Josef K. is caught in an opaque legal labyrinth where guilt is assumed and innocence is impossible to prove.'
+  },
+  '1984': {
+    title: '1984',
+    author: 'George Orwell',
+    category: 'Dystopian Systems & Control',
+    status: 'Curated Classic',
+    quote: 'Freedom is the freedom to say that two plus two make four. If that is granted, all else follows.',
+    note: 'The seminal examination of surveillance architecture, doublethink, and the manipulation of language (Newspeak) to constrain thought itself. Required reading for anyone thinking about systems, power, and information control.'
+  }
+};
+
+function openBookModal(bookKey) {
+  const book = BOOKS_DATA[bookKey];
+  if (!book) return;
+  const content = document.getElementById('bookModalContent');
+  if (!content) return;
+  content.innerHTML = `
+    <span class="book-modal-badge">${book.category}</span>
+    <h3 class="book-modal-title">${book.title}</h3>
+    <p class="book-modal-author">By ${book.author} &bull; <span style="color:var(--accent); font-weight:500;">${book.status}</span></p>
+    <div class="book-modal-quote">&ldquo;${book.quote}&rdquo;</div>
+    <p class="book-modal-desc">${book.note}</p>
+  `;
+  const modal = document.getElementById('bookModalBackdrop');
+  if (modal) modal.classList.add('open');
+}
+
+function closeBookModal(e) {
+  if (e && e.target && e.target.closest && e.target.closest('.book-modal-card') && !e.target.closest('.book-modal-close')) {
+    return;
+  }
+  const modal = document.getElementById('bookModalBackdrop');
+  if (modal) modal.classList.remove('open');
+}
