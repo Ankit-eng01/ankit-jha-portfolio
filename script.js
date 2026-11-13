@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initRouting();
   initKeyboardShortcuts();
-  initLiveClock();
   initAvatar();
 });
 
@@ -72,26 +71,59 @@ function handleHashChange() {
   }
 }
 
+let homeScrollY = 0;
+
 function navigateToView(viewName, updateHash = true) {
-  Object.values(VIEWS).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove('active');
+  const currentActive = document.querySelector('.view-panel.active');
+  const currentId = currentActive ? currentActive.id : 'homeView';
+  const targetId = VIEWS[viewName] || 'homeView';
+
+  if (currentId === targetId) return;
+
+  const isClosing = (targetId === 'homeView');
+
+  if (!isClosing && currentId === 'homeView') {
+    homeScrollY = window.scrollY;
+  }
+
+  const updateDOM = () => {
+    Object.values(VIEWS).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      targetEl.classList.add('active');
+      if (isClosing) {
+        window.scrollTo({ top: homeScrollY, behavior: 'instant' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    }
+
+    if (updateHash) {
+      if (viewName === 'home') {
+        history.pushState(null, '', window.location.pathname);
+      } else {
+        window.location.hash = viewName;
+      }
+    }
+  };
+
+  if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    updateDOM();
+    return;
+  }
+
+  document.documentElement.dataset.vt = isClosing ? 'close' : 'open';
+  const transition = document.startViewTransition(() => {
+    updateDOM();
   });
 
-  const targetId = VIEWS[viewName] || 'homeView';
-  const targetEl = document.getElementById(targetId);
-  if (targetEl) {
-    targetEl.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-
-  if (updateHash) {
-    if (viewName === 'home') {
-      history.pushState(null, '', window.location.pathname);
-    } else {
-      window.location.hash = viewName;
-    }
-  }
+  transition.finished.finally(() => {
+    delete document.documentElement.dataset.vt;
+  });
 }
 
 /* ========================================================
@@ -235,29 +267,7 @@ function initAvatar() {
 }
 
 /* ========================================================
-   6. LIVE CLOCK (NEW DELHI / IST)
-   ======================================================== */
-function initLiveClock() {
-  const clockEl = document.getElementById('liveTime');
-  if (!clockEl) return;
-
-  function update() {
-    const now = new Date();
-    clockEl.textContent = now.toLocaleTimeString('en-US', {
-      timeZone: 'Asia/Kolkata',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
-    }) + ' IST';
-  }
-
-  update();
-  setInterval(update, 1000);
-}
-
-/* ========================================================
-   7. 3D BOOKSHELF MODAL & DATA
+   6. 3D BOOKSHELF MODAL & DATA
    ======================================================== */
 const BOOKS_DATA = {
   'learn-to-earn': {
@@ -333,22 +343,33 @@ function switchReadingTab(tabName) {
   const cur = document.getElementById('secCurrentlyReading');
   const fin = document.getElementById('secFinished');
   const wan = document.getElementById('secWanted');
-  if (tabName === 'all') {
-    if (cur) cur.style.display = 'block';
-    if (fin) fin.style.display = 'block';
-    if (wan) wan.style.display = 'block';
-  } else if (tabName === 'current') {
-    if (cur) cur.style.display = 'block';
-    if (fin) fin.style.display = 'none';
-    if (wan) wan.style.display = 'none';
-  } else if (tabName === 'finished') {
-    if (cur) cur.style.display = 'none';
-    if (fin) fin.style.display = 'block';
-    if (wan) wan.style.display = 'none';
-  } else if (tabName === 'wanted') {
-    if (cur) cur.style.display = 'none';
-    if (fin) fin.style.display = 'none';
-    if (wan) wan.style.display = 'block';
+
+  const applyTabSwitch = () => {
+    if (tabName === 'all') {
+      if (cur) cur.style.display = 'block';
+      if (fin) fin.style.display = 'block';
+      if (wan) wan.style.display = 'block';
+    } else if (tabName === 'current') {
+      if (cur) cur.style.display = 'block';
+      if (fin) fin.style.display = 'none';
+      if (wan) wan.style.display = 'none';
+    } else if (tabName === 'finished') {
+      if (cur) cur.style.display = 'none';
+      if (fin) fin.style.display = 'block';
+      if (wan) wan.style.display = 'none';
+    } else if (tabName === 'wanted') {
+      if (cur) cur.style.display = 'none';
+      if (fin) fin.style.display = 'none';
+      if (wan) wan.style.display = 'block';
+    }
+  };
+
+  if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    applyTabSwitch();
+  } else {
+    document.startViewTransition(() => {
+      applyTabSwitch();
+    });
   }
 }
 
