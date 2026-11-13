@@ -214,12 +214,6 @@
       background: var(--ground); border: 1px solid var(--line); padding: 1px 6px; border-radius: 4px; margin-left: 8px;
     }
 
-    .avail-badge {
-      display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
-      font-size: 10.5px; color: #34d399; background: rgba(52, 211, 153, 0.1);
-      padding: 3px 8px; border-radius: var(--radius-full); border: 1px solid rgba(52, 211, 153, 0.25);
-    }
-    .avail-dot { width: 5px; height: 5px; border-radius: 50%; background: #34d399; box-shadow: 0 0 6px #34d399; }
     .tile-pills-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
     .mini-pill {
       font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft);
@@ -823,11 +817,8 @@
       <!-- Tile 4: Work with me -->
       <button type="button" class="b-tile tile-services" onclick="navigateToView('services')" data-section="services">
         <div>
-          <div class="avail-badge">
-            <span class="avail-dot"></span>
-            Available for Q1 / Q2
-          </div>
-          <div class="tile-title" style="margin-top:10px;">Work with me</div>
+          <div class="tile-title">Work with me</div>
+          <div class="tile-desc" style="margin-bottom:12px;">Open to freelance, contracts, and engineering roles.</div>
           <div class="tile-pills-row">
             <span class="mini-pill">AI Systems</span>
             <span class="mini-pill">Full-Stack</span>
