@@ -20,42 +20,68 @@
     :root {
       --font-sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
-      --accent: #00d4e3;
-      --accent-soft: rgba(0, 212, 227, 0.12);
+
+      /* Bespoke Luxury Editorial Warm Palette */
+      --accent: #ff6a42;            /* Refined sunset vermilion / warm terracotta */
+      --accent-hover: #ff7e5a;
+      --accent-soft: rgba(255, 106, 66, 0.12);
+      --accent-border: rgba(255, 106, 66, 0.32);
+
+      /* High-end pastel highlighter tints (matte, delicate) */
+      --hl-coral: rgba(255, 106, 66, 0.18);
+      --hl-amber: rgba(245, 158, 11, 0.18);
+      --hl-emerald: rgba(16, 185, 129, 0.16);
+      --hl-sky: rgba(56, 189, 248, 0.16);
+      --hl-violet: rgba(168, 85, 247, 0.16);
+
       --radius-inner: 8px;
-      --radius-tile: 14px;
+      --radius-pill: 6px;
+      --radius-tile: 16px;
       --radius-full: 999px;
+
       --dur-link: 150ms;
-      --dur-hover: 200ms;
-      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --dur-hover: 220ms;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --col-reading: 580px;
       --col-wide: 680px;
+
+      /* Dark mode (default): Warm matte obsidian & creamy linen */
       color-scheme: dark;
-      --ground: #0d0f12;
-      --ground-tile: #13161c;
-      --ground-tile-hover: #191c24;
-      --ink: #e2e4e9;
+      --ground: #101114;            /* Rich warm carbon obsidian */
+      --ground-tile: #16181d;       /* Elevated warm matte tile surface */
+      --ground-tile-hover: #1c1f26;
+      --ground-elevated: #20242e;
+      --ink: #f2eee8;               /* Warm natural linen typography */
       --ink-strong: #ffffff;
-      --ink-soft: #8b92a1;
-      --ink-muted: #5e6573;
-      --bio: #9ca3af;
-      --line: #1c2029;
-      --line-strong: #262c38;
+      --ink-soft: #a8a29b;          /* Cashmere warm sand */
+      --ink-muted: #6b6660;         /* Refined warm slate */
+      --bio: #9e9992;
+      --line: #262933;              /* Crisp hairline border */
+      --line-strong: #333845;
+      --hairline: rgba(255, 255, 255, 0.08);
+      --shadow-tile: 0 4px 20px -4px rgba(0, 0, 0, 0.5);
+      --shadow-hover: 0 14px 32px -8px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.08);
     }
     :root[data-theme="light"] {
       color-scheme: light;
-      --ground: #ffffff;
-      --ground-tile: #f6f7f9;
-      --ground-tile-hover: #eef0f4;
-      --ink: #1a1d24;
-      --ink-strong: #0a0b0e;
-      --ink-soft: #525a69;
-      --ink-muted: #7d8696;
-      --bio: #4b5563;
-      --line: #e5e8ed;
-      --line-strong: #d1d6e0;
-      --accent: #0284c7;
-      --accent-soft: rgba(2, 132, 199, 0.1);
+      --ground: #faf8f5;            /* Warm French parchment / alabaster */
+      --ground-tile: #ffffff;
+      --ground-tile-hover: #f5f2ed;
+      --ground-elevated: #eeeae3;
+      --ink: #191816;
+      --ink-strong: #0d0c0b;
+      --ink-soft: #635d55;
+      --ink-muted: #8c857b;
+      --bio: #5e5850;
+      --line: #e6e2da;
+      --line-strong: #d4cfc5;
+      --hairline: rgba(0, 0, 0, 0.06);
+      --accent: #e54b27;
+      --accent-hover: #c93b1a;
+      --accent-soft: rgba(229, 75, 39, 0.1);
+      --accent-border: rgba(229, 75, 39, 0.3);
+      --shadow-tile: 0 2px 12px -2px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 12px 28px -6px rgba(0, 0, 0, 0.12), 0 0 1px 1px rgba(0, 0, 0, 0.04);
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--ground); background-color: var(--ground); }
@@ -70,7 +96,11 @@
     .text-muted { color: var(--ink-muted); }
     .text-soft { color: var(--ink-soft); }
     .text-xs { font-size: 12px; }
-    .b-marked { background: var(--accent-soft); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+    .b-marked {
+      padding: 0.08em 0.35em; margin: 0 -0.05em; border-radius: 4px;
+      color: var(--ink-strong); background: var(--hl, var(--hl-coral));
+      box-decoration-break: clone; -webkit-box-decoration-break: clone; font-weight: 500;
+    }
     .home { max-width: var(--col-reading); margin: 0 auto; padding: 56px 20px 80px; }
     .view-container { max-width: var(--col-wide); margin: 0 auto; padding: 44px 20px 80px; }
     .home-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
@@ -106,41 +136,120 @@
     .bio-more.open { display: flex; flex-direction: column; gap: 12px; animation: fadeIn 0.25s ease; }
     .fold-btn { align-self: flex-start; font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); padding: 2px 0; cursor: pointer; }
     .fold-btn:hover { text-decoration: underline; }
-    .tiles { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+    .tiles { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
     @media (min-width: 560px) { .tiles { grid-template-columns: 1fr 1fr; } }
     .b-tile {
       position: relative; display: flex; flex-direction: column; justify-content: space-between;
       padding: 18px; background: var(--ground-tile); border: 1px solid var(--line);
       border-radius: var(--radius-tile); text-align: left;
-      cursor: pointer; min-height: 128px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;
+      cursor: pointer; min-height: 136px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;
       transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
                   border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
                   background 0.22s cubic-bezier(0.16, 1, 0.3, 1),
                   box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .b-tile:hover {
-      border-color: rgba(0, 212, 227, 0.35); background: var(--ground-tile-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5), 0 0 16px -2px rgba(0, 212, 227, 0.12);
+      border-color: color-mix(in srgb, var(--ink) 25%, transparent);
+      background: var(--ground-tile-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55), 0 0 1px 1px var(--hairline);
     }
     .b-tile:active {
-      transform: scale(0.975);
+      transform: scale(0.985);
       border-color: var(--accent);
-      box-shadow: 0 0 18px rgba(0, 212, 227, 0.25);
     }
     .b-tile-wide { grid-column: 1 / -1; min-height: 104px; }
     .tile-title { font-size: 15px; font-weight: 600; color: var(--ink-strong); margin-bottom: 4px; }
-    .tile-title-row { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+    .tile-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
     .tile-title-row .tile-title { margin-bottom: 0; }
     .tile-icon { color: var(--accent); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .tile-desc { font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; }
     .b-tile-key {
       position: absolute; bottom: 12px; right: 12px; font-family: var(--font-mono);
-      font-size: 11px; color: var(--ink-muted); background: var(--ground);
-      padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line); pointer-events: none;
+      font-size: 11px; color: var(--ink-soft); background: var(--ground);
+      padding: 2px 7px; border-radius: 4px; border: 1px solid var(--line); pointer-events: none;
+      transition: color var(--dur-hover) ease, border-color var(--dur-hover) ease;
     }
-    .reading-now { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); margin-top: 10px; }
-    .reading-now span { color: var(--accent); font-weight: 500; }
+    .b-tile:hover .b-tile-key { color: var(--ink); border-color: var(--line-strong); }
+
+    /* Bento Tile Micro-Graphics */
+    .mini-cover-work {
+      background: linear-gradient(135deg, #e4573c 0%, #b8321d 100%);
+      border-radius: 8px; padding: 8px 10px; color: #fff1e5; margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 4px 12px rgba(184, 50, 29, 0.25);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .b-tile:hover .mini-cover-work { transform: translateY(-1px) scale(1.02); }
+    .mini-cover-tag { font-family: var(--font-mono); font-size: 9.5px; opacity: 0.85; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .mini-cover-title { font-size: 12px; font-weight: 600; line-height: 1.25; }
+
+    .mini-ticket-note {
+      background: var(--ground-elevated); border: 1px solid var(--line-strong);
+      border-radius: 8px; padding: 8px 10px; margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); position: relative;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mini-ticket-note::before {
+      content: ""; position: absolute; inset: 3px -3px -3px 3px;
+      background: var(--ground-tile); border: 1px solid var(--line);
+      border-radius: 8px; z-index: -1;
+    }
+    .b-tile:hover .mini-ticket-note { transform: translateY(-1px); }
+    .ticket-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
+    .ticket-author { font-family: var(--font-mono); font-size: 9.5px; color: var(--accent); font-weight: 600; }
+    .ticket-status-pill { font-family: var(--font-mono); font-size: 8.5px; color: #34d399; background: rgba(52, 211, 153, 0.12); padding: 1px 5px; border-radius: 4px; }
+    .ticket-body { font-size: 11px; color: var(--ink-soft); line-height: 1.35; }
+
+    .writing-layout { display: flex; align-items: center; gap: 16px; width: 100%; }
+    .writing-icon-badge {
+      width: 44px; height: 44px; border-radius: 10px; background: var(--accent-soft);
+      color: var(--accent); display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--accent-border); flex-shrink: 0;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .b-tile:hover .writing-icon-badge { transform: scale(1.06); }
+    .writing-info { flex: 1; }
+    .journal-tag {
+      font-family: var(--font-mono); font-size: 9.5px; color: var(--ink-muted);
+      background: var(--ground); border: 1px solid var(--line); padding: 1px 6px; border-radius: 4px; margin-left: 8px;
+    }
+
+    .avail-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
+      font-size: 10.5px; color: #34d399; background: rgba(52, 211, 153, 0.1);
+      padding: 3px 8px; border-radius: var(--radius-full); border: 1px solid rgba(52, 211, 153, 0.25);
+    }
+    .avail-dot { width: 5px; height: 5px; border-radius: 50%; background: #34d399; box-shadow: 0 0 6px #34d399; }
+    .tile-pills-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .mini-pill {
+      font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft);
+      background: var(--ground); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px;
+    }
+
+    .mini-spines-row {
+      display: flex; align-items: flex-end; gap: 4px; height: 38px; margin-bottom: 10px;
+      border-bottom: 1.5px solid var(--line-strong); padding-bottom: 2px;
+    }
+    .mini-spine {
+      height: 32px; width: 14px; border-radius: 2px 2px 0 0; display: flex; align-items: center; justify-content: center;
+      writing-mode: vertical-rl; transform: rotate(180deg);
+      font-family: var(--font-mono); font-size: 7px; font-weight: 600; letter-spacing: -0.05em;
+      box-shadow: 1px 0 3px rgba(0,0,0,0.3); transition: transform 0.22s ease, height 0.22s ease;
+    }
+    .mini-spine.spine-gold { background: #d4a34b; color: #1c1407; height: 34px; }
+    .mini-spine.spine-wine { background: #b83a36; color: #fff0ed; height: 30px; }
+    .mini-spine.spine-dark { background: #263345; color: #dbe4ee; height: 36px; }
+    .b-tile:hover .mini-spine.spine-gold { transform: translateY(-3px) rotate(180deg); }
+    .b-tile:hover .mini-spine.spine-wine { transform: translateY(-4px) rotate(180deg); }
+    .b-tile:hover .mini-spine.spine-dark { transform: translateY(-2px) rotate(180deg); }
+    .books-count-badge {
+      font-family: var(--font-mono); font-size: 9.5px; color: var(--accent);
+      background: var(--accent-soft); border: 1px solid var(--accent-border); padding: 1px 6px; border-radius: 4px;
+    }
+
+    .reading-now { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); margin-top: 8px; }
+    .reading-now span { color: var(--ink-soft); font-weight: 500; }
+    .reading-now strong { color: var(--accent); font-weight: 600; }
     .empty-box {
       padding: 44px 20px; border: 1px dashed var(--line); border-radius: var(--radius-tile);
       text-align: center; background: var(--ground-tile); margin-top: 16px;
@@ -153,12 +262,12 @@
     .item-title { font-size: 16px; font-weight: 600; color: var(--ink-strong); margin: 0; }
     .item-badge {
       font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: var(--radius-full);
-      background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(0, 212, 227, 0.2);
+      background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border);
     }
     .item-desc { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
     .contact-nav { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; align-items: center; }
     .contact-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13.5px; color: var(--ink-muted); }
-    .contact-links a:hover { color: var(--ink-strong); }
+    .contact-links a:hover { color: var(--accent); }
     .view-panel { display: none; }
     .view-panel.active { display: block !important; }
     .view-back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
@@ -174,7 +283,7 @@
     .back-btn:hover {
       color: var(--ink-strong); border-color: var(--accent);
       transform: translateX(-3px);
-      box-shadow: 0 0 14px rgba(0, 212, 227, 0.15);
+      box-shadow: 0 0 14px var(--accent-soft);
     }
     .back-btn:active { transform: translateX(-5px) scale(0.97); }
     .view-heading { font-size: 22px; font-weight: 600; color: var(--ink-strong); margin: 0 0 6px 0; letter-spacing: -0.02em; }
@@ -248,8 +357,8 @@
         border-color: var(--line);
       }
       40% {
-        border-color: rgba(0, 212, 227, 0.35);
-        box-shadow: 0 0 22px rgba(0, 212, 227, 0.1);
+        border-color: var(--accent-border);
+        box-shadow: 0 0 22px var(--accent-soft);
       }
       100% {
         opacity: 1;
@@ -294,7 +403,7 @@
     }
     .shelf-tab:hover { color: var(--ink-strong); border-color: var(--line-strong); }
     .shelf-tab.active {
-      color: var(--accent); background: var(--accent-soft); border-color: rgba(0, 212, 227, 0.3); font-weight: 500;
+      color: var(--accent); background: var(--accent-soft); border-color: var(--accent-border); font-weight: 500;
     }
     .reading-sec-block { margin-bottom: 40px; }
     .reading-sec-header {
@@ -584,14 +693,14 @@
     .book-modal-badge {
       font-family: var(--font-mono); font-size: 11px; padding: 2px 8px;
       border-radius: var(--radius-full); background: var(--accent-soft); color: var(--accent);
-      border: 1px solid rgba(0, 212, 227, 0.25); display: inline-block; margin-bottom: 8px;
+      border: 1px solid var(--accent-border); display: inline-block; margin-bottom: 8px;
     }
     .book-modal-title { font-size: 20px; font-weight: 600; color: var(--ink-strong); margin: 0 0 4px 0; }
     .book-modal-author { font-size: 13px; font-family: var(--font-mono); color: var(--ink-muted); margin: 0; }
     .book-modal-quote {
       border-left: 2px solid var(--accent); padding-left: 14px;
       color: var(--ink); font-size: 14.5px; line-height: 1.6; margin: 16px 0;
-      font-style: italic; background: rgba(0, 212, 227, 0.03); padding-top: 8px; padding-bottom: 8px;
+      font-style: italic; background: var(--accent-soft); padding-top: 8px; padding-bottom: 8px;
     }
     .book-modal-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
   </style>
@@ -650,7 +759,7 @@
       <!-- Expandable Bio -->
       <div id="bioMore" class="bio-more">
         <p>
-          I've been interested in technology for as long as I can remember. Started off tinkering with C++ and Python, and over time moved into building full-stack web applications, experimenting with AI models, and automating workflows.
+          I've been interested in technology for as long as I can remember. Started off tinkering with <mark class="b-marked" style="--hl:var(--hl-amber);">C++ and Python</mark>, and over time moved into building <mark class="b-marked" style="--hl:var(--hl-sky);">full-stack web applications</mark>, experimenting with <mark class="b-marked" style="--hl:var(--hl-coral);">AI models</mark>, and <mark class="b-marked" style="--hl:var(--hl-emerald);">automating workflows</mark>.
         </p>
         <p>
           I enjoy writing code that runs in production and solves real problems. Outside of tech, I read books, listen to music, and play games.
@@ -663,69 +772,86 @@
     <div class="tiles">
       
       <!-- Tile 1: Work -->
-      <button type="button" class="b-tile" onclick="navigateToView('work')" data-section="work">
-        <div>
+      <button type="button" class="b-tile tile-work" onclick="navigateToView('work')" data-section="work">
+        <div class="mini-cover-work">
+          <div class="mini-cover-tag">01 // SYSTEMS</div>
+          <div class="mini-cover-title">Production AI &amp; Web</div>
+        </div>
+        <div class="tile-bottom-info">
           <div class="tile-title">Selected Work</div>
-          <div class="tile-desc">
-            Projects and things I've built.
-          </div>
+          <div class="tile-desc">Projects, models, and architectures.</div>
         </div>
         <span class="b-tile-key">W</span>
       </button>
 
       <!-- Tile 2: Garden -->
-      <button type="button" class="b-tile" onclick="navigateToView('garden')" data-section="garden">
-        <div>
-          <div class="tile-title">Garden</div>
-          <div class="tile-desc">
-            Short notes, quick thoughts, and updates.
+      <button type="button" class="b-tile tile-garden" onclick="navigateToView('garden')" data-section="garden">
+        <div class="mini-ticket-note">
+          <div class="ticket-header">
+            <span class="ticket-author">@Ankit_J01</span>
+            <span class="ticket-status-pill">Active</span>
           </div>
+          <div class="ticket-body">Short notes, dev thoughts &amp; raw ideas.</div>
+        </div>
+        <div class="tile-bottom-info">
+          <div class="tile-title">Garden</div>
+          <div class="tile-desc">Living thoughts and quick technical notes.</div>
         </div>
         <span class="b-tile-key">G</span>
       </button>
 
       <!-- Tile 3: Writing -->
-      <button type="button" class="b-tile b-tile-wide" onclick="navigateToView('blog')" data-section="blog">
-        <div>
-          <div class="tile-title">Writing</div>
-          <div class="tile-desc">
-            Articles and notes on things I learn along the way.
+      <button type="button" class="b-tile b-tile-wide tile-writing" onclick="navigateToView('blog')" data-section="blog">
+        <div class="writing-layout">
+          <div class="writing-icon-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+          </div>
+          <div class="writing-info">
+            <div class="tile-title-row">
+              <span class="tile-title">Writing</span>
+              <span class="journal-tag">ESSAYS &amp; NOTES</span>
+            </div>
+            <div class="tile-desc">Articles on AI systems, modern full-stack development, and things I learn along the way.</div>
           </div>
         </div>
         <span class="b-tile-key">B</span>
       </button>
 
       <!-- Tile 4: Work with me -->
-      <button type="button" class="b-tile" onclick="navigateToView('services')" data-section="services">
+      <button type="button" class="b-tile tile-services" onclick="navigateToView('services')" data-section="services">
         <div>
-          <div class="tile-title">Work with me</div>
-          <div class="tile-desc">
-            Open to freelance, contracts, and engineering roles.
+          <div class="avail-badge">
+            <span class="avail-dot"></span>
+            Available for Q1 / Q2
+          </div>
+          <div class="tile-title" style="margin-top:10px;">Work with me</div>
+          <div class="tile-pills-row">
+            <span class="mini-pill">AI Systems</span>
+            <span class="mini-pill">Full-Stack</span>
+            <span class="mini-pill">Automations</span>
           </div>
         </div>
         <span class="b-tile-key">S</span>
       </button>
 
       <!-- Tile 5: Reading -->
-      <button type="button" class="b-tile" onclick="navigateToView('reading')" data-section="reading" id="readingTileBtn">
-        <div>
+      <button type="button" class="b-tile tile-reading" onclick="navigateToView('reading')" data-section="reading" id="readingTileBtn">
+        <div class="tile-reading-header">
+          <div class="mini-spines-row">
+            <div class="mini-spine spine-gold" title="Learn to Earn"><span>LYNCH</span></div>
+            <div class="mini-spine spine-wine" title="The Psychology of Money"><span>HOUSEL</span></div>
+            <div class="mini-spine spine-dark" title="Crime and Punishment"><span>DOSTOEVSKY</span></div>
+          </div>
+        </div>
+        <div class="tile-bottom-info">
           <div class="tile-title-row">
-            <span class="tile-icon" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
-                <path d="M6 2v20"></path>
-              </svg>
-            </span>
             <span class="tile-title">Reading</span>
+            <span class="books-count-badge">5 BOOKS</span>
           </div>
-          <div class="tile-desc">
-            Curated bookshelf &bull; philosophy, systems, economics.
-          </div>
-          <div class="reading-now" style="display:flex; align-items:center; gap:5px; flex-wrap:wrap;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.8; flex-shrink:0;">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
+          <div class="reading-now">
             <span>Reading <strong>3</strong> &bull; Finished <strong>1</strong> &bull; Wanted <strong>1</strong></span>
           </div>
         </div>
@@ -1313,7 +1439,7 @@
 
         vertices.forEach(v => {
           const depth = (v.z + radius) / (radius * 2);
-          ctx.fillStyle = depth > 0.5 ? 'rgba(0, 212, 227, 0.85)' : 'rgba(255, 255, 255, 0.4)';
+          ctx.fillStyle = depth > 0.5 ? 'rgba(255, 106, 66, 0.9)' : 'rgba(242, 238, 232, 0.4)';
           ctx.beginPath();
           ctx.arc(cx + v.x, cy + v.y, depth > 0.5 ? 1.6 : 1.2, 0, Math.PI * 2);
           ctx.fill();

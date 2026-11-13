@@ -254,7 +254,7 @@ function initAvatar() {
     // Draw vertex points
     vertices.forEach(v => {
       const depth = (v.z + radius) / (radius * 2);
-      ctx.fillStyle = depth > 0.5 ? 'rgba(0, 212, 227, 0.85)' : 'rgba(255, 255, 255, 0.4)';
+      ctx.fillStyle = depth > 0.5 ? 'rgba(255, 106, 66, 0.9)' : 'rgba(242, 238, 232, 0.35)';
       ctx.beginPath();
       ctx.arc(cx + v.x, cy + v.y, depth > 0.5 ? 1.6 : 1.2, 0, Math.PI * 2);
       ctx.fill();
