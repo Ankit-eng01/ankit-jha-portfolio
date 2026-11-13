@@ -309,3 +309,29 @@ function closeBookModal(e) {
   const modal = document.getElementById('bookModalBackdrop');
   if (modal) modal.classList.remove('open');
 }
+
+function switchReadingTab(tabName) {
+  document.querySelectorAll('.shelf-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
+  });
+  const cur = document.getElementById('secCurrentlyReading');
+  const fin = document.getElementById('secFinished');
+  const wan = document.getElementById('secWanted');
+  if (tabName === 'all') {
+    if (cur) cur.style.display = 'block';
+    if (fin) fin.style.display = 'block';
+    if (wan) wan.style.display = 'block';
+  } else if (tabName === 'current') {
+    if (cur) cur.style.display = 'block';
+    if (fin) fin.style.display = 'none';
+    if (wan) wan.style.display = 'none';
+  } else if (tabName === 'finished') {
+    if (cur) cur.style.display = 'none';
+    if (fin) fin.style.display = 'block';
+    if (wan) wan.style.display = 'none';
+  } else if (tabName === 'wanted') {
+    if (cur) cur.style.display = 'none';
+    if (fin) fin.style.display = 'none';
+    if (wan) wan.style.display = 'block';
+  }
+}

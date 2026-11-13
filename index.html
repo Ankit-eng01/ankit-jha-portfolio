@@ -174,6 +174,35 @@
     }
     .shelf-stats-left { display: flex; align-items: center; gap: 8px; }
     .shelf-stats-beacon { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .shelf-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .shelf-tab {
+      font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted);
+      background: var(--ground-tile); border: 1px solid var(--line);
+      padding: 5px 12px; border-radius: var(--radius-full); cursor: pointer;
+      transition: all var(--dur-link) ease;
+    }
+    .shelf-tab:hover { color: var(--ink-strong); border-color: var(--line-strong); }
+    .shelf-tab.active {
+      color: var(--accent); background: var(--accent-soft); border-color: rgba(0, 212, 227, 0.3); font-weight: 500;
+    }
+    .reading-sec-block { margin-bottom: 40px; }
+    .reading-sec-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 8px; margin-bottom: 18px; border-bottom: 1px solid var(--line);
+    }
+    .reading-sec-title {
+      font-size: 15px; font-weight: 600; color: var(--ink-strong); margin: 0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .reading-sec-count { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); }
+    .shelf-empty-box {
+      padding: 32px 20px; border: 1px dashed var(--line); border-radius: var(--radius-inner);
+      text-align: center; background: var(--ground-tile);
+    }
+    .shelf-empty-title { font-size: 14.5px; font-weight: 500; color: var(--ink-strong); margin-bottom: 4px; }
+    .shelf-empty-desc { font-size: 13px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+    .shelf-mini-tag { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); }
+    .shelf-mini-tag strong { color: var(--accent); font-weight: 500; }
     .bookshelf-grid {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
@@ -626,108 +655,155 @@
     </div>
     <p class="view-subtitle">Books on economics, psychology, systems, and timeless philosophy.</p>
 
-    <!-- Shelf Stats / Current Status -->
-    <div class="shelf-stats-bar">
-      <div class="shelf-stats-left">
-        <span class="shelf-stats-beacon"></span>
-        <span>Currently reading: <strong style="color:var(--accent); font-weight:600;">Learn to Earn</strong></span>
+    <!-- Shelf Filter Tabs -->
+    <div class="shelf-tabs">
+      <button type="button" class="shelf-tab active" data-tab="all" onclick="switchReadingTab('all')">All</button>
+      <button type="button" class="shelf-tab" data-tab="current" onclick="switchReadingTab('current')">Currently reading (3)</button>
+      <button type="button" class="shelf-tab" data-tab="finished" onclick="switchReadingTab('finished')">Finished (0)</button>
+      <button type="button" class="shelf-tab" data-tab="wanted" onclick="switchReadingTab('wanted')">Wanted to read (0)</button>
+    </div>
+
+    <!-- Section 1: Currently reading -->
+    <section id="secCurrentlyReading" class="reading-sec-block">
+      <div class="reading-sec-header">
+        <h3 class="reading-sec-title">
+          <span style="width:7px; height:7px; border-radius:50%; background:var(--accent); display:inline-block; box-shadow:0 0 8px var(--accent);"></span>
+          Currently reading
+        </h3>
+        <span class="reading-sec-count">3 books</span>
       </div>
-      <span>3 Books Curated</span>
-    </div>
 
-    <!-- 3D Realistic Bookshelf Grid -->
-    <div class="bookshelf-grid">
+      <!-- 3D Realistic Bookshelf Grid -->
+      <div class="bookshelf-grid">
 
-      <!-- Book 1: Learn to Earn -->
-      <article class="book-card" onclick="openBookModal('learn-to-earn')">
-        <div class="book-frame">
-          <span class="book-status-badge">Reading</span>
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-learn">
-                <div style="font-size:7px; font-family:var(--font-mono); letter-spacing:0.1em; color:#e5c158; opacity:0.85;">PETER LYNCH</div>
-                <div class="cover-learn-rule"></div>
-                <div>
-                  <div class="cover-learn-title">LEARN<br>TO<br>EARN</div>
-                  <div class="cover-learn-sub">A BEGINNER'S GUIDE TO INVESTING</div>
-                </div>
-                <div class="cover-learn-rule"></div>
-                <div class="cover-learn-author">JOHN ROTHCHILD</div>
-              </div>
-            </div>
-            <div class="book-spine spine-learn">
-              <span class="book-spine-text">PETER LYNCH &bull; LEARN TO EARN</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">Learn to Earn</h3>
-          <p class="book-meta-author">Peter Lynch &amp; John Rothchild</p>
-        </div>
-      </article>
-
-      <!-- Book 2: The Psychology of Money -->
-      <article class="book-card" onclick="openBookModal('psychology-of-money')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-psychology">
-                <div style="font-size:7px; font-family:var(--font-mono); color:#94a3b8; letter-spacing:0.08em;">TIMELESS LESSONS</div>
-                <div>
-                  <div style="width:22px; height:22px; border:1px solid rgba(255,255,255,0.25); border-radius:50%; margin:0 auto 4px auto; display:flex; align-items:center; justify-content:center;">
-                    <span style="font-size:10px; color:var(--accent);">$</span>
+        <!-- Book 1: Learn to Earn -->
+        <article class="book-card" onclick="openBookModal('learn-to-earn')">
+          <div class="book-frame">
+            <span class="book-status-badge">Reading</span>
+            <div class="book-3d">
+              <div class="book-front">
+                <div class="cover-learn">
+                  <div style="font-size:7px; font-family:var(--font-mono); letter-spacing:0.1em; color:#e5c158; opacity:0.85;">PETER LYNCH</div>
+                  <div class="cover-learn-rule"></div>
+                  <div>
+                    <div class="cover-learn-title">LEARN<br>TO<br>EARN</div>
+                    <div class="cover-learn-sub">A BEGINNER'S GUIDE TO INVESTING</div>
                   </div>
-                  <div class="cover-psychology-title">THE<br>PSYCHOLOGY<br>OF MONEY</div>
-                  <div class="cover-psychology-sub">WEALTH, GREED &amp; HAPPINESS</div>
-                </div>
-                <div class="cover-psychology-author">MORGAN HOUSEL</div>
-              </div>
-            </div>
-            <div class="book-spine spine-psychology">
-              <span class="book-spine-text">MORGAN HOUSEL &bull; PSYCHOLOGY OF MONEY</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">The Psychology of Money</h3>
-          <p class="book-meta-author">Morgan Housel</p>
-        </div>
-      </article>
-
-      <!-- Book 3: Crime and Punishment -->
-      <article class="book-card" onclick="openBookModal('crime-and-punishment')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-crime">
-                <div style="font-size:7px; font-family:var(--font-mono); color:#94a3b8; margin-bottom:auto; opacity:0.8;">RUSSIAN CLASSICS</div>
-                <div class="cover-crime-plaque">
-                  <div class="cover-crime-title">CRIME AND<br>PUNISHMENT</div>
-                  <div class="cover-crime-author">FYODOR DOSTOEVSKY</div>
+                  <div class="cover-learn-rule"></div>
+                  <div class="cover-learn-author">JOHN ROTHCHILD</div>
                 </div>
               </div>
+              <div class="book-spine spine-learn">
+                <span class="book-spine-text">PETER LYNCH &bull; LEARN TO EARN</span>
+              </div>
+              <div class="book-pages-right"></div>
+              <div class="book-pages-top"></div>
             </div>
-            <div class="book-spine spine-crime">
-              <span class="book-spine-text">DOSTOEVSKY &bull; CRIME AND PUNISHMENT</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
+            <div class="book-shadow"></div>
           </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">Crime and Punishment</h3>
-          <p class="book-meta-author">Fyodor Dostoevsky</p>
-        </div>
-      </article>
+          <div class="book-meta">
+            <h3 class="book-meta-title">Learn to Earn</h3>
+            <p class="book-meta-author">Peter Lynch &amp; John Rothchild</p>
+          </div>
+        </article>
 
-    </div>
+        <!-- Book 2: The Psychology of Money -->
+        <article class="book-card" onclick="openBookModal('psychology-of-money')">
+          <div class="book-frame">
+            <span class="book-status-badge">Reading</span>
+            <div class="book-3d">
+              <div class="book-front">
+                <div class="cover-psychology">
+                  <div style="font-size:7px; font-family:var(--font-mono); color:#94a3b8; letter-spacing:0.08em;">TIMELESS LESSONS</div>
+                  <div>
+                    <div style="width:22px; height:22px; border:1px solid rgba(255,255,255,0.25); border-radius:50%; margin:0 auto 4px auto; display:flex; align-items:center; justify-content:center;">
+                      <span style="font-size:10px; color:var(--accent);">$</span>
+                    </div>
+                    <div class="cover-psychology-title">THE<br>PSYCHOLOGY<br>OF MONEY</div>
+                    <div class="cover-psychology-sub">WEALTH, GREED &amp; HAPPINESS</div>
+                  </div>
+                  <div class="cover-psychology-author">MORGAN HOUSEL</div>
+                </div>
+              </div>
+              <div class="book-spine spine-psychology">
+                <span class="book-spine-text">MORGAN HOUSEL &bull; PSYCHOLOGY OF MONEY</span>
+              </div>
+              <div class="book-pages-right"></div>
+              <div class="book-pages-top"></div>
+            </div>
+            <div class="book-shadow"></div>
+          </div>
+          <div class="book-meta">
+            <h3 class="book-meta-title">The Psychology of Money</h3>
+            <p class="book-meta-author">Morgan Housel</p>
+          </div>
+        </article>
+
+        <!-- Book 3: Crime and Punishment -->
+        <article class="book-card" onclick="openBookModal('crime-and-punishment')">
+          <div class="book-frame">
+            <span class="book-status-badge">Reading</span>
+            <div class="book-3d">
+              <div class="book-front">
+                <div class="cover-crime">
+                  <div style="font-size:7px; font-family:var(--font-mono); color:#94a3b8; margin-bottom:auto; opacity:0.8;">RUSSIAN CLASSICS</div>
+                  <div class="cover-crime-plaque">
+                    <div class="cover-crime-title">CRIME AND<br>PUNISHMENT</div>
+                    <div class="cover-crime-author">FYODOR DOSTOEVSKY</div>
+                  </div>
+                </div>
+              </div>
+              <div class="book-spine spine-crime">
+                <span class="book-spine-text">DOSTOEVSKY &bull; CRIME AND PUNISHMENT</span>
+              </div>
+              <div class="book-pages-right"></div>
+              <div class="book-pages-top"></div>
+            </div>
+            <div class="book-shadow"></div>
+          </div>
+          <div class="book-meta">
+            <h3 class="book-meta-title">Crime and Punishment</h3>
+            <p class="book-meta-author">Fyodor Dostoevsky</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Finished -->
+    <section id="secFinished" class="reading-sec-block">
+      <div class="reading-sec-header">
+        <h3 class="reading-sec-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Finished
+        </h3>
+        <span class="reading-sec-count">0 books</span>
+      </div>
+      <div class="shelf-empty-box">
+        <div class="shelf-empty-title">Archive in progress</div>
+        <p class="shelf-empty-desc">Books I've completed will be archived here along with core notes and reflections.</p>
+      </div>
+    </section>
+
+    <!-- Section 3: Wanted to read -->
+    <section id="secWanted" class="reading-sec-block">
+      <div class="reading-sec-header">
+        <h3 class="reading-sec-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Wanted to read
+        </h3>
+        <span class="reading-sec-count">Queue</span>
+      </div>
+      <div class="shelf-empty-box">
+        <div class="shelf-empty-title">Reading queue</div>
+        <p class="shelf-empty-desc">Upcoming books on distributed systems, economics, and philosophy on my radar.</p>
+      </div>
+    </section>
   </section>
 
   <!-- ======================================================== -->
@@ -971,6 +1047,32 @@
       }
       const modal = document.getElementById('bookModalBackdrop');
       if (modal) modal.classList.remove('open');
+    }
+
+    function switchReadingTab(tabName) {
+      document.querySelectorAll('.shelf-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabName);
+      });
+      const cur = document.getElementById('secCurrentlyReading');
+      const fin = document.getElementById('secFinished');
+      const wan = document.getElementById('secWanted');
+      if (tabName === 'all') {
+        if (cur) cur.style.display = 'block';
+        if (fin) fin.style.display = 'block';
+        if (wan) wan.style.display = 'block';
+      } else if (tabName === 'current') {
+        if (cur) cur.style.display = 'block';
+        if (fin) fin.style.display = 'none';
+        if (wan) wan.style.display = 'none';
+      } else if (tabName === 'finished') {
+        if (cur) cur.style.display = 'none';
+        if (fin) fin.style.display = 'block';
+        if (wan) wan.style.display = 'none';
+      } else if (tabName === 'wanted') {
+        if (cur) cur.style.display = 'none';
+        if (fin) fin.style.display = 'none';
+        if (wan) wan.style.display = 'block';
+      }
     }
 
     // Keyboard shortcuts
