@@ -202,6 +202,13 @@
       content: ""; width: 6px; height: 6px; border-radius: 50%;
       background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
     }
+    .content-list { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+    .item-card { padding: 22px; background: var(--ground-tile); border: 1px solid var(--line); border-radius: var(--radius-inner); transition: all var(--dur-hover) var(--ease-glide); }
+    .item-card:hover { border-color: var(--line-strong); background: var(--ground-tile-hover); transform: translateY(-2px); }
+    .item-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+    .item-title { font-size: 17px; font-weight: 600; color: var(--ink-strong); margin: 0; }
+    .item-badge { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--radius-pill); background: rgba(0, 240, 255, 0.1); color: var(--marker); border: 1px solid rgba(0, 240, 255, 0.2); }
+    .item-desc { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
     .empty-box {
       padding: 48px 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius-tile);
       text-align: center; background: var(--ground-tile); margin-top: 18px;
@@ -366,8 +373,8 @@
           <div style="font-size:14px; color:var(--ink-soft); line-height:1.5;">
             Philosophy, distributed systems, research papers, and classical literature.
           </div>
-          <div class="font-mono text-xs text-muted" style="margin-top:8px;">
-            curation in progress &bull; 2026
+          <div class="font-mono text-xs" style="margin-top:8px; color:var(--ink-muted);">
+            Currently reading: <span style="color:var(--marker); font-weight:500;">Learn to Earn</span>
           </div>
         </div>
         <span class="b-tile-key">R</span>
@@ -509,14 +516,22 @@
 
     <h2 class="view-heading">[R] Intellectual Shelf</h2>
     <p class="view-subtitle">
-      Curated literature, machine learning papers, and philosophy.
+      Books, economics, systems, and literature that shape my thinking.
     </p>
 
-    <div class="empty-box">
-      <div class="empty-title">Reading list compiling</div>
-      <div class="empty-desc">
-        Annotations, favorite papers, and book highlights will be updated here.
-      </div>
+    <div class="content-list">
+      <article class="item-card">
+        <div class="item-head">
+          <h3 class="item-title">Learn to Earn</h3>
+          <span class="item-badge">Currently Reading</span>
+        </div>
+        <div class="font-mono text-xs text-muted" style="margin-bottom:8px;">
+          By Peter Lynch &amp; John Rothchild &bull; Economics &amp; Business Fundamentals
+        </div>
+        <p class="item-desc">
+          A fundamental guide to business, market incentives, capitalism, and how companies create long-term value.
+        </p>
+      </article>
     </div>
   </section>
 

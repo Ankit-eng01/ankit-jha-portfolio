@@ -547,6 +547,60 @@ button {
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
 }
 
+/* Content List & Item Cards */
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.item-card {
+  padding: 22px;
+  background: var(--ground-tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-inner);
+  transition: all var(--dur-hover) var(--ease-glide);
+}
+
+.item-card:hover {
+  border-color: var(--line-strong);
+  background: var(--ground-tile-hover);
+  transform: translateY(-2px);
+}
+
+.item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.item-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink-strong);
+  margin: 0;
+}
+
+.item-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--marker);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.item-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.6;
+}
+
 /* Empty State Container */
 .empty-box {
   padding: 48px 24px;
