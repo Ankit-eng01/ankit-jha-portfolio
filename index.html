@@ -112,9 +112,10 @@
       position: relative; display: flex; flex-direction: column; justify-content: space-between;
       padding: 18px; background: var(--ground-tile); border: 1px solid var(--line);
       border-radius: var(--radius-tile); text-align: left; transition: all var(--dur-hover) var(--ease);
-      cursor: pointer; min-height: 128px;
+      cursor: pointer; min-height: 128px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;
     }
     .b-tile:hover { border-color: var(--line-strong); background: var(--ground-tile-hover); transform: translateY(-2px); }
+    .b-tile:active { transform: translateY(0); }
     .b-tile-wide { grid-column: 1 / -1; min-height: 104px; }
     .tile-title { font-size: 15px; font-weight: 600; color: var(--ink-strong); margin-bottom: 4px; }
     .tile-desc { font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; }
@@ -147,7 +148,7 @@
     .contact-telemetry { display: flex; align-items: center; gap: 8px; font-size: 12px; font-family: var(--font-mono); color: var(--ink-muted); }
     .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
     .view-panel { display: none; animation: fadeIn 0.2s var(--ease); }
-    .view-panel.active { display: block; }
+    .view-panel.active { display: block !important; }
     .view-back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .back-btn {
       display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
@@ -271,7 +272,7 @@
       </button>
 
       <!-- Tile 5: Reading -->
-      <button type="button" class="b-tile" onclick="navigateToView('reading')" data-section="reading">
+      <button type="button" class="b-tile" onclick="navigateToView('reading')" data-section="reading" id="readingTileBtn">
         <div>
           <div class="tile-title">Reading</div>
           <div class="tile-desc">
@@ -423,8 +424,214 @@
     </div>
   </section>
 
-  <!-- Scripts -->
-  <script src="data.js"></script>
-  <script src="script.js"></script>
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT: Inlined directly for 100% reliability         -->
+  <!-- ======================================================== -->
+  <script>
+    const VIEWS = {
+      home: 'homeView',
+      work: 'workView',
+      garden: 'gardenView',
+      blog: 'blogView',
+      services: 'servicesView',
+      reading: 'readingView'
+    };
+
+    function navigateToView(viewName, updateHash = true) {
+      // Hide all panels
+      document.querySelectorAll('.view-panel').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      // Show target panel
+      const targetId = VIEWS[viewName] || 'homeView';
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      if (updateHash) {
+        if (viewName === 'home') {
+          history.pushState(null, '', window.location.pathname);
+        } else {
+          window.location.hash = viewName;
+        }
+      }
+    }
+
+    function handleHashChange() {
+      const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+      if (VIEWS[hash]) {
+        navigateToView(hash, false);
+      } else {
+        navigateToView('home', false);
+      }
+    }
+
+    // Theme toggle
+    function setTheme(theme, save = true) {
+      document.documentElement.setAttribute('data-theme', theme);
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'dark' ? '#0d0f12' : '#ffffff';
+
+      const lightBtn = document.getElementById('themeLightBtn');
+      const darkBtn = document.getElementById('themeDarkBtn');
+      if (lightBtn && darkBtn) {
+        if (theme === 'light') {
+          lightBtn.classList.add('active');
+          darkBtn.classList.remove('active');
+        } else {
+          darkBtn.classList.add('active');
+          lightBtn.classList.remove('active');
+        }
+      }
+      if (save) {
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+      }
+    }
+
+    // Bio expansion
+    let isBioOpen = false;
+    function toggleBio() {
+      isBioOpen = !isBioOpen;
+      const bioMore = document.getElementById('bioMore');
+      const cutHint = document.getElementById('cutHint');
+      const cutLineBtn = document.getElementById('cutLineBtn');
+      if (!bioMore) return;
+
+      if (isBioOpen) {
+        bioMore.classList.add('open');
+        if (cutHint) cutHint.textContent = 'Fold back ↑';
+        if (cutLineBtn) cutLineBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        bioMore.classList.remove('open');
+        if (cutHint) cutHint.textContent = 'More about me ↓';
+        if (cutLineBtn) cutLineBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Avatar animation
+    function initAvatar() {
+      const canvas = document.getElementById('avatarCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = 17;
+
+      const phi = (1 + Math.sqrt(5)) / 2;
+      const raw = [
+        [-1,  phi, 0], [ 1,  phi, 0], [-1, -phi, 0], [ 1, -phi, 0],
+        [ 0, -1,  phi], [ 0,  1,  phi], [ 0, -1, -phi], [ 0,  1, -phi],
+        [ phi, 0, -1], [ phi, 0,  1], [-phi, 0, -1], [-phi, 0,  1]
+      ];
+      const s = radius / Math.sqrt(1 + phi * phi);
+      const vertices = raw.map(v => ({ x: v[0] * s, y: v[1] * s, z: v[2] * s }));
+
+      function render() {
+        ctx.clearRect(0, 0, w, h);
+        const cosY = Math.cos(0.010);
+        const sinY = Math.sin(0.010);
+        const cosX = Math.cos(0.006);
+        const sinX = Math.sin(0.006);
+
+        vertices.forEach(v => {
+          let x = v.x * cosY - v.z * sinY;
+          let z = v.z * cosY + v.x * sinY;
+          let y = v.y * cosX - z * sinX;
+          z = z * cosX + v.y * sinX;
+          v.x = x; v.y = y; v.z = z;
+        });
+
+        ctx.lineWidth = 0.7;
+        for (let i = 0; i < vertices.length; i++) {
+          for (let j = i + 1; j < vertices.length; j++) {
+            const dx = vertices[i].x - vertices[j].x;
+            const dy = vertices[i].y - vertices[j].y;
+            const dz = vertices[i].z - vertices[j].z;
+            if (Math.sqrt(dx*dx + dy*dy + dz*dz) < radius * 1.2) {
+              ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+              ctx.beginPath();
+              ctx.moveTo(cx + vertices[i].x, cy + vertices[i].y);
+              ctx.lineTo(cx + vertices[j].x, cy + vertices[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        vertices.forEach(v => {
+          const depth = (v.z + radius) / (radius * 2);
+          ctx.fillStyle = depth > 0.5 ? 'rgba(0, 212, 227, 0.85)' : 'rgba(255, 255, 255, 0.4)';
+          ctx.beginPath();
+          ctx.arc(cx + v.x, cy + v.y, depth > 0.5 ? 1.6 : 1.2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    // Live Clock
+    function initClock() {
+      const clockEl = document.getElementById('liveTime');
+      if (!clockEl) return;
+      function tick() {
+        const now = new Date();
+        clockEl.textContent = now.toLocaleTimeString('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        }) + ' IST';
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    // Wire up events
+    document.addEventListener('DOMContentLoaded', () => {
+      // Saved theme
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme, false);
+
+      // Listen for hash changes
+      window.addEventListener('hashchange', handleHashChange);
+      handleHashChange();
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.target.closest('input, textarea, select')) return;
+        const key = e.key.toUpperCase();
+        if (e.key === 'Escape') { navigateToView('home'); return; }
+        switch (key) {
+          case 'W': navigateToView('work'); break;
+          case 'G': navigateToView('garden'); break;
+          case 'B': navigateToView('blog'); break;
+          case 'S': navigateToView('services'); break;
+          case 'R': navigateToView('reading'); break;
+        }
+      });
+
+      // Explicit click bindings for all tiles
+      document.querySelectorAll('[data-section]').forEach(tile => {
+        tile.addEventListener('click', (e) => {
+          const section = tile.getAttribute('data-section');
+          if (section) {
+            e.preventDefault();
+            navigateToView(section);
+          }
+        });
+      });
+
+      // Clock and Avatar
+      initClock();
+      initAvatar();
+    });
+  </script>
 </body>
 </html>
