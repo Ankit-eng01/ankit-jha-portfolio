@@ -291,15 +291,17 @@
     .cover-learn-sub { font-size: 7px; font-family: var(--font-mono); color: #e5c158; letter-spacing: 0.06em; }
     .cover-learn-author { font-size: 7.5px; font-family: var(--font-mono); color: #ffffff; letter-spacing: 0.05em; opacity: 0.9; }
 
-    /* 2. Nausea */
-    .cover-nausea {
-      background: #09090b; color: #ffffff; height: 100%; padding: 12px 10px;
+    /* 2. The Psychology of Money */
+    .cover-psychology {
+      background: linear-gradient(155deg, #1e2638 0%, #0e131d 100%);
+      color: #ffffff; height: 100%; padding: 12px 10px;
       display: flex; flex-direction: column; justify-content: space-between;
-      box-sizing: border-box; text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.12); box-sizing: border-box; text-align: center;
     }
-    .spine-nausea { background: #000000; color: #ffffff; }
-    .cover-nausea-title { font-size: 26px; font-weight: 300; font-style: italic; line-height: 0.85; letter-spacing: -0.04em; color: #ffffff; font-family: Georgia, serif; }
-    .cover-nausea-author { font-size: 7.5px; font-family: var(--font-mono); color: #9ca3af; letter-spacing: 0.08em; }
+    .spine-psychology { background: #121824; color: #ffffff; }
+    .cover-psychology-title { font-size: 10.5px; font-weight: 800; letter-spacing: 0.07em; line-height: 1.25; color: #ffffff; font-family: var(--font-sans); margin: 6px 0; }
+    .cover-psychology-sub { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; letter-spacing: 0.04em; }
+    .cover-psychology-author { font-size: 7.5px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.06em; }
 
     /* 3. Crime and Punishment */
     .cover-crime {
@@ -315,79 +317,6 @@
     }
     .cover-crime-title { font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; font-family: var(--font-sans); }
     .cover-crime-author { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; margin-top: 2px; }
-
-    /* 4. Twelve Angry Men */
-    .cover-twelve {
-      background: #0d0d0f; height: 100%; display: flex; flex-direction: column;
-      box-sizing: border-box; overflow: hidden;
-    }
-    .spine-twelve { background: #b71c1c; color: #ffffff; }
-    .cover-twelve-top {
-      background: #c62828; flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; padding: 10px;
-    }
-    .cover-twelve-knife { width: 4px; height: 44px; background: #ffffff; clip-path: polygon(50% 0%, 100% 80%, 65% 80%, 65% 100%, 35% 100%, 35% 80%, 0% 80%); }
-    .cover-twelve-bottom {
-      background: #000000; padding: 8px 6px; text-align: center;
-      border-top: 2px solid #ffffff;
-    }
-    .cover-twelve-title { font-size: 8px; font-weight: 700; letter-spacing: 0.05em; color: #ffffff; }
-    .cover-twelve-author { font-size: 6.5px; font-family: var(--font-mono); color: #ef5350; margin-top: 2px; }
-
-    /* 5. The Trial */
-    .cover-trial {
-      background: #e64a38; color: #ffffff; height: 100%; padding: 8px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      box-sizing: border-box;
-    }
-    .spine-trial { background: #fdfaf6; color: #1a1a1a; }
-    .eyes-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4px 6px; padding: 4px 2px;
-    }
-    .eye-icon {
-      width: 100%; height: 11px; background: #fdfaf6; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .eye-pupil { width: 5px; height: 5px; background: #1a1a1a; border-radius: 50%; }
-    .cover-trial-bottom { text-align: center; }
-    .cover-trial-title { font-size: 11px; font-style: italic; font-family: Georgia, serif; color: #fdfaf6; }
-
-    /* 6. 1984 */
-    .cover-1984 {
-      background: linear-gradient(170deg, #4a0d14 0%, #150305 100%);
-      color: #ffffff; height: 100%; padding: 12px 10px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      box-sizing: border-box; text-align: center;
-    }
-    .spine-1984 { background: #260508; color: #ffffff; }
-    .cover-1984-big { font-size: 26px; font-weight: 900; letter-spacing: -0.04em; color: #ffffff; font-family: var(--font-sans); line-height: 1; }
-    .cover-1984-author { font-size: 7.5px; font-family: var(--font-mono); color: #f87171; letter-spacing: 0.08em; }
-
-    /* 7. Three Men in a Boat */
-    .cover-boat {
-      background: linear-gradient(180deg, #32556b 0%, #172430 100%);
-      color: #ffffff; height: 100%; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 8px; box-sizing: border-box;
-    }
-    .spine-boat { background: #13202b; color: #ffffff; }
-    .cover-boat-plaque {
-      background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 4px; text-align: center; border-radius: 2px;
-    }
-    .cover-boat-title { font-size: 8px; font-weight: 700; letter-spacing: 0.04em; color: #ffffff; }
-    .cover-boat-author { font-size: 6.5px; font-family: var(--font-mono); color: #7dd3fc; margin-top: 2px; }
-
-    /* 8. The Psychology of Money */
-    .cover-psychology {
-      background: linear-gradient(155deg, #1e2638 0%, #0e131d 100%);
-      color: #ffffff; height: 100%; padding: 12px 10px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      border: 1px solid rgba(255, 255, 255, 0.12); box-sizing: border-box; text-align: center;
-    }
-    .spine-psychology { background: #121824; color: #ffffff; }
-    .cover-psychology-title { font-size: 10.5px; font-weight: 800; letter-spacing: 0.07em; line-height: 1.25; color: #ffffff; font-family: var(--font-sans); margin: 6px 0; }
-    .cover-psychology-sub { font-size: 6.5px; font-family: var(--font-mono); color: #94a3b8; letter-spacing: 0.04em; }
-    .cover-psychology-author { font-size: 7.5px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.06em; }
 
     /* Book Details Modal */
     .book-modal-backdrop {
@@ -463,7 +392,7 @@
         First things first, greetings to whoever is reading this, I am thankful for you coming here. I hope you are having a great day.
       </p>
       <p>
-        Now coming back to this website, this is just another of your typical portfolio website(kinda?). Myself Ankit, primarily a <mark class="b-marked">curious guy</mark> who just loves almost everything tech related, secondarily a deemed to be engineer.
+        Now coming back to this website, this is just another of your typical portfolio website(kinda?). Myself Ankit, primarily a curious guy who just loves almost everything tech related, secondarily a deemed to be engineer.
       </p>
     </div>
 
@@ -703,13 +632,13 @@
         <span class="shelf-stats-beacon"></span>
         <span>Currently reading: <strong style="color:var(--accent); font-weight:600;">Learn to Earn</strong></span>
       </div>
-      <span>8 Books Curated</span>
+      <span>3 Books Curated</span>
     </div>
 
     <!-- 3D Realistic Bookshelf Grid -->
     <div class="bookshelf-grid">
 
-      <!-- Book 1: Learn to Earn (Hero) -->
+      <!-- Book 1: Learn to Earn -->
       <article class="book-card" onclick="openBookModal('learn-to-earn')">
         <div class="book-frame">
           <span class="book-status-badge">Reading</span>
@@ -771,34 +700,7 @@
         </div>
       </article>
 
-      <!-- Book 3: Nausea -->
-      <article class="book-card" onclick="openBookModal('nausea')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-nausea">
-                <div style="font-size:7px; font-family:var(--font-mono); color:#71717a;">JEAN-PAUL SARTRE</div>
-                <div class="cover-nausea-title">
-                  na<br>us<br>ea
-                </div>
-                <div class="cover-nausea-author">TRANSLATED BY L. ALEXANDER</div>
-              </div>
-            </div>
-            <div class="book-spine spine-nausea">
-              <span class="book-spine-text">JEAN-PAUL SARTRE &bull; NAUSEA</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">Nausea</h3>
-          <p class="book-meta-author">Jean-Paul Sartre</p>
-        </div>
-      </article>
-
-      <!-- Book 4: Crime and Punishment -->
+      <!-- Book 3: Crime and Punishment -->
       <article class="book-card" onclick="openBookModal('crime-and-punishment')">
         <div class="book-frame">
           <div class="book-3d">
@@ -822,130 +724,6 @@
         <div class="book-meta">
           <h3 class="book-meta-title">Crime and Punishment</h3>
           <p class="book-meta-author">Fyodor Dostoevsky</p>
-        </div>
-      </article>
-
-      <!-- Book 5: Twelve Angry Men -->
-      <article class="book-card" onclick="openBookModal('twelve-angry-men')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-twelve">
-                <div class="cover-twelve-top">
-                  <div class="cover-twelve-knife"></div>
-                </div>
-                <div class="cover-twelve-bottom">
-                  <div class="cover-twelve-title">TWELVE ANGRY MEN</div>
-                  <div class="cover-twelve-author">REGINALD ROSE</div>
-                </div>
-              </div>
-            </div>
-            <div class="book-spine spine-twelve">
-              <span class="book-spine-text">REGINALD ROSE &bull; TWELVE ANGRY MEN</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">Twelve Angry Men</h3>
-          <p class="book-meta-author">Reginald Rose</p>
-        </div>
-      </article>
-
-      <!-- Book 6: Three Men in a Boat -->
-      <article class="book-card" onclick="openBookModal('three-men-in-a-boat')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-boat">
-                <div style="font-size:7px; font-family:var(--font-mono); color:#7dd3fc; margin-bottom:auto;">VINTAGE HUMOR</div>
-                <div class="cover-boat-plaque">
-                  <div class="cover-boat-title">THREE MEN<br>IN A BOAT</div>
-                  <div class="cover-boat-author">JEROME K. JEROME</div>
-                </div>
-              </div>
-            </div>
-            <div class="book-spine spine-boat">
-              <span class="book-spine-text">JEROME K. JEROME &bull; THREE MEN IN A BOAT</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">Three Men in a Boat</h3>
-          <p class="book-meta-author">Jerome K. Jerome</p>
-        </div>
-      </article>
-
-      <!-- Book 7: The Trial -->
-      <article class="book-card" onclick="openBookModal('the-trial')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-trial">
-                <div style="font-size:7px; font-family:var(--font-mono); color:#fdfaf6; opacity:0.85;">FRANZ KAFKA</div>
-                <div class="eyes-grid">
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                  <div class="eye-icon"><div class="eye-pupil"></div></div>
-                </div>
-                <div class="cover-trial-bottom">
-                  <div class="cover-trial-title">The Trial</div>
-                </div>
-              </div>
-            </div>
-            <div class="book-spine spine-trial">
-              <span class="book-spine-text">FRANZ KAFKA &bull; THE TRIAL</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">The Trial</h3>
-          <p class="book-meta-author">Franz Kafka</p>
-        </div>
-      </article>
-
-      <!-- Book 8: 1984 -->
-      <article class="book-card" onclick="openBookModal('1984')">
-        <div class="book-frame">
-          <div class="book-3d">
-            <div class="book-front">
-              <div class="cover-1984">
-                <div style="font-size:7px; font-family:var(--font-mono); color:#fca5a5; letter-spacing:0.08em;">DYSTOPIAN CLASSIC</div>
-                <div>
-                  <div style="width:24px; height:12px; border-radius:50%; background:#ffffff; margin:0 auto 4px auto; display:flex; align-items:center; justify-content:center;">
-                    <div style="width:6px; height:6px; border-radius:50%; background:#1f0407;"></div>
-                  </div>
-                  <div class="cover-1984-big">1984</div>
-                </div>
-                <div class="cover-1984-author">GEORGE ORWELL</div>
-              </div>
-            </div>
-            <div class="book-spine spine-1984">
-              <span class="book-spine-text">GEORGE ORWELL &bull; 1984</span>
-            </div>
-            <div class="book-pages-right"></div>
-            <div class="book-pages-top"></div>
-          </div>
-          <div class="book-shadow"></div>
-        </div>
-        <div class="book-meta">
-          <h3 class="book-meta-title">1984</h3>
-          <p class="book-meta-author">George Orwell</p>
         </div>
       </article>
 
@@ -1148,66 +926,26 @@
       'learn-to-earn': {
         title: 'Learn to Earn',
         author: 'Peter Lynch & John Rothchild',
-        category: 'Economics & Business Fundamentals',
+        category: 'Economics & Business',
         status: 'Currently Reading',
         quote: 'The key to making money in stocks is not to get scared out of them.',
-        note: 'A fundamental, no-nonsense breakdown of capitalism, how free markets operate, why companies exist, and how real enterprise value is created. Lynch explains how understanding the underlying balance sheet and cash flow separates long-term compounders from market gamblers.'
+        note: 'A clear, foundational breakdown of capitalism, how businesses operate, and why understanding underlying balance sheets and cash flows matters for long-term investing.'
       },
       'psychology-of-money': {
         title: 'The Psychology of Money',
         author: 'Morgan Housel',
-        category: 'Behavioral Finance & Decision Making',
-        status: 'Curated Favorite',
+        category: 'Behavioral Finance',
+        status: 'Finished',
         quote: 'Doing well with money has a little to do with how smart you are and a lot to do with how you behave.',
-        note: 'Morgan Housel presents 19 short stories exploring the strange ways people think about money. The overarching lesson: financial success is not a hard science like physics—it is a soft skill where your behavior, patience, and ego control outweigh analytical horsepower.'
-      },
-      'nausea': {
-        title: 'Nausea',
-        author: 'Jean-Paul Sartre',
-        category: 'Existential Philosophy',
-        status: 'Curated Classic',
-        quote: 'Every existing thing is born without reason, prolongs itself out of weakness, and dies by chance.',
-        note: 'A masterwork of existential alienation. Antoine Roquentin confronts the sheer, unmediated existence of objects and freedom, chronicling how human consciousness must construct meaning in an indifferent universe.'
+        note: 'Short essays exploring how people actually interact with money. The core insight is that financial outcomes are driven much more by behavior, patience, and emotional discipline than technical knowledge.'
       },
       'crime-and-punishment': {
         title: 'Crime and Punishment',
         author: 'Fyodor Dostoevsky',
-        category: 'Psychological Literature',
-        status: 'Curated Classic',
+        category: 'Literature & Philosophy',
+        status: 'Finished',
         quote: 'Pain and suffering are always inevitable for a large intelligence and a deep heart.',
-        note: 'A gripping exploration of moral transgression, ideological hubris, and psychological devastation. Raskolnikov tests whether extraordinary men stand above common morality, only to discover the inescapable weight of human conscience.'
-      },
-      'twelve-angry-men': {
-        title: 'Twelve Angry Men',
-        author: 'Reginald Rose',
-        category: 'Rhetoric & Group Dynamics',
-        status: 'Curated Classic',
-        quote: "It's always difficult to keep personal prejudice out of a thing like this.",
-        note: 'A masterclass in persuasion, cognitive bias, and reasonable doubt. Demonstrates how a single patient, rational voice can systematically dismantle prejudice and consensus blindness.'
-      },
-      'three-men-in-a-boat': {
-        title: 'Three Men in a Boat',
-        author: 'Jerome K. Jerome',
-        category: 'Satire & Vintage Wit',
-        status: 'Curated Classic',
-        quote: 'I like work: it fascinates me. I can sit and look at it for hours.',
-        note: 'A humorous Victorian travelogue down the Thames that captures human idiosyncrasies, petty squabbles, and the timeless art of doing nothing with complete conviction.'
-      },
-      'the-trial': {
-        title: 'The Trial',
-        author: 'Franz Kafka',
-        category: 'Philosophical Fiction',
-        status: 'Curated Classic',
-        quote: 'Someone must have slandered Josef K., for one morning, without having done anything wrong, he was arrested.',
-        note: 'An eerie indictment of bureaucratic inertia, irrational systems, and unaccountable authority. Josef K. is caught in an opaque legal labyrinth where guilt is assumed and innocence is impossible to prove.'
-      },
-      '1984': {
-        title: '1984',
-        author: 'George Orwell',
-        category: 'Dystopian Systems & Control',
-        status: 'Curated Classic',
-        quote: 'Freedom is the freedom to say that two plus two make four. If that is granted, all else follows.',
-        note: 'The seminal examination of surveillance architecture, doublethink, and the manipulation of language (Newspeak) to constrain thought itself. Required reading for anyone thinking about systems, power, and information control.'
+        note: 'An intense examination of guilt, conscience, and moral justification. It dissects what happens when someone attempts to place their rationalizations above fundamental human ethics.'
       }
     };
 
