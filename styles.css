@@ -458,22 +458,6 @@ button {
   color: var(--ink-strong);
 }
 
-.contact-telemetry {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-family: var(--font-mono);
-  color: var(--ink-muted);
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10b981;
-}
-
 /* Section Views */
 .view-panel {
   display: none;

@@ -144,12 +144,9 @@
       background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(0, 212, 227, 0.2);
     }
     .item-desc { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
-    .contact-nav { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
-    @media (min-width: 560px) { .contact-nav { flex-direction: row; align-items: center; justify-content: space-between; } }
+    .contact-nav { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; align-items: center; }
     .contact-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13.5px; color: var(--ink-muted); }
     .contact-links a:hover { color: var(--ink-strong); }
-    .contact-telemetry { display: flex; align-items: center; gap: 8px; font-size: 12px; font-family: var(--font-mono); color: var(--ink-muted); }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
     .view-panel { display: none; animation: fadeIn 0.2s var(--ease); }
     .view-panel.active { display: block !important; }
     .view-back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
@@ -623,18 +620,13 @@
 
     </div>
 
-    <!-- Contact Navigation & Live Delhi Time -->
+    <!-- Contact Navigation -->
     <footer class="contact-nav">
       <div class="contact-links">
         <a href="mailto:ankitjhawork1@gmail.com" target="_blank" rel="noopener noreferrer">ankitjhawork1@gmail.com</a>
         <a href="https://github.com/Ankit-eng01" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://x.com/Ankit_J01" target="_blank" rel="noopener noreferrer">X</a>
         <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-
-      <div class="contact-telemetry">
-        <span class="status-dot"></span>
-        <span>Delhi: <strong id="liveTime" style="color:var(--ink-strong);">--:--:--</strong></span>
       </div>
     </footer>
 
@@ -1187,24 +1179,6 @@
       render();
     }
 
-    // Live Clock
-    function initClock() {
-      const clockEl = document.getElementById('liveTime');
-      if (!clockEl) return;
-      function tick() {
-        const now = new Date();
-        clockEl.textContent = now.toLocaleTimeString('en-US', {
-          timeZone: 'Asia/Kolkata',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true
-        }) + ' IST';
-      }
-      tick();
-      setInterval(tick, 1000);
-    }
-
     // Book Modal Data & Handlers
     const BOOKS_DATA = {
       'learn-to-earn': {
@@ -1350,11 +1324,7 @@
         });
       });
 
-      // Clock and Avatar
-      initClock();
-      initAvatar();
-    });
-      initClock();
+      // Avatar
       initAvatar();
     });
   </script>
