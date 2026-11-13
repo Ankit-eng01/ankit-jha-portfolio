@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0a0b0e">
+  <meta name="theme-color" content="#0d0f12">
   <title>Ankit Jha | AI and Full Stack Engineer</title>
-  <meta name="description" content="Ankit Jha is an AI and full stack engineer based in Delhi, building autonomous agent systems, vector search pipelines, and modern backends.">
+  <meta name="description" content="Ankit Jha is an AI and full stack engineer based in Delhi.">
 
   <!-- Geist & Geist Mono Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,58 +16,46 @@
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* Inlined resilient CSS guarantee: identical to styles.css */
+    /* Inlined styling guarantee */
     :root {
-      --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
-      --cyan-400: #00f0ff;
-      --indigo-500: #6366f1;
-      --indigo-400: #818cf8;
-      --radius-ticket: 4px;
-      --radius-pill: 6px;
-      --radius-inner: 10px;
-      --radius-media: 14px;
-      --radius-tile: 18px;
+      --accent: #00d4e3;
+      --accent-soft: rgba(0, 212, 227, 0.12);
+      --radius-inner: 8px;
+      --radius-tile: 14px;
       --radius-full: 999px;
       --dur-link: 150ms;
-      --dur-hover: 240ms;
-      --dur-toggle: 320ms;
-      --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);
-      --col-reading: 600px;
-      --col-wide: 760px;
+      --dur-hover: 200ms;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --col-reading: 580px;
+      --col-wide: 680px;
       color-scheme: dark;
-      --ground: #0a0b0e;
-      --ground-tile: #111318;
-      --ground-tile-hover: #161922;
-      --ink: #e6e8ee;
+      --ground: #0d0f12;
+      --ground-tile: #13161c;
+      --ground-tile-hover: #191c24;
+      --ink: #e2e4e9;
       --ink-strong: #ffffff;
-      --ink-soft: #9aa1b2;
-      --ink-muted: #6f778a;
+      --ink-soft: #8b92a1;
+      --ink-muted: #5e6573;
       --bio: #9ca3af;
-      --line: #1c202b;
-      --line-strong: #2a3142;
-      --marker: var(--cyan-400);
-      --marker-secondary: var(--indigo-400);
-      --hl-cyan: rgba(0, 240, 255, 0.16);
-      --glow-accent: 0 0 24px rgba(0, 240, 255, 0.18);
+      --line: #1c2029;
+      --line-strong: #262c38;
     }
     :root[data-theme="light"] {
       color-scheme: light;
-      --ground: #f8fafc;
-      --ground-tile: #ffffff;
-      --ground-tile-hover: #f1f5f9;
-      --ink: #0f172a;
-      --ink-strong: #020817;
-      --ink-soft: #475569;
-      --ink-muted: #64748b;
-      --bio: #475569;
-      --line: #e2e8f0;
-      --line-strong: #cbd5e1;
-      --marker: #0284c7;
-      --marker-secondary: #4f46e5;
-      --hl-cyan: rgba(2, 132, 199, 0.12);
-      --glow-accent: 0 0 20px rgba(2, 132, 199, 0.12);
+      --ground: #ffffff;
+      --ground-tile: #f6f7f9;
+      --ground-tile-hover: #eef0f4;
+      --ink: #1a1d24;
+      --ink-strong: #0a0b0e;
+      --ink-soft: #525a69;
+      --ink-muted: #7d8696;
+      --bio: #4b5563;
+      --line: #e5e8ed;
+      --line-strong: #d1d6e0;
+      --accent: #0284c7;
+      --accent-soft: rgba(2, 132, 199, 0.1);
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--ground); background-color: var(--ground); }
@@ -76,160 +64,100 @@
       font-family: var(--font-sans); font-size: 15px; line-height: 1.65;
       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     }
-    body::before {
-      content: ""; position: fixed; inset: 0;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.04) 0%, transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
-      pointer-events: none; z-index: -1;
-    }
     a { color: inherit; text-decoration: none; transition: color var(--dur-link) ease; }
     button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
     .font-mono { font-family: var(--font-mono); }
     .text-muted { color: var(--ink-muted); }
+    .text-soft { color: var(--ink-soft); }
     .text-xs { font-size: 12px; }
-    .b-marked {
-      background: var(--hl-cyan); color: var(--marker); padding: 2px 8px; border-radius: 4px;
-      border: 1px solid rgba(0, 240, 255, 0.22); font-weight: 500; box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
-    }
-    .home { max-width: var(--col-reading); margin: 0 auto; padding: 56px 20px 84px; }
-    .view-container { max-width: var(--col-wide); margin: 0 auto; padding: 44px 20px 84px; }
-    .home-top { display: flex; align-items: center; justify-content: space-between; min-height: 64px; margin-bottom: 28px; }
+    .b-marked { background: var(--accent-soft); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+    .home { max-width: var(--col-reading); margin: 0 auto; padding: 56px 20px 80px; }
+    .view-container { max-width: var(--col-wide); margin: 0 auto; padding: 44px 20px 80px; }
+    .home-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
     .avatar-box {
-      width: 62px; height: 62px; border-radius: 18px; background: linear-gradient(135deg, #131722, #0d0f17);
-      border: 1px solid rgba(0, 240, 255, 0.25); overflow: hidden; display: flex; align-items: center;
-      justify-content: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 52px; height: 52px; border-radius: 14px; background: var(--ground-tile);
+      border: 1px solid var(--line); overflow: hidden; display: flex; align-items: center; justify-content: center;
     }
-    .avatar-box:hover { border-color: var(--marker); box-shadow: var(--glow-accent); }
-    #avatarCanvas { display: block; width: 62px; height: 62px; }
+    #avatarCanvas { display: block; width: 52px; height: 52px; }
     .theme-toggle {
       display: flex; align-items: center; background: var(--ground-tile);
-      border: 1px solid var(--line); border-radius: var(--radius-full); padding: 3px; gap: 3px;
+      border: 1px solid var(--line); border-radius: var(--radius-full); padding: 3px; gap: 2px;
     }
     .theme-btn {
-      display: flex; align-items: center; justify-content: center; padding: 6px 10px;
+      display: flex; align-items: center; justify-content: center; padding: 5px 9px;
       border-radius: var(--radius-full); color: var(--ink-muted); transition: all var(--dur-link) ease;
     }
     .theme-btn:hover { color: var(--ink-strong); }
-    .theme-btn.active {
-      background: var(--ground); color: var(--marker); border: 1px solid var(--line-strong);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-    .home-h1 {
-      font-size: 23px; font-weight: 600; line-height: 1.35; letter-spacing: -0.025em;
-      color: var(--ink-strong); margin: 0 0 20px 0;
-    }
-    .home-h1 .muted { display: block; font-size: 18.5px; font-weight: 400; color: var(--ink-muted); margin-top: 4px; }
-    .bio { color: var(--bio); font-size: 15px; line-height: 1.68; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .theme-btn.active { background: var(--ground); color: var(--ink-strong); border: 1px solid var(--line-strong); }
+    .home-h1 { font-size: 22px; font-weight: 600; line-height: 1.35; letter-spacing: -0.02em; color: var(--ink-strong); margin: 0 0 20px 0; }
+    .home-h1 .muted { display: block; font-size: 18px; font-weight: 400; color: var(--ink-muted); margin-top: 3px; }
+    .bio { color: var(--bio); font-size: 15px; line-height: 1.65; margin-bottom: 22px; display: flex; flex-direction: column; gap: 14px; }
     .bio p { margin: 0; }
-    .cut-box { margin: 24px 0 32px; }
-    .cut-line { position: relative; display: flex; align-items: center; width: 100%; padding: 12px 0; cursor: pointer; background: none; }
-    .cut-line-rule {
-      flex: 1; height: 1px;
-      background: linear-gradient(90deg, var(--line-strong) 0%, rgba(0, 240, 255, 0.25) 50%, var(--line-strong) 100%);
-    }
-    .cut-handle {
-      width: 12px; height: 12px; background: var(--marker); border-radius: 3px;
-      margin-left: 10px; box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .cut-line:hover .cut-handle { transform: scale(1.3); box-shadow: 0 0 14px rgba(0, 240, 255, 0.9); }
-    .cut-hint { font-size: 11px; font-family: var(--font-mono); color: var(--ink-muted); margin-right: 10px; transition: color 0.2s ease; }
-    .cut-line:hover .cut-hint { color: var(--marker); }
+    .cut-box { margin: 20px 0 28px; }
+    .cut-line { display: flex; align-items: center; width: 100%; padding: 10px 0; cursor: pointer; background: none; }
+    .cut-line-rule { flex: 1; height: 1px; background: var(--line); }
+    .cut-handle { width: 8px; height: 8px; background: var(--accent); border-radius: 2px; margin-left: 8px; }
+    .cut-hint { font-size: 11.5px; font-family: var(--font-mono); color: var(--ink-muted); margin-right: 8px; transition: color var(--dur-link) ease; }
+    .cut-line:hover .cut-hint { color: var(--ink-strong); }
     .bio-more {
-      display: none; border-left: 2px solid var(--marker); padding-left: 20px;
-      margin: 16px 0 28px; color: var(--bio); font-size: 14.5px; line-height: 1.68;
+      display: none; border-left: 2px solid var(--line-strong); padding-left: 18px;
+      margin: 14px 0 24px; color: var(--bio); font-size: 14.5px; line-height: 1.65;
     }
-    .bio-more.open { display: flex; flex-direction: column; gap: 14px; animation: fadeIn 0.3s ease; }
-    .fold-btn { align-self: flex-start; font-family: var(--font-mono); font-size: 11.5px; color: var(--marker); padding: 3px 0; cursor: pointer; }
+    .bio-more.open { display: flex; flex-direction: column; gap: 12px; animation: fadeIn 0.25s ease; }
+    .fold-btn { align-self: flex-start; font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); padding: 2px 0; cursor: pointer; }
     .fold-btn:hover { text-decoration: underline; }
-    .tiles { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 32px; }
+    .tiles { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
     @media (min-width: 560px) { .tiles { grid-template-columns: 1fr 1fr; } }
     .b-tile {
       position: relative; display: flex; flex-direction: column; justify-content: space-between;
-      padding: 20px; background: var(--ground-tile); border: 1px solid var(--line);
-      border-radius: var(--radius-tile); text-align: left; transition: all var(--dur-hover) var(--ease-glide);
-      cursor: pointer; min-height: 164px; overflow: hidden;
+      padding: 18px; background: var(--ground-tile); border: 1px solid var(--line);
+      border-radius: var(--radius-tile); text-align: left; transition: all var(--dur-hover) var(--ease);
+      cursor: pointer; min-height: 128px;
     }
-    .b-tile:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32); }
+    .b-tile:hover { border-color: var(--line-strong); background: var(--ground-tile-hover); transform: translateY(-2px); }
+    .b-tile-wide { grid-column: 1 / -1; min-height: 104px; }
+    .tile-title { font-size: 15px; font-weight: 600; color: var(--ink-strong); margin-bottom: 4px; }
+    .tile-desc { font-size: 13.5px; color: var(--ink-muted); line-height: 1.5; }
     .b-tile-key {
       position: absolute; bottom: 12px; right: 12px; font-family: var(--font-mono);
-      font-size: 11px; color: var(--ink-muted); background: rgba(10, 11, 14, 0.7);
-      padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); pointer-events: none;
+      font-size: 11px; color: var(--ink-muted); background: var(--ground);
+      padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line); pointer-events: none;
     }
-    .b-tile-lab {
-      background: linear-gradient(145deg, #121520, #0c0e15) !important;
-      border: 1px solid rgba(0, 240, 255, 0.28) !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-    .b-tile-lab:hover {
-      border-color: var(--marker) !important;
-      box-shadow: 0 10px 32px rgba(0, 240, 255, 0.16) !important;
-    }
-    .lab-top { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--marker); }
-    .lab-waveform { position: absolute; right: 20px; top: 48px; display: flex; align-items: flex-end; gap: 3px; height: 24px; }
-    .lab-waveform span { width: 3px; background: var(--marker); border-radius: 2px; animation: wavePulse 1.6s ease-in-out infinite alternate; }
-    .lab-waveform span:nth-child(1) { height: 10px; animation-delay: 0.1s; }
-    .lab-waveform span:nth-child(2) { height: 18px; animation-delay: 0.3s; }
-    .lab-waveform span:nth-child(3) { height: 14px; animation-delay: 0.5s; }
-    .lab-waveform span:nth-child(4) { height: 22px; animation-delay: 0.2s; }
-    .lab-waveform span:nth-child(5) { height: 8px; animation-delay: 0.4s; }
-    .lab-title { font-size: 20px; font-weight: 700; line-height: 1.25; color: #ffffff; margin-top: 36px; margin-bottom: 12px; letter-spacing: -0.02em; }
-    .lab-pill {
-      align-self: flex-start; background: rgba(0, 240, 255, 0.12); color: var(--marker);
-      border: 1px solid rgba(0, 240, 255, 0.25); font-size: 11px; font-weight: 500;
-      padding: 4px 10px; border-radius: 999px; font-family: var(--font-mono);
-    }
-    .garden-card-head { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; font-weight: 500; }
-    .terminal-box {
-      background: rgba(8, 10, 14, 0.7); border: 1px solid var(--line); border-radius: 8px;
-      padding: 10px 12px; font-family: var(--font-mono); font-size: 11.5px;
-      display: flex; flex-direction: column; gap: 5px; color: var(--ink-muted);
-    }
-    .terminal-box .term-user { color: var(--marker-secondary); }
-    .terminal-box .term-active { color: var(--ink); font-style: italic; }
-    .b-tile-wide { grid-column: 1 / -1; min-height: 110px; border-left: 3px solid var(--marker-secondary); }
-    .wide-label { font-size: 12px; color: var(--marker-secondary); font-family: var(--font-mono); margin-bottom: 4px; }
-    .wide-title { font-size: 16.5px; font-weight: 600; color: var(--ink-strong); margin-bottom: 3px; }
-    .wide-desc { font-size: 13.5px; color: var(--ink-muted); }
-    .svc-head, .shelf-label { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; font-weight: 500; }
-    .status-beacon {
-      display: inline-flex; align-items: center; gap: 6px; color: #10b981;
-      font-size: 11px; font-family: var(--font-mono); margin-top: 8px;
-    }
-    .status-beacon::before {
-      content: ""; width: 6px; height: 6px; border-radius: 50%;
-      background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
-    }
-    .content-list { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
-    .item-card { padding: 22px; background: var(--ground-tile); border: 1px solid var(--line); border-radius: var(--radius-inner); transition: all var(--dur-hover) var(--ease-glide); }
-    .item-card:hover { border-color: var(--line-strong); background: var(--ground-tile-hover); transform: translateY(-2px); }
-    .item-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
-    .item-title { font-size: 17px; font-weight: 600; color: var(--ink-strong); margin: 0; }
-    .item-badge { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--radius-pill); background: rgba(0, 240, 255, 0.1); color: var(--marker); border: 1px solid rgba(0, 240, 255, 0.2); }
-    .item-desc { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+    .reading-now { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); margin-top: 10px; }
+    .reading-now span { color: var(--accent); font-weight: 500; }
     .empty-box {
-      padding: 48px 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius-tile);
-      text-align: center; background: var(--ground-tile); margin-top: 18px;
+      padding: 44px 20px; border: 1px dashed var(--line); border-radius: var(--radius-tile);
+      text-align: center; background: var(--ground-tile); margin-top: 16px;
     }
-    .empty-title { font-size: 16.5px; font-weight: 600; color: var(--ink-strong); margin-bottom: 8px; }
-    .empty-desc { font-size: 14px; color: var(--ink-muted); max-width: 440px; margin: 0 auto; line-height: 1.6; }
-    .contact-nav { margin-top: 52px; padding-top: 26px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+    .empty-title { font-size: 15.5px; font-weight: 600; color: var(--ink-strong); margin-bottom: 6px; }
+    .empty-desc { font-size: 14px; color: var(--ink-muted); max-width: 380px; margin: 0 auto; line-height: 1.55; }
+    .content-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .item-card { padding: 20px; background: var(--ground-tile); border: 1px solid var(--line); border-radius: var(--radius-inner); }
+    .item-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+    .item-title { font-size: 16px; font-weight: 600; color: var(--ink-strong); margin: 0; }
+    .item-badge {
+      font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: var(--radius-full);
+      background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(0, 212, 227, 0.2);
+    }
+    .item-desc { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+    .contact-nav { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
     @media (min-width: 560px) { .contact-nav { flex-direction: row; align-items: center; justify-content: space-between; } }
-    .contact-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13.5px; color: var(--ink-muted); }
-    .contact-links a:hover { color: var(--marker); }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13.5px; color: var(--ink-muted); }
+    .contact-links a:hover { color: var(--ink-strong); }
     .contact-telemetry { display: flex; align-items: center; gap: 8px; font-size: 12px; font-family: var(--font-mono); color: var(--ink-muted); }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marker); box-shadow: 0 0 8px rgba(0, 240, 255, 0.7); }
-    .view-panel { display: none; animation: fadeIn 0.25s var(--ease-glide); }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+    .view-panel { display: none; animation: fadeIn 0.2s var(--ease); }
     .view-panel.active { display: block; }
-    .view-back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--ground-tile); transition: all var(--dur-link) ease; }
-    .back-btn:hover { color: var(--ink-strong); border-color: var(--line-strong); background: var(--ground-tile-hover); }
-    .view-heading { font-size: 24px; font-weight: 600; color: var(--ink-strong); margin: 0 0 8px 0; letter-spacing: -0.02em; }
-    .view-subtitle { font-size: 15px; color: var(--ink-muted); margin: 0 0 24px 0; line-height: 1.6; }
-    @keyframes wavePulse { 0% { transform: scaleY(0.4); opacity: 0.5; } 100% { transform: scaleY(1.1); opacity: 1; } }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .view-back-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
+      font-size: 12.5px; color: var(--ink-muted); padding: 5px 10px; border: 1px solid var(--line);
+      border-radius: 6px; background: var(--ground-tile); transition: all var(--dur-link) ease;
+    }
+    .back-btn:hover { color: var(--ink-strong); border-color: var(--line-strong); }
+    .view-heading { font-size: 22px; font-weight: 600; color: var(--ink-strong); margin: 0 0 6px 0; letter-spacing: -0.02em; }
+    .view-subtitle { font-size: 14.5px; color: var(--ink-muted); margin: 0 0 20px 0; line-height: 1.55; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -239,10 +167,10 @@
   <!-- ======================================================== -->
   <main id="homeView" class="home view-panel active">
     
-    <!-- Top Bar: 3D Neural Constellation Avatar & Segmented Theme Switcher -->
+    <!-- Top Bar: Avatar & Theme Switcher -->
     <header class="home-top">
-      <div class="avatar-box" title="Ankit Jha • Interactive Neural Lattice">
-        <canvas id="avatarCanvas" width="62" height="62"></canvas>
+      <div class="avatar-box" title="Ankit Jha">
+        <canvas id="avatarCanvas" width="52" height="52"></canvas>
       </div>
 
       <div class="theme-toggle" role="radiogroup" aria-label="Theme">
@@ -265,7 +193,7 @@
       Hey there, I'm Ankit Jha <span class="muted">an AI and full stack engineer based in Delhi</span>
     </h1>
 
-    <!-- Exact User Bio Content with Glowing Cyan Pill -->
+    <!-- Bio Content -->
     <div class="bio">
       <p>
         First things first, greetings to whoever is reading this, I am thankful for you coming here. I hope you are having a great day.
@@ -275,106 +203,82 @@
       </p>
     </div>
 
-    <!-- Interactive Signal Rail Cut Line -->
+    <!-- Bio Expander -->
     <div class="cut-box">
       <div class="cut-line" onclick="toggleBio()" role="button" aria-expanded="false" id="cutLineBtn">
-        <span class="cut-hint" id="cutHint">[+] Read full background &amp; engineering philosophies</span>
+        <span class="cut-hint" id="cutHint">More about me &darr;</span>
         <div class="cut-line-rule"></div>
-        <div class="cut-handle" title="Expand background"></div>
+        <div class="cut-handle"></div>
       </div>
 
-      <!-- Expandable Long Bio -->
+      <!-- Expandable Bio -->
       <div id="bioMore" class="bio-more">
         <p>
-          I have been into tech exploring everything from C++ and Python to modern full-stack development, distributed databases, and DevOps concepts. When the AI boom took off, I dove headfirst into it—building autonomous agent swarms, vector retrieval pipelines, and zero-touch workflows.
+          I've been interested in technology for as long as I can remember. Started off tinkering with C++ and Python, and over time moved into building full-stack web applications, experimenting with AI models, and automating workflows.
         </p>
         <p>
-          I will forever be grateful to <em>"Attention Is All You Need"</em> and the researchers behind the transformer architecture that changed the industry forever.
+          I enjoy writing code that runs in production and solves real problems. Outside of tech, I read books, listen to music, and play games.
         </p>
-        <p>
-          Apart from tech, I read basically anything that is readable: books, philosophy, research papers, and essays. I also play video games, listen to music, and love building software that ships to real users.
-        </p>
-        <p>
-          So yeah, that's about it for the authentic intro about me!
-        </p>
-        <button type="button" class="fold-btn" onclick="toggleBio()">[-] Fold back</button>
+        <button type="button" class="fold-btn" onclick="toggleBio()">Fold back &uarr;</button>
       </div>
     </div>
 
-    <!-- Bento Navigation Tiles (Ankit Jha Obsidian System) -->
+    <!-- Bento Navigation Tiles -->
     <div class="tiles">
       
-      <!-- Tile 1: Obsidian Cyber Lab Card (01 // RESEARCH & WORK) -->
-      <button type="button" class="b-tile b-tile-lab" onclick="navigateToView('work')" data-section="work">
-        <div class="lab-top">
-          <span>01 // RESEARCH &amp; WORK</span>
-          <span style="font-size:10px; opacity:0.8;">[SYSTEM ACTIVE]</span>
+      <!-- Tile 1: Work -->
+      <button type="button" class="b-tile" onclick="navigateToView('work')" data-section="work">
+        <div>
+          <div class="tile-title">Selected Work</div>
+          <div class="tile-desc">
+            Projects and things I've built.
+          </div>
         </div>
-
-        <div class="lab-waveform" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-
-        <div class="lab-title">
-          Autonomous Systems<br>&amp; AI Architecture
-        </div>
-
-        <div class="lab-pill">
-          Production Pipelines
-        </div>
-
         <span class="b-tile-key">W</span>
       </button>
 
-      <!-- Tile 2: Signal Stream (Digital Garden) -->
+      <!-- Tile 2: Garden -->
       <button type="button" class="b-tile" onclick="navigateToView('garden')" data-section="garden">
         <div>
-          <div class="garden-card-head">
-            <span>Digital Garden</span>
-            <span class="font-mono text-xs text-muted">SIGNAL LOG</span>
-          </div>
-
-          <div class="terminal-box">
-            <div><span class="term-user">> stream:</span> active</div>
-            <div><span class="term-user">> topics:</span> [agents, llms, systems]</div>
-            <div class="term-active">> status: syncing thoughts...</div>
+          <div class="tile-title">Garden</div>
+          <div class="tile-desc">
+            Short notes, quick thoughts, and updates.
           </div>
         </div>
-
         <span class="b-tile-key">G</span>
       </button>
 
-      <!-- Tile 3: Writing (Wide Editorial Card) -->
+      <!-- Tile 3: Writing -->
       <button type="button" class="b-tile b-tile-wide" onclick="navigateToView('blog')" data-section="blog">
         <div>
-          <div class="wide-label">// WRITING &amp; ESSAYS</div>
-          <div class="wide-title">Deep Dives &amp; Engineering Philosophy</div>
-          <div class="wide-desc">Upcoming essays on multi-agent consensus, latency reduction, and vector indexing.</div>
+          <div class="tile-title">Writing</div>
+          <div class="tile-desc">
+            Articles and notes on things I learn along the way.
+          </div>
         </div>
         <span class="b-tile-key">B</span>
       </button>
 
-      <!-- Tile 4: Work with me (Engineering Opportunities) -->
+      <!-- Tile 4: Work with me -->
       <button type="button" class="b-tile" onclick="navigateToView('services')" data-section="services">
         <div>
-          <div class="svc-head">Work with me</div>
-          <div style="font-size:14px; color:var(--ink-soft); line-height:1.5;">
-            Zero-to-one product development, agentic workflows, and high-impact engineering.
+          <div class="tile-title">Work with me</div>
+          <div class="tile-desc">
+            Open to freelance, contracts, and engineering roles.
           </div>
-          <div class="status-beacon">Available for select projects</div>
         </div>
         <span class="b-tile-key">S</span>
       </button>
 
-      <!-- Tile 5: Reading (Intellectual Shelf) -->
+      <!-- Tile 5: Reading -->
       <button type="button" class="b-tile" onclick="navigateToView('reading')" data-section="reading">
         <div>
-          <div class="shelf-label">Reading Shelf</div>
-          <div style="font-size:14px; color:var(--ink-soft); line-height:1.5;">
-            Philosophy, distributed systems, research papers, and classical literature.
+          <div class="tile-title">Reading</div>
+          <div class="tile-desc">
+            Books I'm reading or have finished.
           </div>
-          <div class="font-mono text-xs" style="margin-top:8px; color:var(--ink-muted);">
-            Currently reading: <span style="color:var(--marker); font-weight:500;">Learn to Earn</span>
+          <div class="reading-now">
+            Reading: <span>Learn to Earn</span>
           </div>
         </div>
         <span class="b-tile-key">R</span>
@@ -382,7 +286,7 @@
 
     </div>
 
-    <!-- Contact Navigation & Real-Time IST Cockpit -->
+    <!-- Contact Navigation & Live Delhi Time -->
     <footer class="contact-nav">
       <div class="contact-links">
         <a href="mailto:jhaankit06969@gmail.com" target="_blank" rel="noopener noreferrer">jhaankit06969@gmail.com</a>
@@ -408,19 +312,15 @@
         <span>&larr; Back</span>
         <span class="b-tile-key">Esc</span>
       </button>
-      <span class="font-mono text-muted text-xs">[W] Systems &amp; Work</span>
+      <span class="font-mono text-muted text-xs">[W] Work</span>
     </div>
 
-    <h2 class="view-heading">[W] Selected Systems</h2>
-    <p class="view-subtitle">
-      Systems built end to end: autonomous agents, data pipelines, and backends.
-    </p>
+    <h2 class="view-heading">Selected Work</h2>
+    <p class="view-subtitle">Projects and systems I've built.</p>
 
     <div class="empty-box">
-      <div class="empty-title">Systems under active compilation</div>
-      <div class="empty-desc">
-        Architecture breakdowns, vector pipeline benchmarks, and autonomous agent systems are currently being documented and will be showcased here.
-      </div>
+      <div class="empty-title">Nothing published yet</div>
+      <div class="empty-desc">Adding project write-ups and code links here soon.</div>
     </div>
   </section>
 
@@ -436,16 +336,12 @@
       <span class="font-mono text-muted text-xs">[G] Garden</span>
     </div>
 
-    <h2 class="view-heading">[G] Signal Stream</h2>
-    <p class="view-subtitle">
-      Unfiltered technical micro-thoughts, insights, and lessons learned in production.
-    </p>
+    <h2 class="view-heading">Garden</h2>
+    <p class="view-subtitle">Short thoughts and quick notes.</p>
 
     <div class="empty-box">
-      <div class="empty-title">Stream initializing</div>
-      <div class="empty-desc">
-        Real-time thoughts on model reasoning, latency profiling, and system architecture will sync here soon.
-      </div>
+      <div class="empty-title">Nothing here yet</div>
+      <div class="empty-desc">Notes and updates will be posted here.</div>
     </div>
   </section>
 
@@ -461,16 +357,12 @@
       <span class="font-mono text-muted text-xs">[B] Writing</span>
     </div>
 
-    <h2 class="view-heading">[B] Technical Writing</h2>
-    <p class="view-subtitle">
-      Long-form deep dives into software engineering, multi-agent frameworks, and AI systems.
-    </p>
+    <h2 class="view-heading">Writing</h2>
+    <p class="view-subtitle">Articles and notes on things I learn.</p>
 
     <div class="empty-box">
-      <div class="empty-title">Drafts in progress</div>
-      <div class="empty-desc">
-        First publication covering agentic consensus and low-latency vector databases is scheduled for release soon.
-      </div>
+      <div class="empty-title">Nothing published yet</div>
+      <div class="empty-desc">First post coming soon.</div>
     </div>
   </section>
 
@@ -483,20 +375,18 @@
         <span>&larr; Back</span>
         <span class="b-tile-key">Esc</span>
       </button>
-      <span class="font-mono text-muted text-xs">[S] Collaboration</span>
+      <span class="font-mono text-muted text-xs">[S] Work with me</span>
     </div>
 
-    <h2 class="view-heading">[S] Work with me</h2>
-    <p class="view-subtitle">
-      Available for select AI systems architecture, agentic pipelines, and zero-to-one product development.
-    </p>
+    <h2 class="view-heading">Work with me</h2>
+    <p class="view-subtitle">Open to collaborations, freelance, and engineering roles.</p>
 
-    <div class="empty-box" style="padding:48px 24px;">
-      <div class="empty-title">Let's build something remarkable</div>
-      <div class="empty-desc" style="margin-bottom:24px;">
-        Whether you are solving a hard automation problem, deploying LLMs into production, or looking for an engineer to lead architecture, my inbox is open.
+    <div class="empty-box" style="padding:40px 24px;">
+      <div class="empty-title">Get in touch</div>
+      <div class="empty-desc" style="margin-bottom:20px;">
+        If you have a project or an opportunity you'd like to discuss, feel free to reach out.
       </div>
-      <a href="mailto:jhaankit06969@gmail.com" class="back-btn" style="background:var(--marker); color:#0a0b0e; border:none; padding:10px 24px; font-weight:600; display:inline-block; box-shadow: 0 0 16px rgba(0,240,255,0.4);">
+      <a href="mailto:jhaankit06969@gmail.com" class="back-btn" style="background:var(--accent); color:#0d0f12; border:none; padding:8px 18px; font-weight:600; display:inline-block;">
         Say Hello &rarr; jhaankit06969@gmail.com
       </a>
     </div>
@@ -514,22 +404,20 @@
       <span class="font-mono text-muted text-xs">[R] Reading</span>
     </div>
 
-    <h2 class="view-heading">[R] Intellectual Shelf</h2>
-    <p class="view-subtitle">
-      Books, economics, systems, and literature that shape my thinking.
-    </p>
+    <h2 class="view-heading">Reading</h2>
+    <p class="view-subtitle">Books I'm reading or have finished.</p>
 
     <div class="content-list">
       <article class="item-card">
         <div class="item-head">
           <h3 class="item-title">Learn to Earn</h3>
-          <span class="item-badge">Currently Reading</span>
+          <span class="item-badge">Reading</span>
         </div>
-        <div class="font-mono text-xs text-muted" style="margin-bottom:8px;">
-          By Peter Lynch &amp; John Rothchild &bull; Economics &amp; Business Fundamentals
+        <div class="font-mono text-xs text-muted" style="margin-bottom:6px;">
+          Peter Lynch &amp; John Rothchild
         </div>
         <p class="item-desc">
-          A fundamental guide to business, market incentives, capitalism, and how companies create long-term value.
+          A beginner's guide to the basics of investing and business.
         </p>
       </article>
     </div>

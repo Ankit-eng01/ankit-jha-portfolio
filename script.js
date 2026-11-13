@@ -1,7 +1,6 @@
 /**
- * Ankit Jha — Engineering Portal Interactive Logic
- * Features: 3D Neural Torus Canvas, Segmented Theme Switcher,
- * SPA Navigation, Signal Rail Expander, IST Live Clock
+ * Ankit Jha — Portfolio Logic
+ * Clean, lightweight vanilla JS
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,14 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initRouting();
   initKeyboardShortcuts();
   initLiveClock();
-  initNeuralCanvas();
+  initAvatar();
 });
 
 /* ========================================================
-   1. THEME TOGGLE (Obsidian #0a0b0e / Light #f8fafc)
+   1. THEME TOGGLE
    ======================================================== */
 function initTheme() {
-  const savedTheme = localStorage.getItem('ankit-theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   setTheme(savedTheme, false);
 }
 
@@ -24,7 +23,7 @@ function setTheme(theme, save = true) {
   document.documentElement.setAttribute('data-theme', theme);
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   if (themeMeta) {
-    themeMeta.content = theme === 'dark' ? '#0a0b0e' : '#f8fafc';
+    themeMeta.content = theme === 'dark' ? '#0d0f12' : '#ffffff';
   }
 
   const lightBtn = document.getElementById('themeLightBtn');
@@ -42,13 +41,13 @@ function setTheme(theme, save = true) {
 
   if (save) {
     try {
-      localStorage.setItem('ankit-theme', theme);
+      localStorage.setItem('theme', theme);
     } catch (e) {}
   }
 }
 
 /* ========================================================
-   2. VIEW NAVIGATION & ROUTING (#work, #garden, #blog, etc.)
+   2. VIEW NAVIGATION & ROUTING
    ======================================================== */
 const VIEWS = {
   home: 'homeView',
@@ -132,7 +131,7 @@ function initKeyboardShortcuts() {
 }
 
 /* ========================================================
-   4. SIGNAL RAIL BIO EXPANDER
+   4. BIO EXPANDER
    ======================================================== */
 let isBioOpen = false;
 
@@ -146,106 +145,86 @@ function toggleBio() {
 
   if (isBioOpen) {
     bioMore.classList.add('open');
-    if (cutHint) cutHint.textContent = '[-] Fold engineering background';
+    if (cutHint) cutHint.textContent = 'Fold back ↑';
     if (cutLineBtn) cutLineBtn.setAttribute('aria-expanded', 'true');
   } else {
     bioMore.classList.remove('open');
-    if (cutHint) cutHint.textContent = '[+] Read full background & engineering philosophies';
+    if (cutHint) cutHint.textContent = 'More about me ↓';
     if (cutLineBtn) cutLineBtn.setAttribute('aria-expanded', 'false');
   }
 }
 
 /* ========================================================
-   5. 3D INTERACTIVE NEURAL CONSTELLATION / TORUS AVATAR
+   5. MINIMAL 3D GEOMETRIC AVATAR
    ======================================================== */
-function initNeuralCanvas() {
+function initAvatar() {
   const canvas = document.getElementById('avatarCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-  const cx = width / 2;
-  const cy = height / 2;
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
+  const radius = 17;
 
-  // Generate 3D Torus points
-  const points = [];
-  const R = 15; // Major radius
-  const r = 7;  // Minor tube radius
-  const numU = 14;
-  const numV = 8;
+  // Vertices of an icosahedron
+  const phi = (1 + Math.sqrt(5)) / 2;
+  const rawVertices = [
+    [-1,  phi, 0], [ 1,  phi, 0], [-1, -phi, 0], [ 1, -phi, 0],
+    [ 0, -1,  phi], [ 0,  1,  phi], [ 0, -1, -phi], [ 0,  1, -phi],
+    [ phi, 0, -1], [ phi, 0,  1], [-phi, 0, -1], [-phi, 0,  1]
+  ];
 
-  for (let i = 0; i < numU; i++) {
-    const u = (i / numU) * Math.PI * 2;
-    for (let j = 0; j < numV; j++) {
-      const v = (j / numV) * Math.PI * 2;
-      points.push({
-        x: (R + r * Math.cos(v)) * Math.cos(u),
-        y: (R + r * Math.cos(v)) * Math.sin(u),
-        z: r * Math.sin(v)
-      });
-    }
-  }
+  const scale = radius / Math.sqrt(1 + phi * phi);
+  const vertices = rawVertices.map(v => ({
+    x: v[0] * scale,
+    y: v[1] * scale,
+    z: v[2] * scale
+  }));
 
-  let rotX = 0.006;
-  let rotY = 0.012;
-  let rotZ = 0.004;
-
-  // Mouse tilt tracking
-  let mouseTiltX = 0;
-  let mouseTiltY = 0;
-  canvas.parentElement.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouseTiltX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.03;
-    mouseTiltY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.03;
-  });
-  canvas.parentElement.addEventListener('mouseleave', () => {
-    mouseTiltX = 0;
-    mouseTiltY = 0;
-  });
+  const rotSpeedX = 0.006;
+  const rotSpeedY = 0.010;
 
   function render() {
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, w, h);
 
-    const cosY = Math.cos(rotY + mouseTiltX);
-    const sinY = Math.sin(rotY + mouseTiltX);
-    const cosX = Math.cos(rotX + mouseTiltY);
-    const sinX = Math.sin(rotX + mouseTiltY);
+    const cosY = Math.cos(rotSpeedY);
+    const sinY = Math.sin(rotSpeedY);
+    const cosX = Math.cos(rotSpeedX);
+    const sinX = Math.sin(rotSpeedX);
 
-    points.forEach(p => {
-      let x = p.x * cosY - p.z * sinY;
-      let z = p.z * cosY + p.x * sinY;
-      let y = p.y * cosX - z * sinX;
-      z = z * cosX + p.y * sinX;
-      p.x = x; p.y = y; p.z = z;
+    vertices.forEach(v => {
+      let x = v.x * cosY - v.z * sinY;
+      let z = v.z * cosY + v.x * sinY;
+      let y = v.y * cosX - z * sinX;
+      z = z * cosX + v.y * sinX;
+      v.x = x; v.y = y; v.z = z;
     });
 
-    // Draw connecting neural lines
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < points.length; i++) {
-      for (let j = i + 1; j < points.length; j++) {
-        const dx = points[i].x - points[j].x;
-        const dy = points[i].y - points[j].y;
-        const dz = points[i].z - points[j].z;
+    // Draw connecting edges
+    ctx.lineWidth = 0.7;
+    for (let i = 0; i < vertices.length; i++) {
+      for (let j = i + 1; j < vertices.length; j++) {
+        const dx = vertices[i].x - vertices[j].x;
+        const dy = vertices[i].y - vertices[j].y;
+        const dz = vertices[i].z - vertices[j].z;
         const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-        if (dist < 10) {
-          const alpha = (1 - dist / 10) * 0.38;
-          ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+        if (dist < radius * 1.2) {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
           ctx.beginPath();
-          ctx.moveTo(cx + points[i].x, cy + points[i].y);
-          ctx.lineTo(cx + points[j].x, cy + points[j].y);
+          ctx.moveTo(cx + vertices[i].x, cy + vertices[i].y);
+          ctx.lineTo(cx + vertices[j].x, cy + vertices[j].y);
           ctx.stroke();
         }
       }
     }
 
-    // Draw nodes
-    points.forEach(p => {
-      const depth = (p.z + R + r) / ((R + r) * 2);
-      const alpha = Math.min(1, Math.max(0.2, depth));
-      const radius = Math.max(0.6, depth * 1.4);
-      ctx.fillStyle = depth > 0.6 ? `rgba(0, 240, 255, ${alpha})` : `rgba(129, 140, 248, ${alpha})`;
+    // Draw vertex points
+    vertices.forEach(v => {
+      const depth = (v.z + radius) / (radius * 2);
+      ctx.fillStyle = depth > 0.5 ? 'rgba(0, 212, 227, 0.85)' : 'rgba(255, 255, 255, 0.4)';
       ctx.beginPath();
-      ctx.arc(cx + p.x, cy + p.y, radius, 0, Math.PI * 2);
+      ctx.arc(cx + v.x, cy + v.y, depth > 0.5 ? 1.6 : 1.2, 0, Math.PI * 2);
       ctx.fill();
     });
 
@@ -256,7 +235,7 @@ function initNeuralCanvas() {
 }
 
 /* ========================================================
-   6. LIVE INDIAN STANDARD TIME CLOCK (NEW DELHI / IST)
+   6. LIVE CLOCK (NEW DELHI / IST)
    ======================================================== */
 function initLiveClock() {
   const clockEl = document.getElementById('liveTime');
